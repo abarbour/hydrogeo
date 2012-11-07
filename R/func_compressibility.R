@@ -23,7 +23,7 @@
 #' \emph{J. Geophys. Res.}, \strong{94} (B9), pp. 12403-12411.
 #'
 #
-undrained_compressibility.beta <- function(Beta, B., 
+undrained_compressibility.from.beta <- function(Beta, B., 
                                            Beta_u=2e-11){
   alph <- .calc_alpha(Beta, Beta_u)
   Beta_hat <- Beta * (1 - B. * alph)
@@ -33,7 +33,7 @@ undrained_compressibility.beta <- function(Beta, B.,
 undrained_compressibility.from.areal_strain_sens <- function(As., B.,
                                              nu_u=0.25, 
                                              fluid_dens=1000){
-  prat <- .calc_poissrat(B., nu_u, fluid_dens)
+  prat <- .calc_prat(B., nu_u, fluid_dens)
   Beta_hat <- prat / As.
   return(Beta_hat)
 }
@@ -41,12 +41,13 @@ undrained_compressibility.from.areal_strain_sens <- function(As., B.,
 areal_strain_sens.from.undrained_compressibility <- function(Beta_hat, B.,
                                              nu_u=0.25, 
                                              fluid_dens=1000){
-  prat <- .calc_poissrat(B., nu_u, fluid_dens)
+  prat <- .calc_prat(B., nu_u, fluid_dens)
   As. <- prat / Beta_hat
   return(As.)
 }
 #
-.calc_poissrat <- function(B., nu_u, fluid_dens){
+.calc_prat <- function(B., nu_u, fluid_dens){
+  # R and A (89) Eq10*Beta_hat
   stopifnot(nu_u>=0 & nu_u<=1)
   stopifnot(B.>=0 & B.<=1)
   mnu <- 1 - nu_u
@@ -56,7 +57,20 @@ areal_strain_sens.from.undrained_compressibility <- function(Beta_hat, B.,
 #
 .calc_alpha <- function(Beta, 
                         Beta_u=2e-11){
+  # R A 89, eq 2
   alph <- 1 - Beta/Beta_u
   return(alph)
+}
+#
+.calc_nu_u <- function(nu, B., Beta, 
+                       Beta_u=2e-11){
+  # R A 89, eq 9
+  stopifnot(nu>=0 & nu<=1)
+  stopifnot(B.>=0 & B.<=1)
+  alph <- .calc_alph(Beta, Beta_u)
+  BNA <- B. * (1 - 2 *nu) * alph
+  Num. <- 3 * nu + BNA
+  Den. <- 3 - BNA
+  return(Num./Den.)
 }
 #
