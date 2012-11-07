@@ -1,3 +1,4 @@
+#
 well_permeab <- function(Transmiss, Len_screen, stdErrors=NULL){
 	KVG <- kinvisc(grav.divide=TRUE)
 	Perm. <- Transmiss * KVG / Len_screen
@@ -9,3 +10,4 @@ well_permeab <- function(Transmiss, Len_screen, stdErrors=NULL){
 	}
 	return(toret)
 }
+#

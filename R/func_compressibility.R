@@ -22,12 +22,14 @@
 #' “The Influence of Formation Material Properties on the Response of Water Levels in Wells to Earth Tides and Atmospheric Loading,” 
 #' \emph{J. Geophys. Res.}, \strong{94} (B9), pp. 12403-12411.
 #'
+#
 undrained_compressibility.beta <- function(Beta, B., 
                                            Beta_u=2e-11){
   alph <- .calc_alpha(Beta, Beta_u)
   Beta_hat <- Beta * (1 - B. * alph)
   return(Beta_hat)
 }
+#
 undrained_compressibility.from.areal_strain_sens <- function(As., B.,
                                              nu_u=0.25, 
                                              fluid_dens=1000){
@@ -35,6 +37,7 @@ undrained_compressibility.from.areal_strain_sens <- function(As., B.,
   Beta_hat <- prat / As.
   return(Beta_hat)
 }
+#
 areal_strain_sens.from.undrained_compressibility <- function(Beta_hat, B.,
                                              nu_u=0.25, 
                                              fluid_dens=1000){
@@ -42,6 +45,7 @@ areal_strain_sens.from.undrained_compressibility <- function(Beta_hat, B.,
   As. <- prat / Beta_hat
   return(As.)
 }
+#
 .calc_poissrat <- function(B., nu_u, fluid_dens){
   stopifnot(nu_u>=0 & nu_u<=1)
   stopifnot(B.>=0 & B.<=1)
@@ -49,8 +53,10 @@ areal_strain_sens.from.undrained_compressibility <- function(Beta_hat, B.,
   prat <- (mnu - nu_u) * B. / fluid_dens / 9.81 / mnu
   return(prat)
 }
+#
 .calc_alpha <- function(Beta, 
                         Beta_u=2e-11){
   alph <- 1 - Beta/Beta_u
   return(alph)
 }
+#

@@ -22,6 +22,7 @@
 #' “The Influence of Formation Material Properties on the Response of Water Levels in Wells to Earth Tides and Atmospheric Loading,” 
 #' \emph{J. Geophys. Res.}, \strong{94} (B9), pp. 12403-12411.
 #' 
+#
 porosity <- function(Beta, B., Beta_u=2e-11, Beta_f=4.4e-10){
   stopifnot(B.>=0 & B.<=1)
   Num. <- (Beta - Beta_u) * (1 - B.)
@@ -29,3 +30,4 @@ porosity <- function(Beta, B., Beta_u=2e-11, Beta_f=4.4e-10){
   Phi <- Num./Den.
   return(Phi)
 }
+#

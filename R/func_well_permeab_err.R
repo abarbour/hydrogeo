@@ -1,3 +1,4 @@
+#
 well_permeab_err <- function(Transmiss, Transmiss.stderr, Ls., Ls.stderr){
 	# Derived from  T * nu / Ls / g, assuming
 	# only T and Ls will have uncertainties,
@@ -11,3 +12,4 @@ well_permeab_err <- function(Transmiss, Transmiss.stderr, Ls., Ls.stderr){
 	dk. <- KVG * norm(cbind(A.,B.),type="F") # Euclidean norm (Froeb)
 	return(dk.)
 }
+#
