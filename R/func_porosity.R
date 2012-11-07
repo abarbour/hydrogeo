@@ -1,4 +1,4 @@
-#' Calculate Skempton's coefficient 'B'
+#' Calculate porosity
 #' 
 #' Calculates Equation (20) from Rojstaczer and Agnew (1989),
 #' an inversion of Eqn. (4) -- Skempton's coeff
@@ -23,6 +23,7 @@
 #' \emph{J. Geophys. Res.}, \strong{94} (B9), pp. 12403-12411.
 #' 
 porosity <- function(Beta, B., Beta_u=2e-11, Beta_f=4.4e-10){
+  stopifnot(B.>=0 & B.<=1)
   Num. <- (Beta - Beta_u) * (1 - B.)
   Den. <- (Beta_f - Beta_u) * B.
   Phi <- Num./Den.
