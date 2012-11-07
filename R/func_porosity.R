@@ -1,6 +1,7 @@
 #' Calculate Skempton's coefficient 'B'
 #' 
-#' Calculates Equation (4) from Rojstaczer and Agnew (1989)
+#' Calculates Equation (20) from Rojstaczer and Agnew (1989),
+#' an inversion of Eqn. (4) -- Skempton's coeff
 #' 
 #' Assumptions:  
 #' The intake of the well is assumed to penetrate a porous elastic 
@@ -21,10 +22,9 @@
 #' “The Influence of Formation Material Properties on the Response of Water Levels in Wells to Earth Tides and Atmospheric Loading,” 
 #' \emph{J. Geophys. Res.}, \strong{94} (B9), pp. 12403-12411.
 #' 
-skempton <- function(Beta, Phi, Beta_u=2e-11, Beta_f=4.4e-10){
-  stopifnot(phi>=0 & phi<=1)
-  Num. <- Beta - Beta_u
-  Den. <- Num. + Phi * (Beta_f - Beta_u)
-  B. <- Num./Den.
-  return(B.)
+porosity <- function(Beta, B., Beta_u=2e-11, Beta_f=4.4e-10){
+  Num. <- (Beta - Beta_u) * (1 - B.)
+  Den. <- (Beta_f - Beta_u) * B.
+  Phi <- Num./Den.
+  return(Phi)
 }
