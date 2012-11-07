@@ -1,4 +1,34 @@
-#
+#' @title Gives dimensional units for quantity desired.
+#' 
+#' Poroelasticity and hydrogeology can be a mish-mash of units; 
+#' keeping them straight can be challenging.  This returns a
+#' string with the dimensional units, and (optionally) prints them
+#' as a message.
+#' 
+#' The dimensional representations this far are
+#' \describe{
+#' \item{L}{length}
+#' \item{T}{time}
+#' \item{M}{mass}
+#' }
+#'
+#' @name dimensional_units
+#' @export
+#'
+#' @param quantity  char, representing the quantity to show units for
+#' @param verbose   boolean, should a message be printed also?
+#'
+#' @return invisible char tuple with quantity and quantity-units
+#' 
+#' @author Andrew Barbour <andy.barbour@@gmail.com> 
+#' 
+#' @seealso \code{\link{millidarcies}}, \code{\link{cmsquared}}
+#'  
+#' @examples
+#' ### code to be run
+#' dimensional_units("diff") #matches 'diffusivity'
+#' print(dimensional_units("diff", FALSE))
+#'
 dimensional_units <- function(quantity=c("conductivity",
                                          "diffusivity",
                                          "transmissivity",
@@ -13,7 +43,7 @@ dimensional_units <- function(quantity=c("conductivity",
                                          "strain",
                                          "compressibility",
                                          "porosity",
-                                         "skempton")){
+                                         "skempton"), verbose=TRUE){
   quant <- match.arg(quantity)
   quant.unit <- switch(quant, 
                        conductivity="L / T", # X
@@ -32,7 +62,7 @@ dimensional_units <- function(quantity=c("conductivity",
                        porosity="{0,1} / 1",
                        skempton="{0,1} / 1"
                        )
-  message(sprintf("\t%s dimensional units: [%s]", quant, quant.unit))
+  if (verbose) message(sprintf("\t%s dimensional units: [%s]", quant, quant.unit))
   return(invisible(c(quant, quant.unit)))
 }
 #
