@@ -8,10 +8,8 @@
 #' \item{\code{\link{some_other_func}}}{ to do something.}
 #' }
 #'
-#'
 #' @name NAMEOFFUNC
 #' export
-#'
 #'
 #' @param x  scalar, representing X with units \eqn{[m]}
 #'
@@ -20,12 +18,21 @@
 #'
 #' @author Andrew Barbour <andy.barbour@@gmail.com> 
 #' 
-#' @references Hsieh, P. A., J. D. Bredehoeft, and J. M. Farr (1987),
-#' Determination of aquifer transmissivity from Earth tide analysis,
-#' \emph{Water Resour. Res.}, \strong{23} (10), 1824-1832, doi:10.1029/WR023i010p01824.
+#' @references Davies, S. N., and DeWiest, R. J. M. (1966), \strong{Hydrogeology}, 
+#' \emph{J Wiley and Sons}, \emph{New York}, 61
 #' 
-#' @references \url{http://www.agu.org/pubs/crossref/1987/WR023i010p01824.shtml}
+#' @references Lachenbruch, A. H. (1980), 
+#' Frictional heating, fluid pressure, and the resistance to fault motion, 
+#' \emph{J. Geophys. Res.}, \strong{85} (B11), 6097–6112, doi:10.1029/JB085iB11p06097
+#' 
+#' @references Roeloffs, E. (1996), 
+#' Poroelastic Techniques in the Study of Earthquake-Related Hydrologic Phenomena,
+#' \emph{Advances in Geophysics}, \strong{37}, 135-195, doi: 10.1016/S0065-2687(08)60270-8
 #'
+#' @references Rojstaczer, S. and D. C. Agnew (1989), 
+#' The influence of formation material properties on the response of water levels in wells to Earth tides and atmospheric loading, 
+#' \emph{J. Geophys. Res.}, \strong{94} (B9), 12403–12411, doi:10.1029/JB094iB09p12403
+#' 
 #' @seealso \code{\link{some_function}}, \code{\link{some_other_func}}
 #'  
 #' @examples
@@ -64,7 +71,7 @@ hydraulic_diffusivity_poro <- function(Permeab, B., Beta, nu_u=1/2, nu=1/4){
 }
 #
 diffusivity_length <- function(Diffusiv, Time){
-  # Lachenbuch 1980
+  # Lachenbuch 1980 eq 43
   return(sqrt(4 * Diffusiv * Time))
 }
 #

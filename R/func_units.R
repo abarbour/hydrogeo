@@ -1,4 +1,4 @@
-#' @title Gives dimensional units for quantity desired.
+#' Gives dimensional units for quantity desired.
 #' 
 #' Poroelasticity and hydrogeology can be a mish-mash of units; 
 #' keeping them straight can be challenging.  This returns a
