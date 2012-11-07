@@ -1,42 +1,38 @@
-\name{hydrogeo-package}
-\alias{hydrogeo-package}
-\alias{hydrogeo}
 \docType{package}
-\title{
-What the package does (short line)
-~~ package title ~~
-}
+\name{hydrogeo-package}
+\alias{hydrogeo}
+\alias{hydrogeo-package}
+\title{what this does}
 \description{
-More about what it does (maybe more than one line)
-~~ A concise (1-5 lines) description of the package ~~
+  This package provides tools to calculate quantities
+  commonly used in hydrogeology studies.
 }
 \details{
-\tabular{ll}{
-Package: \tab hydrogeo\cr
-Type: \tab Package\cr
-Version: \tab 1.0\cr
-Date: \tab 2012-11-05\cr
-License: \tab What license is it under?\cr
+  The main function to be used is \code{\link{some_func}}
+
+  There are also two helper functions included: \describe{
+  \item{\code{\link{some_other_func}}}{ to do something.} }
 }
-~~ An overview of how to use the package, including the most important ~~
-~~ functions ~~
+\section{Scientific background}{
+  A bunch of stuff, and inline equation \eqn{r}, and a
+  newline equation: \deqn{ \frac{\partial^2 s}{\partial
+  r^2}= 0 } and some more.
+
+  And more.
 }
 \author{
-Who wrote it
-
-Maintainer: Who to complain to <yourfault@somewhere.net>
-~~ The author and/or maintainer of the package ~~
+  Andrew Barbour <andy.barbour@gmail.com>
 }
 \references{
-~~ Literature or other references for background information ~~
+  Hsieh, P. A., J. D. Bredehoeft, and J. M. Farr (1987),
+  Determination of aquifer transmissivity from Earth tide
+  analysis, \emph{Water Resour. Res.}, \strong{23} (10),
+  1824-1832, doi:10.1029/WR023i010p01824.
+
+  \url{http://www.agu.org/pubs/crossref/1987/WR023i010p01824.shtml}
 }
-~~ Optionally other standard keywords, one per line, from file KEYWORDS in the ~~
-~~ R documentation directory ~~
-\keyword{ package }
 \seealso{
-~~ Optional links to other man pages, e.g. ~~
-~~ \code{\link[<pkg>:<pkg>-package]{<pkg>}} ~~
+  \code{\link{some_function}},
+  \code{\link{some_other_func}}
 }
-\examples{
-~~ simple examples of the most important functions ~~
-}
+

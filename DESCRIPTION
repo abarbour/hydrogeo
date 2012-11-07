@@ -3,7 +3,21 @@ Type: Package
 Title: What the package does (short line)
 Version: 0.1-0
 Date: 2012-11-05
-Author: Who wrote it
-Maintainer: Who to complain to <yourfault@somewhere.net>
+Author: Andrew J Barbour
+Maintainer: Andrew J Barbour <andy.barbour@gmail.com>
 Description: More about what it does (maybe more than one line)
-License: What license is it under?
+License: GPL (>= 2)
+URL: http://abarbour.github.com/hydrogeo/
+Depends: R (>= 2.10.1)
+Collate:
+    'hydrogeo-package.R'
+    'func_cmsquared.R'
+    'func_effective_thickness_km.R'
+    'func_hydraulic_conductivity.R'
+    'func_hydraulic_diffusivity.R'
+    'func_kinvisc.R'
+    'func_millidarcies.R'
+    'func_specific_storage.R'
+    'func_storativity.R'
+    'func_well_permeab.R'
+    'func_well_permeab_err.R'
