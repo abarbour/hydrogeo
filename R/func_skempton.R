@@ -23,7 +23,7 @@
 #'
 #
 skempton <- function(Beta, Phi, Beta_u=2e-11, Beta_f=4.4e-10){
-  stopifnot(phi>=0 & phi<=1)
+  stopifnot(Phi>=0 & Phi<=1)
   Num. <- Beta - Beta_u
   Den. <- Num. + Phi * (Beta_f - Beta_u)
   B. <- Num./Den.

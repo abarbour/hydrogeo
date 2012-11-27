@@ -70,8 +70,14 @@ hydraulic_diffusivity_poro <- function(Permeab, B., Beta, nu_u=1/2, nu=1/4){
   return(Num./Den.)
 }
 #
-diffusivity_length <- function(Diffusiv, Time){
+diffusivity_length <- function(Diffusiv, Time.s=1){
   # Lachenbuch 1980 eq 43
-  return(sqrt(4 * Diffusiv * Time))
+  return(sqrt(4 * Diffusiv * Time.s))
+}
+#
+diffusivity_time <- function(Diffusiv, Length.m=1){
+  # inverted, Lachenbuch 1980 eq 43
+  #L = sqrt(4 D T) so T=L^2/4/D
+  return(Length.m * Length.m / 4 / Diffusiv)
 }
 #

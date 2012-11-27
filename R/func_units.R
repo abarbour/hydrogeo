@@ -66,11 +66,22 @@ dimensional_units <- function(quantity=c("conductivity",
   return(invisible(c(quant, quant.unit)))
 }
 #
+bars <- function(Pressure_atms){
+  return(1.013250*Pressure_atms)
+}
+msquared <- function(Perm_Darcy){
+  sc <- darcies(1) # 1/9.869233e-13
+  return(Perm_Darcy/sc)
+}
+darcies <- function(Perm_m2){
+  sc <- bars(10**12) #1.01325e+12
+  return(sc*Perm_m2)
+}
 millidarcies <- function(Perm_m2){
-  return(Perm_m2 / 0.987e-12)
+  return(darcies(Perm_m2)/1e3)
 }
 #
-cmsquared <- function(msquared){
-  return(msquared * 1e4)
+cmsquared <- function(Perm_m2){
+  return(Perm_m2 * 1e4)
 }
 #
