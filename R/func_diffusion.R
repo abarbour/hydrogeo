@@ -44,13 +44,13 @@
 #' }
 hydraulic_conductivity <- function(Permeab){
   # Davis & DeWiest 1966, eq 6.10
-	KVG <- kinvisc(grav.divide=TRUE)
-	return(Permeab / KVG)
+  KVG <- kinvisc(grav.divide=TRUE)
+  return(Permeab / KVG)
 }
 #
 hydraulic_diffusivity <- function(Transmiss, Storativ){
   # Roeloffs 1996, eq 13
-  warning("T/S calc doesn't appear to be correct... Why? [ ]")
+  warning("T/S diffusivity calculation may not be accurate. needs verification.")
   return(Transmiss / Storativ)
 }
 #

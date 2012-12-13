@@ -1,0 +1,24 @@
+#
+# diffusivity ranges from various sources:
+#
+# 	R96	compilation from Roeloffs 1996 (Fig 14)
+# 	W00	range of values in Wang 2000 (App. C.1)
+#
+# values are in m**2/s
+#
+mat.type,	mat.class,	mat.state,	d.high,	d.low,	ref
+rock,		carbonates,	intact/karst,	1e4,	1e-1,	R96
+rock,		basalt,		permeable,	1,	10,	R96
+rock,		igneous,	fractured,	2e-1,	2e2,	R96
+rock,		sandstone,	NA,		2e-3,	5,	R96
+rock,		igneous,	intact,		1e-7,	1e-5,	R96
+rock,		shale,		NA,		1e-10,	5e-7,	R96
+rock,		argillite,	NA,		8e-12,	5e-8,	R96
+deposit,	till,		unconsolidated,	5e-8,	1e-6,	R96
+deposit,	clay,		unconsolidated,	1e-8,	1e-4,	R96
+deposit,	chalk,		unconsolidated,	8e-1,	10,	R96
+deposit,	sand,		unconsolidated,	1,	1e3,	R96
+deposit,	gravel,		unconsolidated,	1,	7e4,	R96
+rock,		sandstone,	jacketed,	5.3e-3,	1.5,	W00
+rock,		granite,	jacketed,	7.0e-6,	2.2e-5,	W00
+rock,		marble,		jacketed,	1.3e-5,	1.3e-5,	W00

@@ -1,5 +1,5 @@
 #' This package provides tools to calculate quantities commonly
-#' used in hydrogeology studies.
+#' used in hydrogeology and poroelasticity studies.
 #' 
 #' The main function to be used 
 #' is \code{\link{some_func}}
@@ -22,7 +22,7 @@
 #' @docType package
 #' @name hydrogeo-package
 #' @aliases hydrogeo
-#' @title what this does
+#' @title Tools which may be useful for hydrogeology and poroelasticity studies.
 #' 
 #' @author Andrew Barbour <andy.barbour@@gmail.com> 
 #' 
@@ -46,4 +46,34 @@
 #' @seealso \code{\link{some_function}}, \code{\link{some_other_func}}
 #'  
 NULL
-#
+
+
+#' Ranges of diffusivity for a few types of solid-rock and unconsolidated deposits.
+#'
+#' In general, hydraulic diffusivities can vary over many orders of magnitude, and
+#' laboratory- and field-based estimates may disagree.  This dataset is a compilation
+#' of any available sources (including other compilations!), and is meant to represent 
+#' the range of "typical" values, expressed in SI units: \eqn{[m^2/s]}.
+#' 
+#' \itemize{
+#'   \item mat.type   Type of material
+#'   \item mat.class  Class
+#'   \item mat.state  State
+#'   \item d.high     Upper bound on typical values of diffusivity \eqn{[m^2/s]}
+#'   \item d.low      Lower bound
+#'   \item ref        Reference
+#' }
+#'
+#' The value of \code{ref} gives the source which the diffusivity range is from.
+#' Current sources include:
+#' \itemize{
+#'   \item R96        Roeloffs 1996 (shown in Fig. 14)
+#'   \item W00        Wang 2000 (App. C.1)
+#' }
+#'
+#' @docType  data
+#' @keywords  datasets
+#' @name  diffusiv
+#' @usage  data(diffusiv)
+#' @format  A data frame with XX rows and 6 variables
+NULL

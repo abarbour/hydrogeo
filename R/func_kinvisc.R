@@ -1,40 +1,32 @@
-#' function does this
+#' Calculate the kinematic viscosity
 #' 
-#' The main function to be used 
-#' is \code{\link{some_func}}
-#' 
-#' There are also two helper functions included: 
-#' \describe{
-#' \item{\code{\link{some_other_func}}}{ to do something.}
-#' }
+#' The kinematic viscosity of a homogeneous body or fluid is defined as the
+#' value of its dynamic viscosity divided by its density.  This function 
+#' can also divide by gravity, which would ne necessary in the computation of, 
+#' for example, hydraulic conductivity.
 #'
-#'
-#' @name NAMEOFFUNC
+#' @name kinvisc
 #' export
 #'
+#' @param dynamic_fluid_visc scalar, the dynamic fluid viscosity in units of 
+#' \eqn{[Pa s]} (equivalent to N*·/m**2, or kg/(m s))
+#' @param fluid_dens scalar, density of the fluid in units of \eqn{[kg/m^3]}
+#' @param grav.divide boolean, should the kinem. visc. be divided by gravitational acceleration?
+#  @param verbose boolean, should messages be printed?
 #'
-#' @param x  scalar, representing X with units \eqn{[m]}
-#'
-#' @return scalar, representing Y with units \eqn{[m]}
-#' 
+#' @return scalar, representing the kinematic viscosity in \eqn{[m**2 / s]} or, 
+#' if \code{grav.divide==TRUE} \eqn{[m s]}
 #'
 #' @author Andrew Barbour <andy.barbour@@gmail.com> 
 #' 
-#' @references Hsieh, P. A., J. D. Bredehoeft, and J. M. Farr (1987),
-#' Determination of aquifer transmissivity from Earth tide analysis,
-#' \emph{Water Resour. Res.}, \strong{23} (10), 1824-1832, doi:10.1029/WR023i010p01824.
-#' 
-#' @references \url{http://www.agu.org/pubs/crossref/1987/WR023i010p01824.shtml}
-#'
-#' @seealso \code{\link{some_function}}, \code{\link{some_other_func}}
+#' @seealso \code{\link{hydrogeo}}, \code{\link{hydraulic_conductivity}}
 #'  
 #' @examples
-#' ### code to be run
-#' this
-#' # or
-#' \dontrun{
-#' that
-#' }
+#' kinvisc()	# use defaults (water at STP)
+#' kinvisc(verbose=TRUE)	# no message
+#' kinvisc(grav.divide=TRUE)	# divide by standard gravity
+#' kinvisc(grav.divide=TRUE, verbose=TRUE)	# message
+#
 kinvisc <- function(dynamic_fluid_visc=1.002e-3, fluid_dens=1000, 
 	grav.divide=FALSE,
 	verbose=FALSE){
@@ -45,8 +37,8 @@ kinvisc <- function(dynamic_fluid_visc=1.002e-3, fluid_dens=1000,
 	rho. <- fluid_dens
 	nu. <- mu. / rho.
 	if (grav.divide){
-	  nu. <- nu./9.81
-	  if (verbose) message("kinem-visc. [L**2/T] divided by grav.; units are now [L*T]")
+	  nu. <- nu. / 9.80665
+	  if (verbose) message("divided result by gravity: units are now [L*T]")
 	}
 	return(nu.)
 }

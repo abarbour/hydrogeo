@@ -15,7 +15,7 @@
 #' of the matrix, the porosity phi, and the permeability kappa.
 #' 
 #' As noted by Rice and Cleary [1976], this definition for 
-#' B assumesthat the rock matrix is homogeneous and all the 
+#' B assumes that the rock matrix is homogeneous and all the 
 #' pore space is interconnected.
 #' 
 #' @references S. Rojstaczer and D.C. Agnew (1989), 
@@ -24,7 +24,7 @@
 #'
 #
 undrained_compressibility.from.beta <- function(Beta, B., 
-                                           Beta_u=2e-11){
+                                           Beta_u=2e-10){
   alph <- .calc_alpha(Beta, Beta_u)
   Beta_hat <- Beta * (1 - B. * alph)
   return(Beta_hat)
@@ -49,26 +49,44 @@ areal_strain_sens.from.undrained_compressibility <- function(Beta_hat, B.,
 .calc_prat <- function(B., nu_u, fluid_dens){
   # R and A (89) Eq10*Beta_hat
   stopifnot(nu_u>=0 & nu_u<=1)
-  stopifnot(B.>=0 & B.<=1)
   mnu <- 1 - nu_u
-  prat <- (mnu - nu_u) * B. / fluid_dens / 9.81 / mnu
+  stopifnot(B.>=0 & B.<=1)
+  prat <- (mnu - nu_u) * B. / fluid_dens / 9.80665 / mnu
   return(prat)
 }
 #
 .calc_alpha <- function(Beta, 
                         Beta_u=2e-11){
-  # R A 89, eq 2
-  alph <- 1 - Beta/Beta_u
+  # from Rice (1998, notes), "Elasticity of Fluid-Infiltrated Porous Solids (Poroelasticity)"
+  #  this constant comes from the stress-strain constitutive relationship, 
+  #  under the following situation:
+  # Suppose that all pore space is fluid infiltrated, and that all the 
+  # solid phase consists of material elements which respond isotropically 
+  # to pure pressure stress states, with the same bulk modulus Ks . 
+  # Suppose we simultaneously apply a pore pressure p = po and 
+  # macroscopic stresses amounting to compression by po on all faces 
+  # (sig11 = 22 = 33 = -po ). That results in a local stress state 
+  # of po_ij*kron_ij at each point of the solid phase. So each point 
+  # of the solid phase undergoes the strain po_ij*kron_ij / 3 Ks , which 
+  # means that all linear dimensions of the material, including those 
+  # characterizing void size, reduce by the (very small) fractional amount 
+  # po / 3Ks , causing the macroscopic strains, and change in porosity, 
+  # Eps_11 = 22 = 33 = -po / 3 Ks and del_n/n = -po/Ks
+  #
+  # R A 89, eq 2, where Beta = 1/K and Beta_u = Ks in the previous description
+  stopifnot(Beta_u <= Beta)
+  alph <- 1 - Beta_u / Beta
+  stopifnot((alph>=0)&(alph<=1)) # redundant?
   return(alph)
 }
 #
 .calc_nu_u <- function(nu, B., Beta, 
-                       Beta_u=2e-11){
+                       Beta_u=2e-10){
   # R A 89, eq 9
   stopifnot(nu>=0 & nu<=1)
   stopifnot(B.>=0 & B.<=1)
   alph <- .calc_alph(Beta, Beta_u)
-  BNA <- B. * (1 - 2 *nu) * alph
+  BNA <- B. * (1 - 2 * nu) * alph
   Num. <- 3 * nu + BNA
   Den. <- 3 - BNA
   return(Num./Den.)
