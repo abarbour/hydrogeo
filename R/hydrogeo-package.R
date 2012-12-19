@@ -28,20 +28,7 @@
 #' 
 # @import package
 #' 
-#' @references Davies, S. N., and DeWiest, R. J. M. (1966), \strong{Hydrogeology}, 
-#' \emph{J Wiley and Sons}, \emph{New York}, 61
-#' 
-#' @references Lachenbruch, A. H. (1980), 
-#' Frictional heating, fluid pressure, and the resistance to fault motion, 
-#' \emph{J. Geophys. Res.}, \strong{85} (B11), 6097–6112, doi:10.1029/JB085iB11p06097
-#' 
-#' @references Roeloffs, E. (1996), 
-#' Poroelastic Techniques in the Study of Earthquake-Related Hydrologic Phenomena,
-#' \emph{Advances in Geophysics}, \strong{37}, 135-195, doi: 10.1016/S0065-2687(08)60270-8
-#'
-#' @references Rojstaczer, S. and D. C. Agnew (1989), 
-#' The influence of formation material properties on the response of water levels in wells to Earth tides and atmospheric loading, 
-#' \emph{J. Geophys. Res.}, \strong{94} (B9), 12403–12411, doi:10.1029/JB094iB09p12403
+# import refs when ready
 #'
 #' @seealso \code{\link{some_function}}, \code{\link{some_other_func}}
 #'  
@@ -51,9 +38,11 @@ NULL
 #' Ranges of diffusivity for a few types of solid-rock and unconsolidated deposits.
 #'
 #' In general, hydraulic diffusivities can vary over many orders of magnitude, and
-#' laboratory- and field-based estimates may disagree.  This dataset is a compilation
-#' of any available sources (including other compilations!), and is meant to represent 
-#' the range of "typical" values, expressed in SI units: \eqn{[m^2/s]}.
+#' laboratory- and field-based estimates often disagree significantly.  This 
+#' dataset represents a (limited) compilation
+#' of any available sources (including other compilations!), and is meant to 
+#' show the range of "typical" values, expressed in SI units: \eqn{[m^2/s]}. I also
+#' include values estimated for fault-core material.
 #' 
 #' \itemize{
 #'   \item mat.type   Type of material
@@ -67,8 +56,10 @@ NULL
 #' The value of \code{ref} gives the source which the diffusivity range is from.
 #' Current sources include:
 #' \itemize{
-#'   \item R96        Roeloffs 1996 (shown in Fig. 14)
-#'   \item W00        Wang 2000 (App. C.1)
+#'   \item Do06        Doan et al 2006 (Chelungpu fault, Taiwan)
+#'   \item Ro96        Roeloffs 1996 (shown in Fig. 14)
+#'   \item Wa00        Wang 2000 (App. C.1)
+#'   \item Wi00        Wibberley 2002 (MTL, Japan)
 #' }
 #'
 #' @docType  data
