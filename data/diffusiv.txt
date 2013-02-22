@@ -1,0 +1,17 @@
+#
+# diffusivity ranges from compilation in Roeloffs 1996 (Fig 14)
+# values are in m**2/s
+#
+type,		class,		state,		d.high,	d.low
+rock,		carbonates,	intact/karst,	1e4,	1e-1
+rock,		basalt,		permeable,	1,	10
+rock,		igneous,	fractured,	2e-1,	2e2
+rock,		sand/siltstone,	NA,		2e-3,	5
+rock,		igneous,	intact,		1e-7,	1e-5
+rock,		shale,		NA,		1e-10,	5e-7
+rock,		argillite,	NA,		8e-12,	5e-8
+deposit,	till,		unconsolidated,	5e-8,	1e-6
+deposit,	clay,		unconsolidated,	1e-8,	1e-4
+deposit,	chalk,		unconsolidated,	8e-1,	10
+deposit,	sand,		unconsolidated,	1,	1e3
+deposit,	gravel,		unconsolidated,	1,	7e4
