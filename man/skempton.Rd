@@ -1,8 +1,18 @@
 \name{skempton}
 \alias{skempton}
-\title{Calculate Skempton's coefficient 'B'}
+\title{Calculate Skempton's coefficient \eqn{B}.}
 \usage{
   skempton(Beta, Phi, Beta_u = 2e-11, Beta_f = 4.4e-10)
+}
+\arguments{
+  \item{Beta}{numeric; \eqn{\beta}}
+
+  \item{Phi}{numeric; \eqn{\Phi}}
+
+  \item{Beta_u}{numeric; \eqn{\beta_u} solid matrix -
+  undrained}
+
+  \item{Beta_f}{numeric; \eqn{\beta_f} fluid}
 }
 \description{
   Calculates Equation (4) from Rojstaczer and Agnew (1989)

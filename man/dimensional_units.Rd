@@ -1,18 +1,6 @@
 \name{dimensional_units}
 \alias{dimensional_units}
-\title{Gives dimensional units for quantity desired.
-
-Poroelasticity and hydrogeology can be a mish-mash of units;
-keeping them straight can be challenging.  This returns a
-string with the dimensional units, and (optionally) prints them
-as a message.
-
-The dimensional representations this far are
-\describe{
-\item{L}{length}
-\item{T}{time}
-\item{M}{mass}
-}}
+\title{Gives dimensional units for quantity desired.}
 \usage{
   dimensional_units(quantity = c("conductivity", "diffusivity", "transmissivity", "storativity", "specific.storage", "viscosity", "density", "kinematic.viscosity", "permeability", "force", "stress", "strain", "compressibility", "porosity", "skempton"),
     verbose = TRUE)
@@ -28,13 +16,12 @@ The dimensional representations this far are
   invisible char tuple with quantity and quantity-units
 }
 \description{
-  Gives dimensional units for quantity desired.
-
   Poroelasticity and hydrogeology can be a mish-mash of
   units; keeping them straight can be challenging.  This
   returns a string with the dimensional units, and
   (optionally) prints them as a message.
-
+}
+\details{
   The dimensional representations this far are \describe{
   \item{L}{length} \item{T}{time} \item{M}{mass} }
 }

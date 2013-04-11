@@ -1,6 +1,6 @@
-#' Calculate undrained compressibility
+#' Calculate compressibilities and strain sensitivity.
 #' 
-#' Calculates Equation (6) from Rojstaczer and Agnew (1989): \eqn{\hat{Beta}}
+#' Calculates Equation (6) from Rojstaczer and Agnew (1989): \eqn{\hat{\beta}}
 #' and Equation (10) using strain sensitivity
 #' 
 #' Assumptions:  
@@ -18,35 +18,49 @@
 #' B assumes that the rock matrix is homogeneous and all the 
 #' pore space is interconnected.
 #' 
+#' @name compressibility
+#' @rdname compressibility
+#' 
 #' @references S. Rojstaczer and D.C. Agnew (1989), 
 #' “The Influence of Formation Material Properties on the Response of Water Levels in Wells to Earth Tides and Atmospheric Loading,” 
 #' \emph{J. Geophys. Res.}, \strong{94} (B9), pp. 12403-12411.
 #'
-#
+NULL
+
+#' @rdname compressibility
+#' @param Beta numeric; The compressibility of the solid matrix, \eqn{\beta}
+#' @param B. numeric; Skempton's coefficient \eqn{B}
+#' @param Beta_u numeric; \eqn{\beta} for an undrained state
+#' @export
 undrained_compressibility.from.beta <- function(Beta, B., 
                                            Beta_u=2e-10){
   alph <- .calc_alpha(Beta, Beta_u)
   Beta_hat <- Beta * (1 - B. * alph)
   return(Beta_hat)
 }
-#
-undrained_compressibility.from.areal_strain_sens <- function(As., B.,
-                                             nu_u=0.25, 
-                                             fluid_dens=1000){
-  prat <- .calc_prat(B., nu_u, fluid_dens)
+#' @rdname compressibility
+#' @param As. numeric; areal strain sensitivity \eqn{A_s}
+#' @param nu_u numeric; undrained Poisson's ratio \eqn{\nu}
+#' @param fluid_dens numeric; the density \eqn{\rho} of the fluid in consideration
+#' @param ... \code{\link{.from.areal_strain_sens}}: additional parameters passed to \code{\link{.calc_prat}}
+#' @export
+undrained_compressibility.from.areal_strain_sens <- function(As., B., ...){
+  prat <- .calc_prat(B., ...)
   Beta_hat <- prat / As.
   return(Beta_hat)
 }
-#
-areal_strain_sens.from.undrained_compressibility <- function(Beta_hat, B.,
-                                             nu_u=0.25, 
-                                             fluid_dens=1000){
-  prat <- .calc_prat(B., nu_u, fluid_dens)
+#' @rdname compressibility
+#' @param Beta_hat numeric; \eqn{\hat{\beta}}
+#' @param ... \code{\link{.from.undrained_compressibility}}: additional parameters passed to \code{\link{.calc_prat}}
+#' @export
+areal_strain_sens.from.undrained_compressibility <- function(Beta_hat, B., ...){
+  prat <- .calc_prat(B., ...)
   As. <- prat / Beta_hat
   return(As.)
 }
-#
-.calc_prat <- function(B., nu_u, fluid_dens){
+#' @rdname compressibility
+#' @export
+.calc_prat <- function(B., nu_u=0.35, fluid_dens=1000){
   # R and A (89) Eq10*Beta_hat
   stopifnot(nu_u>=0 & nu_u<=1)
   mnu <- 1 - nu_u
@@ -54,7 +68,26 @@ areal_strain_sens.from.undrained_compressibility <- function(Beta_hat, B.,
   prat <- (mnu - nu_u) * B. / fluid_dens / 9.80665 / mnu
   return(prat)
 }
-#
+
+#' @rdname compressibility
+#' @param nu numeric; Poisson's ratio \eqn{\nu}
+#' @param ... \code{\link{.calc_nu_u}}: additional parameters passed to \code{\link{.calc_alpha}}
+#' @export
+.calc_nu_u <- function(B., Beta, 
+                       nu=0.25,
+                       ...){
+  # R A 89, eq 9
+  stopifnot(nu>=0 & nu<=1)
+  stopifnot(B.>=0 & B.<=1)
+  alph <- .calc_alph(Beta, ...)
+  BNA <- B. * (1 - 2 * nu) * alph
+  Num. <- 3 * nu + BNA
+  Den. <- 3 - BNA
+  return(Num./Den.)
+}
+
+#' @rdname compressibility
+#' @export
 .calc_alpha <- function(Beta, 
                         Beta_u=2e-11){
   # from Rice (1998, notes), "Elasticity of Fluid-Infiltrated Porous Solids (Poroelasticity)"
@@ -79,16 +112,3 @@ areal_strain_sens.from.undrained_compressibility <- function(Beta_hat, B.,
   stopifnot((alph>=0)&(alph<=1)) # redundant?
   return(alph)
 }
-#
-.calc_nu_u <- function(nu, B., Beta, 
-                       Beta_u=2e-10){
-  # R A 89, eq 9
-  stopifnot(nu>=0 & nu<=1)
-  stopifnot(B.>=0 & B.<=1)
-  alph <- .calc_alph(Beta, Beta_u)
-  BNA <- B. * (1 - 2 * nu) * alph
-  Num. <- 3 * nu + BNA
-  Den. <- 3 - BNA
-  return(Num./Den.)
-}
-#

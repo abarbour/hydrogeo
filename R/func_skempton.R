@@ -1,4 +1,4 @@
-#' Calculate Skempton's coefficient 'B'
+#' Calculate Skempton's coefficient \eqn{B}.
 #' 
 #' Calculates Equation (4) from Rojstaczer and Agnew (1989)
 #' 
@@ -21,7 +21,11 @@
 #' “The Influence of Formation Material Properties on the Response of Water Levels in Wells to Earth Tides and Atmospheric Loading,” 
 #' \emph{J. Geophys. Res.}, \strong{94} (B9), pp. 12403-12411.
 #'
-#
+#' @param Beta numeric; \eqn{\beta}
+#' @param Phi numeric; \eqn{\Phi}
+#' @param Beta_u numeric; \eqn{\beta_u} solid matrix - undrained
+#' @param Beta_f numeric; \eqn{\beta_f} fluid
+#' @export
 skempton <- function(Beta, Phi, Beta_u=2e-11, Beta_f=4.4e-10){
   stopifnot(Phi>=0 & Phi<=1)
   Num. <- Beta - Beta_u

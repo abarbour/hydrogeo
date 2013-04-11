@@ -1,76 +1,46 @@
 \name{kinvisc}
 \alias{kinvisc}
-%- Also NEED an '\alias' for EACH other topic documented here.
-\title{
-%%  ~~function to do ... ~~
-}
-\description{
-%%  ~~ A concise (1-5 lines) description of what the function does. ~~
-}
+\title{Calculate the kinematic viscosity of a fluid.}
 \usage{
-kinvisc(dynamic_fluid_visc = 0.001002, fluid_dens = 1000, grav.divide = FALSE, verbose = FALSE)
+  kinvisc(dvisc = 0.001002, fdens = 1000,
+    grav.divide = FALSE, verbose = FALSE)
 }
-%- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{dynamic_fluid_visc}{
-%%     ~~Describe \code{dynamic_fluid_visc} here~~
-}
-  \item{fluid_dens}{
-%%     ~~Describe \code{fluid_dens} here~~
-}
-  \item{grav.divide}{
-%%     ~~Describe \code{grav.divide} here~~
-}
-  \item{verbose}{
-%%     ~~Describe \code{verbose} here~~
-}
-}
-\details{
-%%  ~~ If necessary, more details than the description above ~~
+  \item{dvisc}{scalar; representing the dynamic fluid
+  viscosity, with units \eqn{[Pa \cdot s]}}
+
+  \item{fdens}{scalar; representing the fluid density, with
+  units \eqn{[kg m^{-3}]}}
+
+  \item{grav.divide}{logical; should the kinematic viscosiy
+  be divided by standard gravitational acceleration?}
+
+  \item{verbose}{logical; should messages be displayed?}
 }
 \value{
-%%  ~Describe the value returned
-%%  If it is a LIST, use
-%%  \item{comp1 }{Description of 'comp1'}
-%%  \item{comp2 }{Description of 'comp2'}
-%% ...
+  scalar, a form of kinematic viscosity with units or
+  either: \itemize{ \item{\eqn{[m^2 s^{-1}]} if
+  \code{grav.divide==FALSE}} \item{\eqn{[m s]} if
+  \code{grav.divide==TRUE}} }
 }
-\references{
-%% ~put references to the literature/web site here ~
-}
-\author{
-%%  ~~who you are~~
-}
-\note{
-%%  ~~further notes~~
-}
-
-%% ~Make other sections like Warning with \section{Warning }{....} ~
-
-\seealso{
-%% ~~objects to See Also as \code{\link{help}}, ~~~
+\description{
+  The kinematic viscosity of a homogeneous body or fluid is
+  defined as the value of its dynamic viscosity divided by
+  its density.  This function can also divide by gravity,
+  which would be necessary in the computation of, for
+  example, hydraulic conductivity.
 }
 \examples{
-##---- Should be DIRECTLY executable !! ----
-##-- ==>  Define data, use random,
-##--	or do  help(data=index)  for the standard data sets.
-
-## The function is currently defined as
-function (dynamic_fluid_visc = 0.001002, fluid_dens = 1000, grav.divide = FALSE, 
-    verbose = FALSE) 
-{
-    mu. <- dynamic_fluid_visc
-    rho. <- fluid_dens
-    nu. <- mu./rho.
-    if (grav.divide) {
-        nu. <- nu./9.81
-        if (verbose) 
-            message("kinem-visc. [L**2/T] divided by grav.; units are now [L*T]")
-    }
-    return(nu.)
-  }
+kinvisc()	# use defaults (water at STP)
+kinvisc(verbose=TRUE)	# no message
+kinvisc(grav.divide=TRUE)	# divide by standard gravity
+kinvisc(grav.divide=TRUE, verbose=TRUE)	# message
 }
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory.
-\keyword{ ~kwd1 }
-\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line
+\author{
+  Andrew Barbour <andy.barbour@gmail.com>
+}
+\seealso{
+  \code{\link{hydrogeo}},
+  \code{\link{hydraulic_conductivity}}
+}
+
