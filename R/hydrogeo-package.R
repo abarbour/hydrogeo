@@ -60,5 +60,23 @@ NULL
 #' @keywords  datasets
 #' @name  diffusiv
 #' @usage  data(diffusiv)
-#' @format  A data frame with XX rows and 6 variables
+#' @format  A data frame with 19 rows and 6 variables
+NULL
+
+#' Shepard's (1954) grain-size classification.
+#' 
+#' Values are percent grain-size due to sand, silt, and clay in
+#' sedimentary material.
+#' 
+#' For use in ternary plots.
+#' 
+#' @seealso \code{\link{sand_silt_clay}} and \code{\link{plot.shepard}}
+#' @references Shepard, F.P. (1954),
+#' Nomenclature based on sand-silt-clay ratios,
+#' \emph{Journal of Sedimentary Petrology}, \strong{24}, p. 151-158.
+#' @docType  data
+#' @keywords  datasets
+#' @name  shepard
+#' @usage  data(shepard)
+#' @format  A data frame with 18 rows and 4 variables
 NULL

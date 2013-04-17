@@ -2,7 +2,7 @@
 \name{diffusiv}
 \alias{diffusiv}
 \title{Ranges of diffusivity for a few types of solid-rock and unconsolidated deposits.}
-\format{A data frame with XX rows and 6 variables}
+\format{A data frame with 19 rows and 6 variables}
 \description{
   In general, hydraulic diffusivities can vary over many
   orders of magnitude, and laboratory- and field-based

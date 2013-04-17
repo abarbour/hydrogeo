@@ -1,17 +1,24 @@
-class	p.sand	p.silt	p.clay
-sand	100	0	0
-sand	75	25	0
-sand	75	0	25
-silt	0	100	0
-silt	0 	75	25
-silt	25 	75	0
-clay	0	0	100
-clay	25	0	75
-clay	0 	25	75
-clayey-sand
-clayey-silt
-silty-clay
-silty-sand
-sandy-silt
-sandy-clay
-silt-sand-clay
+class		p.sand	p.silt	p.clay	#pos
+# triangle polygons
+sand		100	0	0	
+sand		75	25	0
+sand		75	0	25
+silt		0	100	0
+silt		0 	75	25
+silt		25 	75	0
+clay		0	0	100
+clay		25	0	75
+clay		0 	25	75
+sand-silt-clay	20	20	60	#top
+sand-silt-clay	20	60	20	#bot-r
+sand-silt-clay	60	20	20	#bot-l
+# diagonal lines
+#  represents: clayey-sand, silty-sand
+from-sand	100	0	0	# bot-l
+from-sand	0	50	50	# mid-r
+#  represents: clayey-silt, sandy-silt
+from-silt	0	100	0	# bot-r
+from-silt	50	0	50	# mid-l
+#  represents: sandy-clay, silty-clay
+from-clay	0	0	100	# top
+from-clay	50	50	0	# mid-bot

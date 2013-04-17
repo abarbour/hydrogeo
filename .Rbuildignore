@@ -3,3 +3,5 @@
 .git*
 R/.deprecated
 R/.R*
+data/*.txt
+data/*.Rout
