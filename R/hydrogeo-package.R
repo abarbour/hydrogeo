@@ -1,38 +1,32 @@
-#' This package provides tools to calculate quantities commonly
-#' used in hydrogeology and poroelasticity studies.
+#' Tools for hydrogeology and poroelasticity.
 #' 
-#' The main function to be used 
-#' is \code{\link{some_func}}
+#' This package provides tools to calculate quantities
+#' commonly found in hydrogeology and poroelasticity studies including,
+#' to name a few, hydraultic conductivity, permeability, transmissivity, etc.
 #' 
-#' There are also two helper functions included: 
-#' \describe{
-#' \item{\code{\link{some_other_func}}}{ to do something.}
-#' }
-#'
-#' @section Scientific background:
-#'
-#' A bunch of stuff, and inline equation \eqn{r}, and a newline equation:
-#' \deqn{
-#' \frac{\partial^2 s}{\partial r^2}= 0
-#' }
-#' and some more.
-#' 
-#' And more.
+# @section Scientific background:
+#
+# A bunch of stuff, and inline equation \eqn{r}, and a newline equation:
+# \deqn{
+# \frac{\partial^2 s}{\partial r^2}= 0
+# }
+# and some more.
+# 
+# And more.
 #'
 #' @docType package
 #' @name hydrogeo-package
 #' @aliases hydrogeo
-#' @title Tools which may be useful for hydrogeology and poroelasticity studies.
-#' 
 #' @author Andrew Barbour <andy.barbour@@gmail.com> 
 #' 
-# @import package
+#' @import vcd robCompositions
 #' 
 # import refs when ready
 #'
 #' @seealso \code{\link{some_function}}, \code{\link{some_other_func}}
 #'  
 NULL
+.constants <- list(gravity=9.80665)
 
 
 #' Ranges of diffusivity for a few types of solid-rock and unconsolidated deposits.
@@ -57,7 +51,7 @@ NULL
 #' Current sources include:
 #' \itemize{
 #'   \item Do06        Doan et al 2006 (Chelungpu fault, Taiwan)
-#'   \item Ro96        Roeloffs 1996 (shown in Fig. 14)
+#'   \item Ro96        Roeloffs 1996 (shown in Ref. fig. 14)
 #'   \item Wa00        Wang 2000 (App. C.1)
 #'   \item Wi00        Wibberley 2002 (MTL, Japan)
 #' }
@@ -66,5 +60,23 @@ NULL
 #' @keywords  datasets
 #' @name  diffusiv
 #' @usage  data(diffusiv)
-#' @format  A data frame with XX rows and 6 variables
+#' @format  A data frame with 19 rows and 6 variables
+NULL
+
+#' Shepard's (1954) grain-size classification.
+#' 
+#' Values are percent grain-size due to sand, silt, and clay in
+#' sedimentary material.
+#' 
+#' For use in ternary plots.
+#' 
+#' @seealso \code{\link{sand_silt_clay}} and \code{\link{plot.shepard}}
+#' @references Shepard, F.P. (1954),
+#' Nomenclature based on sand-silt-clay ratios,
+#' \emph{Journal of Sedimentary Petrology}, \strong{24}, p. 151-158.
+#' @docType  data
+#' @keywords  datasets
+#' @name  shepard
+#' @usage  data(shepard)
+#' @format  A data frame with 18 rows and 4 variables
 NULL

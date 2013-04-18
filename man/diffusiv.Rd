@@ -1,0 +1,30 @@
+\docType{data}
+\name{diffusiv}
+\alias{diffusiv}
+\title{Ranges of diffusivity for a few types of solid-rock and unconsolidated deposits.}
+\format{A data frame with 19 rows and 6 variables}
+\description{
+  In general, hydraulic diffusivities can vary over many
+  orders of magnitude, and laboratory- and field-based
+  estimates often disagree significantly.  This dataset
+  represents a (limited) compilation of any available
+  sources (including other compilations!), and is meant to
+  show the range of "typical" values, expressed in SI
+  units: \eqn{[m^2/s]}. I also include values estimated for
+  fault-core material.
+}
+\details{
+  \itemize{ \item mat.type Type of material \item mat.class
+  Class \item mat.state State \item d.high Upper bound on
+  typical values of diffusivity \eqn{[m^2/s]} \item d.low
+  Lower bound \item ref Reference }
+
+  The value of \code{ref} gives the source which the
+  diffusivity range is from. Current sources include:
+  \itemize{ \item Do06 Doan et al 2006 (Chelungpu fault,
+  Taiwan) \item Ro96 Roeloffs 1996 (shown in Ref. fig. 14)
+  \item Wa00 Wang 2000 (App. C.1) \item Wi00 Wibberley 2002
+  (MTL, Japan) }
+}
+\keyword{datasets}
+
