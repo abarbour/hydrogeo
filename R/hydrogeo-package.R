@@ -4,29 +4,79 @@
 #' commonly found in hydrogeology and poroelasticity studies including,
 #' to name a few, hydraultic conductivity, permeability, transmissivity, etc.
 #' 
-# @section Scientific background:
-#
-# A bunch of stuff, and inline equation \eqn{r}, and a newline equation:
-# \deqn{
-# \frac{\partial^2 s}{\partial r^2}= 0
-# }
-# and some more.
-# 
-# And more.
+#' @section Scientific background:
+#' 
+#' \subsection{Physical parameters}{
+#' }
 #'
 #' @docType package
 #' @name hydrogeo-package
 #' @aliases hydrogeo
-#' @author Andrew Barbour <andy.barbour@@gmail.com> 
+#' @author Andrew J. Barbour <andy.barbour@@gmail.com> 
 #' 
-#' @import vcd robCompositions
+# @import
 #' 
-# import refs when ready
+#' @references Davies, S. N., and R. J. M. DeWiest (1966), 
+#' \strong{Hydrogeology}, \emph{J Wiley and Sons}, \emph{New York}, 61.
 #'
-#' @seealso \code{\link{some_function}}, \code{\link{some_other_func}}
+#' @references Lachenbruch, A. H. (1980),
+#' Frictional heating, fluid pressure, and the resistance to fault motion,
+#' \emph{J. Geophys. Res.}, \strong{85} (B11), 6097-6112,
+#' doi: 10.1029/JB085iB11p06097
+#' 
+#' @references Rice, J. R., and M. P. Cleary (1976),
+#' Some basic stress diffusion solutions for fluid-saturated elastic porous 
+#' media with compressible constituents,
+#' \emph{Rev. Geophys.}, \strong{14} (2), 227-241, 
+#' doi:10.1029/RG014i002p00227
+#' 
+#' @references Roeloffs, E. (1996),
+#' Poroelastic Techniques in the Study of Earthquake-Related Hydrologic Phenomena,
+#' \emph{Advances in Geophysics}, \strong{37}, 135-195,
+#' doi: 10.1016/S0065-2687(08)60270-8
+#' 
+#' @references Rojstaczer, S., and D.C. Agnew (1989), 
+#' “The Influence of Formation Material Properties on the Response of 
+#' Water Levels in Wells to Earth Tides and Atmospheric Loading,” 
+#' \emph{J. Geophys. Res.}, \strong{94} (B9), 12403-12411.
+#' 
+#' @references Shepard, F. P. (1954),
+#' Nomenclature based on sand-silt-clay ratios,
+#' \emph{Journal of Sedimentary Research}, \strong{24} (3), 151-158.
+#' 
+#' @seealso 
+#' \code{\link{compressibility}},
+#' \code{\link{dimensional_units}},
+#' \code{\link{hydrogeo-constants}},
+#' \code{\link{hydrogeo-units}},
+#' \code{\link{hydraulic_diffusivity}}, 
+#' \code{\link{hydraulic_conductivity}},
+#' \code{\link{permeability}},
+#' \code{\link{porosity}},
+#' \code{\link{skempton}},
+#' \code{\link{storativity}},
+#' \code{\link{transmissivity}}
 #'  
 NULL
-.constants <- list(gravity=9.80665)
+
+#' Constants used in many calculations.
+#' @section Typical Values:
+#' \describe{
+#' \item{Hydraulic conductivity, \eqn{C}}{\eqn{1^{-0} -- 1^{-0}}}
+#' }
+#' @name hydrogeo-constants
+#' @seealso \code{\link{hydrogeo-units}}, \code{\link{hydrogeo}}
+NULL
+.constants <- list(gravity=9.80665, # 6371 km
+                   fluid_dens=1000, # water
+                   dyn_visc=1.002e-3, # water
+                   nu=0.25, #Poisson solid
+                   nu_u=1/3,
+                   Beta_u=2e-11, # a very rigid matrix,
+                   Beta_f=4.4e-10, # a rigid matrix
+                   atm2bar=1.013250, # std atm to bars 1.013250 
+                   sqm2sqcm=1e4 # m^2 --> cm^2
+                   )
 
 
 #' Ranges of diffusivity for a few types of solid-rock and unconsolidated deposits.

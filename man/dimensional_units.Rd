@@ -2,18 +2,19 @@
 \alias{dimensional_units}
 \title{Gives dimensional units for quantity desired.}
 \usage{
-  dimensional_units(quantity = c("conductivity", "diffusivity", "transmissivity", "storativity", "specific.storage", "viscosity", "density", "kinematic.viscosity", "permeability", "force", "stress", "strain", "compressibility", "porosity", "skempton"),
+  dimensional_units(quantity = c("show.all", "conductivity", "diffusivity", "transmissivity", "storativity", "specific.storage", "viscosity", "density", "kinematic.viscosity", "permeability", "force", "stress", "strain", "compressibility", "porosity", "skempton"),
     verbose = TRUE)
 }
 \arguments{
-  \item{quantity}{char, representing the quantity to show
-  units for}
+  \item{quantity}{character; the quantity to show units
+  for}
 
-  \item{verbose}{boolean, should a message be printed
+  \item{verbose}{logical; should a message be printed
   also?}
 }
 \value{
-  invisible char tuple with quantity and quantity-units
+  A character string with the quantity, and
+  dimensional-units; invisibly.
 }
 \description{
   Poroelasticity and hydrogeology can be a mish-mash of
@@ -22,18 +23,25 @@
   (optionally) prints them as a message.
 }
 \details{
-  The dimensional representations this far are \describe{
-  \item{L}{length} \item{T}{time} \item{M}{mass} }
+  This function uses \code{match.arg} so partial
+  representations are OK.
+
+  The dimensional representations this far are \itemize{
+  \item{L}{ length} \item{T}{ time} \item{M}{ mass} } with
+  SI units \eqn{[m]}, \eqn{[s]}, and \eqn{[kg]}
+  respectively.
 }
 \examples{
 ### code to be run
-dimensional_units("diff") #matches 'diffusivity'
-print(dimensional_units("diff", FALSE))
+print(dimensional_units(verbose=FALSE)) # show all
+dimensional_units("diffusivity") # 'diffusivity'
+dimensional_units("diff") # matches also, because of match.arg
+print(dimensional_units("diff", FALSE)) # print, but no message
 }
 \author{
-  Andrew Barbour <andy.barbour@gmail.com>
+  Andrew J. Barbour <andy.barbour@gmail.com>
 }
 \seealso{
-  \code{\link{millidarcies}}, \code{\link{cmsquared}}
+  \code{\link{hydrogeo-units}}, \code{\link{hydrogeo}}
 }
 

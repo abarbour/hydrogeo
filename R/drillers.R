@@ -12,8 +12,8 @@
 #' @param add.frame logical; should a box be drawn around it?
 #' @return \code{NULL}
 #' @export
-#' @author Andrew J. Barbour
-#' @seealso \code{\link{xyz2ternary}}
+#' @author Andrew J. Barbour <andy.barbour@@gmail.com> 
+#' @seealso \code{\link{xyz2ternary}}, \code{\link{hydrogeo}}
 sand_silt_clay <- function(shepard.diagram=TRUE, silt.lims=c(-0.01,1.01), add.frame=FALSE,  ...){
   ssc <- data.frame(sand=c(100,0,0),
                     silt=c(0,100,0),
@@ -125,11 +125,11 @@ plot.shepard <- function(){
 #' where \eqn{x} is the data in original axis system.  This assumes a normalization
 #' where \eqn{\sum x = 1}
 #' 
-#' @seealso \code{\link{sand_silt_clay}}
+#' @seealso \code{\link{sand_silt_clay}}, \code{\link{hydrogeo}}
 #' @param X object to be projected
 #' @param col.x numeric; the column to set as the 1-axis
 #' @param are.percents logical; are the values in \code{X} percentages \eqn{[0,100]} ?
-#' @author Andrew J. Barbour
+#' @author Andrew J. Barbour <andy.barbour@@gmail.com> 
 #' @export
 xyz2ternary <- function(X, col.x=1, are.percents=TRUE){
   #if P(a,b,c), a + b + c = 1

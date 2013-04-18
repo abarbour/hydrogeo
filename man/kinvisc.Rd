@@ -2,15 +2,15 @@
 \alias{kinvisc}
 \title{Calculate the kinematic viscosity of a fluid.}
 \usage{
-  kinvisc(dvisc = 0.001002, fdens = 1000,
+  kinvisc(dyn_visc = NULL, fluid_dens = NULL,
     grav.divide = FALSE, verbose = FALSE)
 }
 \arguments{
-  \item{dvisc}{scalar; representing the dynamic fluid
+  \item{dyn_visc}{scalar; representing the dynamic fluid
   viscosity, with units \eqn{[Pa \cdot s]}}
 
-  \item{fdens}{scalar; representing the fluid density, with
-  units \eqn{[kg m^{-3}]}}
+  \item{fluid_dens}{scalar; representing the fluid density,
+  with units \eqn{[kg m^{-3}]}}
 
   \item{grav.divide}{logical; should the kinematic viscosiy
   be divided by standard gravitational acceleration?}
@@ -37,7 +37,7 @@ kinvisc(grav.divide=TRUE)	# divide by standard gravity
 kinvisc(grav.divide=TRUE, verbose=TRUE)	# message
 }
 \author{
-  Andrew Barbour <andy.barbour@gmail.com>
+  Andrew J. Barbour <andy.barbour@gmail.com>
 }
 \seealso{
   \code{\link{hydrogeo}},

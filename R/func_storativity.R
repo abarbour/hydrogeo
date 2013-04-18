@@ -1,47 +1,26 @@
-#' function does this
+#' Aquifer storativity.
 #' 
-#' The main function to be used 
-#' is \code{\link{some_func}}
-#' 
-#' There are also two helper functions included: 
-#' \describe{
-#' \item{\code{\link{some_other_func}}}{ to do something.}
-#' }
+#' A collection of functions used to estimate the storativity and
+#' specific storage capacity of an idealized aquifer.
 #'
-#'
-#' @name NAMEOFFUNC
-#' export
-#'
-#'
-#' @param x  scalar, representing X with units \eqn{[m]}
-#'
-#' @return scalar, representing Y with units \eqn{[m]}
-#' 
-#'
-#' @author Andrew Barbour <andy.barbour@@gmail.com> 
-#' 
-#' @references Hsieh, P. A., J. D. Bredehoeft, and J. M. Farr (1987),
-#' Determination of aquifer transmissivity from Earth tide analysis,
-#' \emph{Water Resour. Res.}, \strong{23} (10), 1824-1832, doi:10.1029/WR023i010p01824.
-#' 
-#' @references \url{http://www.agu.org/pubs/crossref/1987/WR023i010p01824.shtml}
-#'
-#' @seealso \code{\link{some_function}}, \code{\link{some_other_func}}
-#'  
-#' @examples
-#' ### code to be run
-#' this
-#' # or
-#' \dontrun{
-#' that
-#' }
+#' @param Diffusiv numeric; the diffusivity, with units \eqn{[X]}
+#' @param Conductiv numeric; the hydraulic conductivity, with units \eqn{[X]}
+#' @param Transmiss numeric; the transmissivity, with units \eqn{[X]}
+#' @return numeric
+#' @export
+#' @author Andrew J. Barbour <andy.barbour@@gmail.com> 
+#' @seealso \code{\link{hydrogeo}}, 
+#' \code{\link{hydraulic_conductivity}},
+#' \code{\link{hydraulic_diffusivity}}
 storativity <- function(Transmiss, Diffusiv){
   # Roeloffs 1996, eq 13
 	# diff equiv T/S --> S=T/D
 	return(Transmiss / Diffusiv)
 }
-#
-specific_storage <- function(Storativ, Conductiv){
+#' @rdname storativity
+#' @export
+specific_storage <- function(Transmiss, Diffusiv, Conductiv){
+  Storativ <- storativity(Transmiss, Diffusiv)
   # Roeloffs 1996, p157
   return(Storativ / Conductiv)
 }

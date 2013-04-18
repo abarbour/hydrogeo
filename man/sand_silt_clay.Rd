@@ -28,9 +28,9 @@
   distinctions found in drillers' logs.
 }
 \author{
-  Andrew J. Barbour
+  Andrew J. Barbour <andy.barbour@gmail.com>
 }
 \seealso{
-  \code{\link{xyz2ternary}}
+  \code{\link{xyz2ternary}}, \code{\link{hydrogeo}}
 }
 

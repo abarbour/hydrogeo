@@ -1,0 +1,36 @@
+\name{storativity}
+\alias{specific_storage}
+\alias{storativity}
+\title{Aquifer storativity.}
+\usage{
+  storativity(Transmiss, Diffusiv)
+
+  specific_storage(Transmiss, Diffusiv, Conductiv)
+}
+\arguments{
+  \item{Diffusiv}{numeric; the diffusivity, with units
+  \eqn{[X]}}
+
+  \item{Conductiv}{numeric; the hydraulic conductivity,
+  with units \eqn{[X]}}
+
+  \item{Transmiss}{numeric; the transmissivity, with units
+  \eqn{[X]}}
+}
+\value{
+  numeric
+}
+\description{
+  A collection of functions used to estimate the
+  storativity and specific storage capacity of an idealized
+  aquifer.
+}
+\author{
+  Andrew J. Barbour <andy.barbour@gmail.com>
+}
+\seealso{
+  \code{\link{hydrogeo}},
+  \code{\link{hydraulic_conductivity}},
+  \code{\link{hydraulic_diffusivity}}
+}
+

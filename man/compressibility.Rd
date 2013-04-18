@@ -1,15 +1,15 @@
 \name{compressibility}
-\alias{.calc_alpha}
-\alias{.calc_nu_u}
 \alias{.calc_prat}
 \alias{areal_strain_sens.from.undrained_compressibility}
+\alias{calc_alpha}
+\alias{calc_nu_u}
 \alias{compressibility}
 \alias{undrained_compressibility.from.areal_strain_sens}
 \alias{undrained_compressibility.from.beta}
-\title{Calculate compressibilities and strain sensitivity.}
+\title{Calculate compressibility and strain sensitivity.}
 \usage{
   undrained_compressibility.from.beta(Beta, B.,
-    Beta_u = 2e-10)
+    Beta_u = NULL)
 
   undrained_compressibility.from.areal_strain_sens(As., B.,
     ...)
@@ -17,67 +17,84 @@
   areal_strain_sens.from.undrained_compressibility(Beta_hat,
     B., ...)
 
-  .calc_prat(B., nu_u = 0.35, fluid_dens = 1000)
+  .calc_prat(B., nu_u = NULL, fluid_dens = NULL)
 
-  .calc_nu_u(B., Beta, nu = 0.25, ...)
+  calc_nu_u(B., Beta, nu = NULL, ...)
 
-  .calc_alpha(Beta, Beta_u = 2e-11)
+  calc_alpha(Beta, Beta_u = NULL)
 }
 \arguments{
+  \item{As.}{numeric; areal strain sensitivity \eqn{A[s]}}
+
+  \item{B.}{numeric; Skempton's coefficient \eqn{B}}
+
   \item{Beta}{numeric; The compressibility of the solid
   matrix, \eqn{\beta}}
 
-  \item{B.}{numeric; Skempton's coefficient \eqn{B}}
+  \item{Beta_hat}{numeric; \eqn{\hat{\beta}}}
 
   \item{Beta_u}{numeric; \eqn{\beta} for an undrained
   state}
 
-  \item{As.}{numeric; areal strain sensitivity \eqn{A_s}}
-
-  \item{nu_u}{numeric; undrained Poisson's ratio \eqn{\nu}}
-
   \item{fluid_dens}{numeric; the density \eqn{\rho} of the
   fluid in consideration}
 
-  \item{...}{\code{\link{.from.areal_strain_sens}}:
-  additional parameters passed to \code{\link{.calc_prat}}}
-
-  \item{Beta_hat}{numeric; \eqn{\hat{\beta}}}
-
-  \item{...}{\code{\link{.from.undrained_compressibility}}:
-  additional parameters passed to \code{\link{.calc_prat}}}
-
   \item{nu}{numeric; Poisson's ratio \eqn{\nu}}
 
-  \item{...}{\code{\link{.calc_nu_u}}: additional
-  parameters passed to \code{\link{.calc_alpha}}}
+  \item{nu_u}{numeric; undrained Poisson's ratio \eqn{\nu}}
+
+  \item{...}{additional paramters passed from \itemize{
+  \item{\code{undrained_compressibility.from.areal_strain_sens}
+  and
+  \code{areal_strain_sens.from.undrained_compressibility}}{
+  to \code{.calc_prat}} \item{\code{calc_nu_u}}{ to
+  \code{calc_alpha}} }}
 }
 \description{
-  Calculates Equation (6) from Rojstaczer and Agnew (1989):
-  \eqn{\hat{\beta}} and Equation (10) using strain
-  sensitivity
+  Compressibility is, essentially, the inverse of the bulk
+  modulus of a medium, and the strain sensitivity is the
+  amount of strain produced for unit increments in
+  pressure.
 }
 \details{
-  Assumptions: The intake of the well is assumed to
-  penetrate a porous elastic medium with uniform
-  properties. These properties are those specified by the
-  theory of Biot [1941] (as reexpressed by Rice and Cleary
-  [1976] and Green and Wang [1986]), namely the
-  compressibilities of the solid phase Beta_u, the fluid
-  phase Beta_f, and the porous matrix when drained of fluid
-  Beta (the matrix compressibility), together with the
-  Poisson's ratio nu, of the matrix, the porosity phi, and
-  the permeability kappa.
-
-  As noted by Rice and Cleary [1976], this definition for B
-  assumes that the rock matrix is homogeneous and all the
-  pore space is interconnected.
+  \code{X} calculates Equation (6) from Rojstaczer and
+  Agnew (1989): \eqn{\hat{\beta}} and Equation (10) using
+  strain sensitivity
 }
-\references{
-  S. Rojstaczer and D.C. Agnew (1989), “The Influence of
-  Formation Material Properties on the Response of Water
-  Levels in Wells to Earth Tides and Atmospheric Loading,”
-  \emph{J. Geophys. Res.}, \strong{94} (B9), pp.
-  12403-12411.
+\section{Physical parameters}{
+  \subsection{\eqn{\nu[u]}}{ \code{calc_nu_u} can be used
+  to calculate \eqn{\nu[u]} } \subsection{\eqn{\alpha}}{
+
+  Rice (1998, "Elasticity of Fluid-Infiltrated Porous
+  Solids (Poroelasticity)") notes:
+
+  [...] this constant comes from the stress-strain
+  constitutive relationship, under the following situation:
+  Suppose that all pore space is fluid infiltrated, and
+  that all the solid phase consists of material elements
+  which respond isotropically to pure pressure stress
+  states, with the same bulk modulus Ks . Suppose we
+  simultaneously apply a pore pressure \eqn{p = p[o]} and
+  macroscopic stresses amounting to compression by po on
+  all faces \eqn{\sigma[11] = \sigma[22] = \sigma[33] =
+  -p[o]}. That results in a local stress state of
+  \eqn{p[o,ij] \delta[ij]} at each point of the solid
+  phase. So each point of the solid phase undergoes the
+  strain \eqn{p[o,ij] \delta[ij] / 3 K[s]} , which means
+  that all linear dimensions of the material, including
+  those characterizing void size, reduce by the (very
+  small) fractional amount \eqn{p[o] / 3 K[s]} , causing
+  the macroscopic strains, and change in porosity,
+  \eqn{\epsilon[11] = \epsilon[22] = \epsilon[33] = -p[o] /
+  3 K[s]} and \eqn{\Delta[n]/n = -p[o] / K[s]}
+
+  \code{calc_alpha} can be used to calculate \eqn{\alpha} }
+}
+\author{
+  Andrew J. Barbour <andy.barbour@gmail.com>
+}
+\seealso{
+  \code{\link{skempton}}, \code{\link{kinvisc}},
+  \code{\link{hydrogeo}}
 }
 

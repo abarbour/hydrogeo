@@ -1,0 +1,32 @@
+\name{hydraulic_conductivity}
+\alias{hydraulic_conductivity}
+\title{Hydraulic conductivity.}
+\usage{
+  hydraulic_conductivity(Permeab, ...)
+}
+\arguments{
+  \item{Permeam}{numeric; permeability \eqn{k} with units
+  \eqn{[X]}}
+
+  \item{...}{additional arguments to \code{\link{kinvisc}}}
+}
+\value{
+  numeric; The hydraulic conductivity \eqn{C}, with units
+  \eqn{[X]}
+}
+\description{
+  \code{\link{hydraulic_conductivity}} uses permeability
+  \eqn{k}, and the visocity \eqn{\nu} of the fluid, to
+  estimate the effective hydraulic conductivity \eqn{C}.
+}
+\details{
+  From Davis and DeWiest (1966), eq 6.10, hydraulic
+  conductivity is defined as: \deqn{C=\frac{k g}{\nu}}
+}
+\author{
+  Andrew J. Barbour <andy.barbour@gmail.com>
+}
+\seealso{
+  \code{\link{kinvisc}}, \code{\link{hydrogeo}}
+}
+

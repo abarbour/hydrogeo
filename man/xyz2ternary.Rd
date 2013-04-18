@@ -23,9 +23,9 @@
   normalization where \eqn{\sum x = 1}
 }
 \author{
-  Andrew J. Barbour
+  Andrew J. Barbour <andy.barbour@gmail.com>
 }
 \seealso{
-  \code{\link{sand_silt_clay}}
+  \code{\link{sand_silt_clay}}, \code{\link{hydrogeo}}
 }
 

@@ -1,0 +1,47 @@
+\name{permeability}
+\alias{permeability}
+\alias{well_permeab}
+\alias{well_permeab_err}
+\title{Permeability.}
+\usage{
+  permeability(Transmiss, Length.scale)
+
+  well_permeab(Transmiss, Len_screen, stdErrors = NULL)
+
+  well_permeab_err(Transmiss, Transmiss.stderr, Len_screen,
+    Len_screen.stderr)
+}
+\arguments{
+  \item{Transmiss}{numeric; the transmissivity, with units
+  \eqn{[X]}}
+
+  \item{Length.scale}{numeric; the length scale for
+  permeability calculation, in \eqn{[m]}}
+
+  \item{Len_screen}{numeric; the length of the screened
+  portion of the well}
+
+  \item{stdErrors}{numeric; standard errors for
+  \code{Transmiss} and \code{Len_screen}}
+
+  \item{Transmiss.stderr}{numeric; the standard error
+  associated with \code{Transmiss}}
+
+  \item{Len_screen.stderr}{numeric; the standard error
+  associated with \code{Len_screen}}
+}
+\value{
+  numeric
+}
+\description{
+  A collection of functions used to estimate the
+  permeability of a porous medium, from a well-sensing
+  system, and associated uncertainties.
+}
+\author{
+  Andrew J. Barbour <andy.barbour@gmail.com>
+}
+\seealso{
+  \code{\link{transmissivity}}, \code{\link{hydrogeo}}
+}
+

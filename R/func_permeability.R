@@ -1,47 +1,27 @@
-#' function does this
+#' Permeability.
 #' 
-#' The main function to be used 
-#' is \code{\link{some_func}}
-#' 
-#' There are also two helper functions included: 
-#' \describe{
-#' \item{\code{\link{some_other_func}}}{ to do something.}
-#' }
+#' A collection of functions used to estimate the permeability
+#' of a porous medium, from a well-sensing system, and associated
+#' uncertainties.
 #'
-#'
-#' @name NAMEOFFUNC
-#' export
-#'
-#'
-#' @param x  scalar, representing X with units \eqn{[m]}
-#'
-#' @return scalar, representing Y with units \eqn{[m]}
-#' 
-#'
-#' @author Andrew Barbour <andy.barbour@@gmail.com> 
-#' 
-#' @references Hsieh, P. A., J. D. Bredehoeft, and J. M. Farr (1987),
-#' Determination of aquifer transmissivity from Earth tide analysis,
-#' \emph{Water Resour. Res.}, \strong{23} (10), 1824-1832, doi:10.1029/WR023i010p01824.
-#' 
-#' @references \url{http://www.agu.org/pubs/crossref/1987/WR023i010p01824.shtml}
-#'
-#' @seealso \code{\link{some_function}}, \code{\link{some_other_func}}
-#'  
-#' @examples
-#' ### code to be run
-#' this
-#' # or
-#' \dontrun{
-#' that
-#' }
-
+#' @param Transmiss numeric; the transmissivity, with units \eqn{[X]}
+#' @param Length.scale numeric; the length scale for permeability calculation, in \eqn{[m]}
+#' @param Len_screen numeric; the length of the screened portion of the well
+#' @param stdErrors numeric; standard errors for \code{Transmiss} and \code{Len_screen}
+#' @param Transmiss.stderr numeric; the standard error associated with \code{Transmiss}
+#' @param Len_screen.stderr numeric; the standard error associated with \code{Len_screen}
+#' @return numeric
+#' @export
+#' @author Andrew J. Barbour <andy.barbour@@gmail.com> 
+#' @seealso \code{\link{transmissivity}}, \code{\link{hydrogeo}}
 permeability <- function(Transmiss, Length.scale){
   KVG <- kinvisc(grav.divide=TRUE)
   Perm. <- Transmiss * KVG / Length.scale
   return(Perm.)
 }
-#
+
+#' @rdname permeability
+#' @export
 well_permeab <- function(Transmiss, Len_screen, stdErrors=NULL){
   Perm. <- permeability(Transmiss, Len_screen)
 	toret <- list(Permeab=Perm., Permeab.stderr=NA)
@@ -52,17 +32,20 @@ well_permeab <- function(Transmiss, Len_screen, stdErrors=NULL){
 	}
 	return(toret)
 }
-#
-well_permeab_err <- function(Transmiss, Transmiss.stderr, Ls., Ls.stderr){
+
+#' @rdname permeability
+#' @export
+well_permeab_err <- function(Transmiss, Transmiss.stderr, Len_screen, Len_screen.stderr){
   # Derived from  T * nu / Ls / g, assuming
   # only T and Ls will have uncertainties,
   # using rules from Taylor 1997.
-  T. <- Transmiss
-  dT. <- Transmiss.stderr
-  dLs. <- Ls.stderr
+  Tr. <- Transmiss
+  dTr. <- Transmiss.stderr
+  Ls. <- Len_screen
+  dLs. <- Len_screen.stderr
   KVG <- kinvisc(grav.divide=TRUE)
-  A. <- dT./Ls.
-  B. <- T. * dLs. / Ls. / Ls.  # orig expression has -1, but taking norm
+  A. <- dTr./Ls.
+  B. <- Tr. * dLs. / Ls. / Ls.  # orig expression has -1, but taking norm
   dk. <- KVG * norm(cbind(A.,B.),type="F") # Euclidean norm (Froeb)
   return(dk.)
 }
