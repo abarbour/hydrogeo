@@ -27,3 +27,6 @@ Collate:
     'zzz.R'
     'drillers.R'
     'func_conductivity.R'
+    'func_brocher.R'
+    'func_pressure.R'
+    'func_velocity.R'

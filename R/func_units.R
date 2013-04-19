@@ -70,7 +70,8 @@ dimensional_units <- function(quantity=c("show.all",
     rownames(X) <- NULL
     return(invisible(X))
   } else {
-    if (verbose) message(sprintf("  %s  has unit dimensions  [ %s ]", quant, quant.unit))
+    quant.unit <- paste("[",quant.unit,"]")
+    if (verbose) message(sprintf("%25s %-22s", quant, quant.unit))
     return(invisible(matrix(c(quant, quant.unit), ncol=2)))
   }
 }
@@ -80,29 +81,39 @@ dimensional_units <- function(quantity=c("show.all",
 #' Convert within commonly found units.
 #' 
 #' There is a panoply of units in hydrogeology literature, so
-#' this represents a very small fraction of possibilities.
+#' this represents a very small fraction of possibilities.  There are 
+#' generally three sets of conversion tools here:
+#' 
+#' \itemize{
+#' \item{length}{ convert meters to feet, etc}
+#' \item{permeability}{ convert from darcies to SI, etc; these will begin with
+#' \code{to_}. For example, \code{to_msquared} converts darcies to \eqn{m^2}.}
+#' \item{pressure}{ convert from pascal to bars, etc}
+#' }
 #' 
 #' @name hydrogeo-units
 #' @rdname hydrogeo-units
-#' @param Pressure_atm numeric; pressure, in standard atmospheres
+#' @param atm numeric; pressure, in standard atmospheres
+#' @param bar numeric; pressure in bars
+#' @param ft numeric; length in feet
+#' @param hpa numeric; pressure in hecto-Pascals
+#' @param kpa numeric; pressure in kilo-Pascals
+#' @param m numeric; length in meters
+#' @param pa numeric; pressure in Pascals
 #' @param Perm_sqm numeric; permeability, in \eqn{[m^2]}
 #' @param Perm_Darcy numeric; permeability, in darcies
+#' 
 #' @author Andrew J. Barbour <andy.barbour@@gmail.com> 
 #' @seealso \code{\link{dimensional_units}}, \code{\link{hydrogeo}}
 NULL
 
 #' @rdname hydrogeo-units
 #' @export
-to_bars <- function(Pressure_atm){
-  sc <- hydrogeo:::.constants$atm2bar
-  return(sc * Pressure_atm)
-}
-#' @rdname hydrogeo-units
-#' @export
 to_msquared <- function(Perm_Darcy){
   sc <- 1 / to_darcies(1) # 1 / (9.869233e13)
   return(sc * Perm_Darcy)
 }
+
 #' @rdname hydrogeo-units
 #' @export
 to_darcies <- function(Perm_sqm, milli=FALSE){
@@ -110,14 +121,56 @@ to_darcies <- function(Perm_sqm, milli=FALSE){
   if (milli) sc <- sc / 1e3
   return(sc * Perm_sqm)
 }
+
 #' @rdname hydrogeo-units
 #' @export
 to_millidarcies <- function(Perm_sqm){
   return(to_darcies(Perm_sqm, milli=TRUE))
 }
+
 #' @rdname hydrogeo-units
 #' @export
 to_cmsquared <- function(Perm_sqm){
   sc <- hydrogeo:::.constants$sqm2sqcm
   return(sc * Perm_m2)
 }
+
+
+#' @rdname hydrogeo-units
+#' @export
+ft2m <- function(ft){ft*1200/3937} # http://www.ngs.noaa.gov/PUBS_LIB/FedRegister/FRdoc59-5442.pdf
+
+#' @rdname hydrogeo-units
+#' @export
+m2ft <- function(m){m/ft2m(1)}
+
+#' @rdname hydrogeo-units
+#' @export
+hpa2pa <- function(hpa){hpa*100}
+
+#' @rdname hydrogeo-units
+#' @export
+pa2hpa <- function(pa){pa/hpa2pa(1)}
+
+#' @rdname hydrogeo-units
+#' @export
+kpa2pa <- function(kpa){kpa*1000}
+
+#' @rdname hydrogeo-units
+#' @export
+pa2kpa <- function(pa){pa/kpa2pa(1)}
+
+#' @rdname hydrogeo-units
+#' @export
+bar2pa <- function(bar){bar/pa2bar(1)}
+
+#' @rdname hydrogeo-units
+#' @export
+pa2bar <- function(pa){pa2hpa(pa)/1000}
+
+#' @rdname hydrogeo-units
+#' @export
+atm2bar <- function(atm){
+  sc <- hydrogeo:::.constants$atm$bar
+  return(sc * atm)
+} 

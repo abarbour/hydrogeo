@@ -14,7 +14,11 @@
 #' @aliases hydrogeo
 #' @author Andrew J. Barbour <andy.barbour@@gmail.com> 
 #' 
-# @import
+#' @import reshape2
+#' 
+#' @references Brocher, T. M. (2005). 
+#' Empirical relations between elastic wavespeeds and density in the Earth's crust. 
+#' \emph{Bulletin of the Seismological Society of America}, \strong{95} (6), 2081-2092.
 #' 
 #' @references Davies, S. N., and R. J. M. DeWiest (1966), 
 #' \strong{Hydrogeology}, \emph{J Wiley and Sons}, \emph{New York}, 61.
@@ -68,13 +72,21 @@ NULL
 #' @seealso \code{\link{hydrogeo-units}}, \code{\link{hydrogeo}}
 NULL
 .constants <- list(gravity=9.80665, # 6371 km
-                   fluid_dens=1000, # water
-                   dyn_visc=1.002e-3, # water
-                   nu=0.25, #Poisson solid
+                   fluid_dens=1000, # water kg/m^3
+                   dyn_visc=1.002e-3, # water at 20C Pa*s
+                   nu=0.25, #for a Poisson solid
                    nu_u=1/3,
+                   VpVs=sqrt(3), #for a Poisson solid
                    Beta_u=2e-11, # a very rigid matrix,
                    Beta_f=4.4e-10, # a rigid matrix
-                   atm2bar=1.013250, # std atm to bars 1.013250 
+                   atm=list(
+                     bar=1.013250, # std atm in bars
+                     m_per=10.3, # meters of water per atmosphere
+                     L.=0.0065, # temperature lapse rate  K/m
+                     To.=288.15, # sea level standard temperature  K
+                     M.=0.0289644, # molar mass of dry air  kg/mol
+                     R.=8.31447 # universal gas constant  J/(mol*K)
+                   ),
                    sqm2sqcm=1e4 # m^2 --> cm^2
                    )
 

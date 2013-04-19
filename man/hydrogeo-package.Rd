@@ -16,6 +16,11 @@
   Andrew J. Barbour <andy.barbour@gmail.com>
 }
 \references{
+  Brocher, T. M. (2005). Empirical relations between
+  elastic wavespeeds and density in the Earth's crust.
+  \emph{Bulletin of the Seismological Society of America},
+  \strong{95} (6), 2081-2092.
+
   Davies, S. N., and R. J. M. DeWiest (1966),
   \strong{Hydrogeology}, \emph{J Wiley and Sons}, \emph{New
   York}, 61.

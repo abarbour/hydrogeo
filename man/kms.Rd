@@ -1,0 +1,43 @@
+\name{kms}
+\alias{kms}
+\alias{kms.default}
+\alias{to_kms}
+\title{Convert velocity or slowness to km/s.}
+\usage{
+  kms(vel, is.mus = FALSE, is.slowness = FALSE, ...)
+
+  \method{kms}{default} (vel, is.mus = FALSE,
+    is.slowness = FALSE, ...)
+}
+\arguments{
+  \item{vel}{numeric; velocity or slowness}
+
+  \item{is.mus}{logical; is time in microseconds?}
+
+  \item{is.slowness}{logical; is \code{vel} slowness
+  instead of velocity?}
+}
+\value{
+  numeric
+}
+\description{
+  Converts a velocity with units ft/s, or slowness with
+  units s/ft to velocity with units km/s. This function
+  would typically be needed to convert units in \eqn{V[p]}
+  logs to those appropriate for scaling laws (into density,
+  porosity, etc.).
+}
+\details{
+  If a velocity is \eqn{v} then slowness is
+  \deqn{p=\frac{1}{v}}
+
+  The spatial units associated with \code{vel} are assumed
+  to be in feet (e.g. ft/s).
+}
+\author{
+  Andrew J. Barbour <andy.barbour@gmail.com>
+}
+\seealso{
+  \code{\link{brocher}}, \code{\link{hydrogeo}}
+}
+
