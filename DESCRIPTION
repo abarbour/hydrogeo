@@ -11,7 +11,8 @@ Description: This package represents a collection of
 License: GPL (>= 2)
 URL: http://abarbour.github.com/hydrogeo/
 Depends:
-    R (>= 2.10.1), reshape2
+    R (>= 2.10.1),
+    reshape2
 Collate:
     'hydrogeo-package.R'
     'zzz.R'

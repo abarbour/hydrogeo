@@ -14,6 +14,7 @@
 \alias{dens_godfrey.default}
 \alias{dens_nafe_drake}
 \alias{dens_nafe_drake.default}
+\alias{From.Vp}
 \alias{nu_brocher}
 \alias{nu_brocher_ludwig}
 \alias{nu_brocher_ludwig.default}
@@ -34,9 +35,11 @@
 \alias{vs_castagna.default}
 \title{Empirical scalings to convert between material properties and seismic velocities.}
 \usage{
+  From.Vp(Vp, ...)
+
   as.RockDensity(Vp, pos = seq_along(Vp),
     emp.fit = c("nafe_drake", "gardner", "christensen_mooney", "godfrey"),
-    do.all = FALSE, all.average = FALSE, Vp.units = NULL,
+    do.all = TRUE, all.average = do.all, Vp.units = NULL,
     verbose = TRUE)
 
   dens_nafe_drake(Vp, null_val = NA)
@@ -58,7 +61,7 @@
 
   as.Vs(Vp, pos = seq_along(Vp),
     emp.fit = c("brocher", "castagna", "brocher_mafic"),
-    do.all = FALSE, all.average = FALSE, Vp.units = NULL,
+    do.all = TRUE, all.average = do.all, Vp.units = NULL,
     verbose = TRUE)
 
   vs_brocher(Vp, null_val = NA)
@@ -203,6 +206,10 @@
 
   The parameter \code{null_val} can be set to fill points
   where any conversion lies outside the given range.
+}
+\examples{
+From.Vp(rnorm(5)+4)
+as.Vs(rnorm(5)+4)
 }
 \author{
   Andrew J. Barbour <andy.barbour@gmail.com>

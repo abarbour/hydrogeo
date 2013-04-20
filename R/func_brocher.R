@@ -71,46 +71,59 @@ NULL
 
 #' @rdname brocher
 #' @export
+#' @examples
+#' From.Vp(rnorm(5)+4)
+From.Vp <- function(Vp, ...){
+  Dens <- subset(as.RockDensity(Vp, ...), meth=="Averaged")
+  Vs <- subset(as.Vs(Vp, ...), meth=="Averaged")
+  # add Poissons ratio
+  Full <- merge(Vs, Dens, by=c("pos","Vp","meth"), all=TRUE)
+  #Full <- cbind(Vs,Dens)
+  return(Full)
+}
+
+#' @rdname brocher
+#' @export
 as.RockDensity <- function(Vp, pos=seq_along(Vp), 
                            emp.fit=c("nafe_drake", "gardner", "christensen_mooney", "godfrey"), 
-                           do.all=FALSE, all.average=FALSE,
+                           do.all=TRUE, all.average=do.all,
                            Vp.units=NULL, verbose=TRUE){
   if (verbose) message("Converting Vp to Density (Brocher) ...")
-  #empir <- c("nafe_drake", "gardner", "christensen_mooney", "godfrey")
-  all.dens <- paste("dens", emp.fit, sep="_")
+  all.meth <- paste0("dens_", emp.fit)
   # init dataframe
-  toret <- data.frame(dens=numeric(0), meth=character(0), indx=numeric(0))
+  toret <- data.frame(pos=numeric(0), Vp=numeric(0), dens=numeric(0), meth=character(0))
   # convert if asked-to
-  Vp <- switch(match.arg(Vp.units, c("kmsec","ftmusec","ftsec")),          
-               kmsec=Vp, ftmusec=kms(Vp, is.mus=TRUE), ftsec=kms(Vp) )
+  Vp <- switch(match.arg(Vp.units, c("kmsec","ftmusec","ftsec")),
+               kmsec=Vp, 
+               ftmusec=kms(Vp, is.mus=TRUE), 
+               ftsec=kms(Vp) )
   
-  if ((NA %in% pos)){indx <- seq_along(Vp)} else {indx <- pos}
-  
-  #.doDens <- function(vp, FUN){unlist(lapply(vp, FUN))}
-  doDens <- function(vp, FUN, ...){sapply(X=vp, FUN=FUN, ...)}
+  doConv <- function(X., FUN., ...){sapply(X=X., FUN=FUN., ...)}
   
   if (do.all | all.average){
-    for (emp in all.dens){
-      if (verbose) message(emp)
-      DENS <- function(...) UseMethod(emp)
-      toret <- rbind(toret, data.frame(dens=as.numeric(doDens(Vp, DENS)), meth=emp, indx=indx))
+    for (meth in all.meth){
+      if (verbose) message(meth)
+      CONVFUN <- function(...) UseMethod(meth)
+      toret <- rbind(toret, data.frame(pos=pos, Vp=Vp, dens=as.numeric(doConv(Vp, CONVFUN)), meth=meth))
     }
     if (all.average){
       if (verbose) message("averaging all relations")
       #require(reshape2)
-      toret <- reshape2::dcast(toret, indx~. , value.var="dens", mean, na.rm=TRUE)
-      names(toret) <- c("indx","dens")
-      toret$meth <- "average"
+      moretoret <- reshape2::dcast(toret, pos+Vp ~ . , value.var=c("dens"), mean, trim=0.05, na.rm=TRUE)
+      names(moretoret) <- names(toret)[1:3]
+      moretoret$meth <- "Averaged"
+      toret <- rbind(toret, moretoret)
     }
   } else {
-    if (length(emp.fit)>1){
-      emp.fit <- emp.fit[1]
-      warning("length emp.fit > 1: using the first instance in emp.fit")
+    if (length(all.meth)>1){
+      meth <- all.meth[1]
+      warning(sprintf("forced %s because 'emp.fit' was not specified", meth))
+      if (verbose) on.exit(message("consider specifying an emprical model to use; or set 'do.all=TRUE'"))
     }
-    emp <- match.arg(emp.fit, all.dens)
-    if (verbose) message(emp)
-    DENS <- function(...) UseMethod(emp)
-    toret <- rbind(toret, data.frame(dens=as.numeric(doDens(Vp, DENS)), meth=emp, indx=indx))
+    meth <- match.arg(meth, all.meth) # redundant
+    if (verbose) message(meth)
+    CONVFUN <- function(...) UseMethod(meth)
+    toret <- rbind(toret, data.frame(pos=pos, Vp=Vp, meth=meth, dens=as.numeric(doConv(Vp, CONVFUN))))
   }
   return(toret)
 }
@@ -185,11 +198,48 @@ dens_godfrey.default <- function(Vp, null_val=NA){
 #
 #' @rdname brocher
 #' @export
+#' @examples
+#' as.Vs(rnorm(5)+4)
 as.Vs <- function(Vp, pos=seq_along(Vp), 
                   emp.fit=c("brocher", "castagna", "brocher_mafic"), 
-                  do.all=FALSE, all.average=FALSE,
+                  do.all=TRUE, all.average=do.all,
                   Vp.units=NULL, verbose=TRUE){
-  .NotYetImplemented()
+  if (verbose) message("Converting Vp to Vs (Brocher) ...")
+  all.meth <- paste0("vs_", emp.fit)
+  # init dataframe
+  toret <- data.frame(pos=numeric(0), Vp=numeric(0), Vs=numeric(0), meth=character(0))
+  # convert if asked-to
+  Vp <- switch(match.arg(Vp.units, c("kmsec","ftmusec","ftsec")),          
+               kmsec=Vp, ftmusec=kms(Vp, is.mus=TRUE), ftsec=kms(Vp) )
+
+  doConv <- function(X., FUN., ...){sapply(X=X., FUN=FUN., ...)}
+  
+  if (do.all | all.average){
+    for (meth in all.meth){
+      if (verbose) message(meth)
+      CONVFUN <- function(...) UseMethod(meth)
+      toret <- rbind(toret, data.frame(pos=pos, Vp=Vp, Vs=as.numeric(doConv(Vp, CONVFUN)), meth=meth))
+    }
+    if (all.average){
+      if (verbose) message("averaging all relations")
+      #require(reshape2)
+      moretoret <- reshape2::dcast(toret, pos+Vp ~ . , value.var=c("Vs"), mean, trim=0.05, na.rm=TRUE)
+      names(moretoret) <- names(toret)[1:3]
+      moretoret$meth <- "Averaged"
+      toret <- rbind(toret, moretoret)
+    }
+  } else {
+    if (length(all.meth)>1){
+      meth <- all.meth[1]
+      warning(sprintf("forced %s because 'emp.fit' was not specified", meth))
+      if (verbose) on.exit(message("consider specifying an emprical model to use; or set 'do.all=TRUE'"))
+    }
+    meth <- match.arg(meth, all.meth) # redundant
+    if (verbose) message(meth)
+    CONVFUN <- function(...) UseMethod(meth)
+    toret <- rbind(toret, data.frame(pos=pos, Vp=Vp, meth=meth, Vs=as.numeric(doConv(Vp, CONVFUN))))
+  }
+  return(toret)
 }
 
 #' @rdname brocher
