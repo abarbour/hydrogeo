@@ -5,7 +5,7 @@
   hydraulic_conductivity(Permeab, ...)
 }
 \arguments{
-  \item{Permeam}{numeric; permeability \eqn{k} with units
+  \item{Permeab}{numeric; permeability \eqn{k} with units
   \eqn{[X]}}
 
   \item{...}{additional arguments to \code{\link{kinvisc}}}

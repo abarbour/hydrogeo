@@ -6,7 +6,10 @@
 #' 
 #' @section Scientific background:
 #' 
+#' TODO
+#'
 #' \subsection{Physical parameters}{
+#' TODO
 #' }
 #'
 #' @docType package
@@ -14,7 +17,7 @@
 #' @aliases hydrogeo
 #' @author Andrew J. Barbour <andy.barbour@@gmail.com> 
 #' 
-#' @import reshape2
+#' @import utils reshape2
 #' 
 #' @references Brocher, T. M. (2005). 
 #' Empirical relations between elastic wavespeeds and density in the Earth's crust. 
@@ -40,8 +43,8 @@
 #' doi: 10.1016/S0065-2687(08)60270-8
 #' 
 #' @references Rojstaczer, S., and D.C. Agnew (1989), 
-#' “The Influence of Formation Material Properties on the Response of 
-#' Water Levels in Wells to Earth Tides and Atmospheric Loading,” 
+#' The Influence of Formation Material Properties on the Response of 
+#' Water Levels in Wells to Earth Tides and Atmospheric Loading,
 #' \emph{J. Geophys. Res.}, \strong{94} (B9), 12403-12411.
 #' 
 #' @references Shepard, F. P. (1954),
@@ -97,7 +100,7 @@ NULL
 #' laboratory- and field-based estimates often disagree significantly.  This 
 #' dataset represents a (limited) compilation
 #' of any available sources (including other compilations!), and is meant to 
-#' show the range of "typical" values, expressed in SI units: \eqn{[m^2/s]}. I also
+#' show the range of 'typical' values, expressed in SI units: \eqn{[m^2/s]}. I also
 #' include values estimated for fault-core material.
 #' 
 #' \itemize{
@@ -132,7 +135,7 @@ NULL
 #' 
 #' For use in ternary plots.
 #' 
-#' @seealso \code{\link{sand_silt_clay}} and \code{\link{plot.shepard}}
+#' @seealso \code{\link{sand_silt_clay}} and \code{\link{shepard_plot}}
 #' @references Shepard, F.P. (1954),
 #' Nomenclature based on sand-silt-clay ratios,
 #' \emph{Journal of Sedimentary Petrology}, \strong{24}, p. 151-158.

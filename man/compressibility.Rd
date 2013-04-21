@@ -19,9 +19,9 @@
 
   .calc_prat(B., nu_u = NULL, fluid_dens = NULL)
 
-  calc_nu_u(B., Beta, nu = NULL, ...)
-
   calc_alpha(Beta, Beta_u = NULL)
+
+  calc_nu_u(B., Beta, nu = NULL, ...)
 }
 \arguments{
   \item{As.}{numeric; areal strain sensitivity \eqn{A[s]}}
@@ -61,6 +61,23 @@
   Agnew (1989): \eqn{\hat{\beta}} and Equation (10) using
   strain sensitivity
 }
+\section{Assumptions}{
+  The intake of the well is assumed to penetrate a porous
+  elastic medium with uniform properties. These properties
+  are those specified by the theory of Biot [1941] (as
+  reexpressed by Rice and Cleary [1976] and Green and Wang
+  [1986]), namely the compressibilities of the solid phase
+  \eqn{\beta[u]}, the fluid phase \eqn{\beta[f]}, and the
+  porous matrix when drained of fluid Beta (the matrix
+  compressibility), together with the Poisson's ratio
+  \eqn{\nu}, of the matrix, the porosity \eqn{\phi}, and
+  the permeability \eqn{\kappa}.
+
+  The fluid phase is assumed to be water at standard
+  temperature and pressure; this can be severely violated
+  deep in the earth.
+}
+
 \section{Physical parameters}{
   \subsection{\eqn{\nu[u]}}{ \code{calc_nu_u} can be used
   to calculate \eqn{\nu[u]} } \subsection{\eqn{\alpha}}{

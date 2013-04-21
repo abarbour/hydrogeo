@@ -10,7 +10,9 @@
   permeability, transmissivity, etc.
 }
 \section{Scientific background}{
-  \subsection{Physical parameters}{ }
+  TODO
+
+  \subsection{Physical parameters}{ TODO }
 }
 \author{
   Andrew J. Barbour <andy.barbour@gmail.com>
@@ -41,9 +43,9 @@
   \emph{Advances in Geophysics}, \strong{37}, 135-195, doi:
   10.1016/S0065-2687(08)60270-8
 
-  Rojstaczer, S., and D.C. Agnew (1989), “The Influence of
+  Rojstaczer, S., and D.C. Agnew (1989), The Influence of
   Formation Material Properties on the Response of Water
-  Levels in Wells to Earth Tides and Atmospheric Loading,”
+  Levels in Wells to Earth Tides and Atmospheric Loading,
   \emph{J. Geophys. Res.}, \strong{94} (B9), 12403-12411.
 
   Shepard, F. P. (1954), Nomenclature based on

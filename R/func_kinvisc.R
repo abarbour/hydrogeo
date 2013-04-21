@@ -14,6 +14,7 @@
 #' \item{\eqn{[m^2 s^{-1}]} if \code{grav.divide==FALSE}}
 #' \item{\eqn{[m s]} if \code{grav.divide==TRUE}}
 #' }
+#' @export
 #' @author Andrew J. Barbour <andy.barbour@@gmail.com> 
 #' @seealso \code{\link{hydrogeo}}, \code{\link{hydraulic_conductivity}}
 #'  

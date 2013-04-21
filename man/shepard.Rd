@@ -17,7 +17,7 @@
 }
 \seealso{
   \code{\link{sand_silt_clay}} and
-  \code{\link{plot.shepard}}
+  \code{\link{shepard_plot}}
 }
 \keyword{datasets}
 

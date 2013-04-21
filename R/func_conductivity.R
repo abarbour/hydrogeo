@@ -6,7 +6,7 @@
 #' From Davis and DeWiest (1966), eq 6.10, hydraulic conductivity is defined as:
 #' \deqn{C=\frac{k g}{\nu}}
 #'
-#' @param Permeam numeric; permeability \eqn{k} with units \eqn{[X]}
+#' @param Permeab numeric; permeability \eqn{k} with units \eqn{[X]}
 #' @param ... additional arguments to \code{\link{kinvisc}}
 #' @return numeric; The hydraulic conductivity \eqn{C}, with units \eqn{[X]}
 #' @export

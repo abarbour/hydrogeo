@@ -7,7 +7,7 @@
 #' \code{X} calculates Equation (6) from Rojstaczer and Agnew (1989): \eqn{\hat{\beta}}
 #' and Equation (10) using strain sensitivity
 #' 
-#' @sections Assumptions:  
+#' @section Assumptions:  
 #' 
 #' The intake of the well is assumed to penetrate a porous elastic 
 #' medium with uniform properties. These properties are those specified 

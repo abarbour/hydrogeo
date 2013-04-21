@@ -9,7 +9,7 @@
   estimates often disagree significantly.  This dataset
   represents a (limited) compilation of any available
   sources (including other compilations!), and is meant to
-  show the range of "typical" values, expressed in SI
+  show the range of 'typical' values, expressed in SI
   units: \eqn{[m^2/s]}. I also include values estimated for
   fault-core material.
 }
