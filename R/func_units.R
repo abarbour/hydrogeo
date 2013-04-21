@@ -117,7 +117,7 @@ to_msquared <- function(Perm_Darcy){
 #' @rdname hydrogeo-units
 #' @export
 to_darcies <- function(Perm_sqm, milli=FALSE){
-  sc <- to_bars(10**12) #1.01325e+12
+  sc <- hydrogeo:::.constants$atm$bar * 10**12 #1.01325e+12
   if (milli) sc <- sc / 1e3
   return(sc * Perm_sqm)
 }
@@ -132,7 +132,7 @@ to_millidarcies <- function(Perm_sqm){
 #' @export
 to_cmsquared <- function(Perm_sqm){
   sc <- hydrogeo:::.constants$sqm2sqcm
-  return(sc * Perm_m2)
+  return(sc * Perm_sqm)
 }
 
 

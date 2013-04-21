@@ -18,7 +18,7 @@
 #' @export
 #' @author Andrew J. Barbour <andy.barbour@@gmail.com> 
 #' @seealso \code{\link{brocher}}, \code{\link{hydrogeo}}
-kms <- function(vel, is.mus=FALSE, is.slowness=FALSE, ...) UseFunction("kms")
+kms <- function(vel, is.mus=FALSE, is.slowness=FALSE, ...) UseMethod("kms")
 
 #' @rdname kms
 #' @method kms default

@@ -1,9 +1,16 @@
-#' Plot a ternary diagram Sand-Silt-Clay grain-size data.
+#' Plot a ternary diagram of sand-silt-clay grain-size percentage.
 #' 
 #' The hydraulic properties of sedimentary material are roughly
 #' dependent on  the proportions of grain size due to sand, silt,
 #' and clay; these are common categorical distinctions found
 #' in drillers' logs.
+#'
+#' A more detailed classification system for soils is used by the
+#' USDA; however, Shepard's diagram is adquate for a sand-silt-clay
+#' model, and \code{shepard_plot} adds them to the current device.
+#' This function is intended for a ternary diagram normalized to
+#' percent particle size so that hydraulic parameters may be
+#' estimated from drillers' logs.
 #'
 #' @param shepard.diagram logical; should Shepards' (1954) classification 
 #' system be overlain?
@@ -76,14 +83,15 @@ sand_silt_clay <- function(shepard.diagram=TRUE, silt.lims=c(-0.01,1.01), add.fr
   text(0.5, -0.07, "SILT SIZE, in PERCENT", cex=0.8)
   
   # Shepards soil classification
-  if (shepard.diagram) plot.shepard()
+  if (shepard.diagram) shepard_plot()
   
   return(invisible(NULL))
 }
 
 #' @rdname sand_silt_clay
 #' @export
-plot.shepard <- function(){
+shepard_plot <- function(){
+  stopifnot(dev.cur()>1) # no plotting device initialized
   ytsc <- 0.95
   tcex <- 0.8
   # % size: sand silt clay

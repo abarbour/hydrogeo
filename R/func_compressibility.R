@@ -111,20 +111,6 @@ areal_strain_sens.from.undrained_compressibility <- function(Beta_hat, B., ...){
 
 #' @rdname compressibility
 #' @export
-calc_nu_u <- function(B., Beta, nu=NULL, ...){
-  chk0to1(B.)
-  if (is.null(nu)) nu <- const$nu
-  chk0to1(nu)
-  # R A 89, eq 9
-  alph <- calc_alph(Beta, ...)
-  BNA <- B. * (1 - 2 * nu) * alph
-  Num. <- 3 * nu + BNA
-  Den. <- 3 - BNA
-  return(Num./Den.)
-}
-
-#' @rdname compressibility
-#' @export
 calc_alpha <- function(Beta, Beta_u=NULL){
   #
   # R A 89, eq 2, where Beta = 1/K and Beta_u = Ks in the previous description
@@ -133,4 +119,18 @@ calc_alpha <- function(Beta, Beta_u=NULL){
   alph <- 1 - Beta_u / Beta
   chk0to1(alph) # redundant
   return(alph)
+}
+
+#' @rdname compressibility
+#' @export
+calc_nu_u <- function(B., Beta, nu=NULL, ...){
+  chk0to1(B.)
+  if (is.null(nu)) nu <- hydrogeo:::.constants$nu
+  chk0to1(nu)
+  # R A 89, eq 9
+  alph <- calc_alph(Beta, ...)
+  BNA <- B. * (1 - 2 * nu) * alph
+  Num. <- 3 * nu + BNA
+  Den. <- 3 - BNA
+  return(Num./Den.)
 }
