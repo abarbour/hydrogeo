@@ -1,5 +1,7 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
 .git*
-R/.deprecated
-R/.R*
+refs
+data/*.txt
+data/*.Rout
+NOBUILD

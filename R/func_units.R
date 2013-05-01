@@ -5,31 +5,32 @@
 #' string with the dimensional units, and (optionally) prints them
 #' as a message.
 #' 
+#' This function uses \code{match.arg} so partial representations are OK.
+#' 
 #' The dimensional representations this far are
-#' \describe{
-#' \item{L}{length}
-#' \item{T}{time}
-#' \item{M}{mass}
+#' \itemize{
+#' \item{L}{ length}
+#' \item{T}{ time}
+#' \item{M}{ mass}
 #' }
+#' with SI units \eqn{[m]}, \eqn{[s]}, and \eqn{[kg]} respectively.
 #'
-#' @name dimensional_units
+#' @param quantity  character; the quantity to show units for
+#' @param verbose   logical; should a message be printed also?
+#' @return A character string with the quantity, and dimensional-units; invisibly.
 #' @export
-#'
-#' @param quantity  char, representing the quantity to show units for
-#' @param verbose   boolean, should a message be printed also?
-#'
-#' @return invisible char tuple with quantity and quantity-units
-#' 
-#' @author Andrew Barbour <andy.barbour@@gmail.com> 
-#' 
-#' @seealso \code{\link{millidarcies}}, \code{\link{cmsquared}}
+#' @author Andrew J. Barbour <andy.barbour@@gmail.com> 
+#' @seealso \code{\link{hydrogeo-units}}, \code{\link{hydrogeo}}
 #'  
 #' @examples
 #' ### code to be run
-#' dimensional_units("diff") #matches 'diffusivity'
-#' print(dimensional_units("diff", FALSE))
+#' print(dimensional_units(verbose=FALSE)) # show all
+#' dimensional_units("diffusivity") # 'diffusivity'
+#' dimensional_units("diff") # matches also, because of match.arg
+#' print(dimensional_units("diff", FALSE)) # print, but no message
 #'
-dimensional_units <- function(quantity=c("conductivity",
+dimensional_units <- function(quantity=c("show.all",
+                                         "conductivity",
                                          "diffusivity",
                                          "transmissivity",
                                          "storativity",
@@ -45,32 +46,131 @@ dimensional_units <- function(quantity=c("conductivity",
                                          "porosity",
                                          "skempton"), verbose=TRUE){
   quant <- match.arg(quantity)
+  quant.unit <- FALSE
   quant.unit <- switch(quant, 
-                       conductivity="L / T", # X
-                       diffusivity="L^2 / T", # X
-                       transmissivity="L^2 / T", # X
-                       storativity=" ", # X
-                       specific.storage="1 / L", # X
-                       viscosity="M / L / T", # X
-                       density="M / L^3", # X
-                       kinematic.viscosity="L^2 / T", # X
-                       permeability="L^2", # X
-                       force="M * L / T^2", # X
-                       stress="M / L / T^2", # X
-                       strain="1 / 1", # X
-                       compressibility="T^2 * L / M", # X
+                       show.all=TRUE,
+                       conductivity="L / T", 
+                       diffusivity="L^2 / T",
+                       transmissivity="L^2 / T",
+                       storativity="1 / 1",
+                       specific.storage="1 / L",
+                       viscosity="M / L / T",
+                       density="M / L^3",
+                       kinematic.viscosity="L^2 / T",
+                       permeability="L^2",
+                       force="M * L / T^2",
+                       stress="M / L / T^2",
+                       strain="1 / 1",
+                       compressibility="T^2 * L / M",
                        porosity="{0,1} / 1",
                        skempton="{0,1} / 1"
                        )
-  if (verbose) message(sprintf("\t%s dimensional units: [%s]", quant, quant.unit))
-  return(invisible(c(quant, quant.unit)))
+  if (is.logical(quant.unit) & quant.unit==TRUE){
+    X <- t(sapply(X=quantity[-1], FUN=dimensional_units, verbose=verbose, simplify=TRUE))
+    rownames(X) <- NULL
+    return(invisible(X))
+  } else {
+    quant.unit <- paste("[",quant.unit,"]")
+    if (verbose) message(sprintf("%25s %-22s", quant, quant.unit))
+    return(invisible(matrix(c(quant, quant.unit), ncol=2)))
+  }
 }
-#
-millidarcies <- function(Perm_m2){
-  return(Perm_m2 / 0.987e-12)
+
+#' Conversion of units.  
+#' 
+#' Convert within commonly found units.
+#' 
+#' There is a panoply of units in hydrogeology literature, so
+#' this represents a very small fraction of possibilities.  There are 
+#' generally three sets of conversion tools here:
+#' 
+#' \itemize{
+#' \item{length}{ convert meters to feet, etc}
+#' \item{permeability}{ convert from darcies to SI, etc; these will begin with
+#' \code{to_}. For example, \code{to_msquared} converts darcies to \eqn{m^2}.}
+#' \item{pressure}{ convert from pascal to bars, etc}
+#' }
+#' 
+#' @name hydrogeo-units
+#' @rdname hydrogeo-units
+#' @param atm numeric; pressure, in standard atmospheres
+#' @param bar numeric; pressure in bars
+#' @param ft numeric; length in feet
+#' @param hpa numeric; pressure in hecto-Pascals
+#' @param kpa numeric; pressure in kilo-Pascals
+#' @param m numeric; length in meters
+#' @param pa numeric; pressure in Pascals
+#' @param Perm_sqm numeric; permeability, in \eqn{[m^2]}
+#' @param Perm_Darcy numeric; permeability, in darcies
+#' 
+#' @author Andrew J. Barbour <andy.barbour@@gmail.com> 
+#' @seealso \code{\link{dimensional_units}}, \code{\link{hydrogeo}}
+NULL
+
+#' @rdname hydrogeo-units
+#' @export
+to_msquared <- function(Perm_Darcy){
+  sc <- 1 / to_darcies(1) # 1 / (9.869233e13)
+  return(sc * Perm_Darcy)
 }
-#
-cmsquared <- function(msquared){
-  return(msquared * 1e4)
+
+#' @rdname hydrogeo-units
+#' @export
+to_darcies <- function(Perm_sqm, milli=FALSE){
+  sc <- hydrogeo:::.constants$atm$bar * 10**12 #1.01325e+12
+  if (milli) sc <- sc / 1e3
+  return(sc * Perm_sqm)
 }
-#
+
+#' @rdname hydrogeo-units
+#' @export
+to_millidarcies <- function(Perm_sqm){
+  return(to_darcies(Perm_sqm, milli=TRUE))
+}
+
+#' @rdname hydrogeo-units
+#' @export
+to_cmsquared <- function(Perm_sqm){
+  sc <- hydrogeo:::.constants$sqm2sqcm
+  return(sc * Perm_sqm)
+}
+
+
+#' @rdname hydrogeo-units
+#' @export
+ft2m <- function(ft){ft*1200/3937} # http://www.ngs.noaa.gov/PUBS_LIB/FedRegister/FRdoc59-5442.pdf
+
+#' @rdname hydrogeo-units
+#' @export
+m2ft <- function(m){m/ft2m(1)}
+
+#' @rdname hydrogeo-units
+#' @export
+hpa2pa <- function(hpa){hpa*100}
+
+#' @rdname hydrogeo-units
+#' @export
+pa2hpa <- function(pa){pa/hpa2pa(1)}
+
+#' @rdname hydrogeo-units
+#' @export
+kpa2pa <- function(kpa){kpa*1000}
+
+#' @rdname hydrogeo-units
+#' @export
+pa2kpa <- function(pa){pa/kpa2pa(1)}
+
+#' @rdname hydrogeo-units
+#' @export
+bar2pa <- function(bar){bar/pa2bar(1)}
+
+#' @rdname hydrogeo-units
+#' @export
+pa2bar <- function(pa){pa2hpa(pa)/1000}
+
+#' @rdname hydrogeo-units
+#' @export
+atm2bar <- function(atm){
+  sc <- hydrogeo:::.constants$atm$bar
+  return(sc * atm)
+} 

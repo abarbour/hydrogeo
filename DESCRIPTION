@@ -1,17 +1,22 @@
 Package: hydrogeo
 Type: Package
-Title: What the package does (short line)
-Version: 0.1-0
-Date: 2012-11-05
+Title: Tools for hydrogeology and poroelasticity.
+Version: 0.1-1
+Date: 2013-04-11
 Author: Andrew J Barbour
 Maintainer: Andrew J Barbour <andy.barbour@gmail.com>
-Description: More about what it does (maybe more than one line)
+Description: This package represents a collection of
+    tools which may be useful for certain studies of
+    hydrogeology and poroelasticity.
 License: GPL (>= 2)
 URL: http://abarbour.github.com/hydrogeo/
 Depends:
-    R (>= 2.10.1)
+    R (>= 2.10.1),
+    reshape2
 Collate:
     'hydrogeo-package.R'
+    'zzz.R'
+    'drillers.R'
     'func_kinvisc.R'
     'func_storativity.R'
     'func_compressibility.R'
@@ -21,3 +26,8 @@ Collate:
     'func_skempton.R'
     'func_transmissivity.R'
     'func_units.R'
+    'func_utils.R'
+    'func_conductivity.R'
+    'func_brocher.R'
+    'func_pressure.R'
+    'func_velocity.R'
