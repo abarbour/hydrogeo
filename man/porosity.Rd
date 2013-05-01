@@ -1,0 +1,27 @@
+\name{porosity}
+\alias{porosity}
+\title{Calculate porosity.}
+\usage{
+  porosity(Beta, B., Beta_u = NULL, Beta_f = NULL)
+}
+\arguments{
+  \item{Beta}{numeric; compressibility \eqn{\beta}}
+
+  \item{B.}{numeric; Skempton's coefficient \eqn{B}}
+
+  \item{Beta_u}{numeric; \eqn{\beta[u]} solid matrix -
+  undrained}
+
+  \item{Beta_f}{numeric; \eqn{\beta[f]} fluid}
+}
+\description{
+  Calculates Equation (20) from Rojstaczer and Agnew
+  (1989), an inversion of Eqn. (4) -- Skempton's coeff
+}
+\author{
+  Andrew J. Barbour <andy.barbour@gmail.com>
+}
+\seealso{
+  \code{\link{skempton}}, \code{\link{hydrogeo}}
+}
+
