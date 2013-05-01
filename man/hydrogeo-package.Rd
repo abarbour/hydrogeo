@@ -24,12 +24,25 @@
   Andrew Barbour <andy.barbour@gmail.com>
 }
 \references{
-  Hsieh, P. A., J. D. Bredehoeft, and J. M. Farr (1987),
-  Determination of aquifer transmissivity from Earth tide
-  analysis, \emph{Water Resour. Res.}, \strong{23} (10),
-  1824-1832, doi:10.1029/WR023i010p01824.
+  Davies, S. N., and DeWiest, R. J. M. (1966),
+  \strong{Hydrogeology}, \emph{J Wiley and Sons}, \emph{New
+  York}, 61
 
-  \url{http://www.agu.org/pubs/crossref/1987/WR023i010p01824.shtml}
+  Lachenbruch, A. H. (1980), Frictional heating, fluid
+  pressure, and the resistance to fault motion, \emph{J.
+  Geophys. Res.}, \strong{85} (B11), 6097–6112,
+  doi:10.1029/JB085iB11p06097
+
+  Roeloffs, E. (1996), Poroelastic Techniques in the Study
+  of Earthquake-Related Hydrologic Phenomena,
+  \emph{Advances in Geophysics}, \strong{37}, 135-195, doi:
+  10.1016/S0065-2687(08)60270-8
+
+  Rojstaczer, S. and D. C. Agnew (1989), The influence of
+  formation material properties on the response of water
+  levels in wells to Earth tides and atmospheric loading,
+  \emph{J. Geophys. Res.}, \strong{94} (B9), 12403–12411,
+  doi:10.1029/JB094iB09p12403
 }
 \seealso{
   \code{\link{some_function}},
