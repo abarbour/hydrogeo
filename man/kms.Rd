@@ -16,6 +16,8 @@
 
   \item{is.slowness}{logical; is \code{vel} slowness
   instead of velocity?}
+
+  \item{...}{additional parameters (unused)}
 }
 \value{
   numeric

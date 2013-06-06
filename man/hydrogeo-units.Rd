@@ -59,6 +59,9 @@
   \item{Perm_sqm}{numeric; permeability, in \eqn{[m^2]}}
 
   \item{Perm_Darcy}{numeric; permeability, in darcies}
+
+  \item{milli}{logical; should the result be divided by
+  1000?}
 }
 \description{
   Convert within commonly found units.

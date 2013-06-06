@@ -14,8 +14,9 @@
 #'   \item{\code{\link{diffusivity_time}}}{following Eq (5)}
 #' }
 #'
-#' @param Diffusiv numeric; the diffusivity, with units \eqn{[X]}
 #' @param Conductiv numeric; the hydraulic conductivity, with units \eqn{[X]}
+#' @param Diffusiv numeric; the diffusivity, with units \eqn{m^2/s}
+#' @param Permeab numeric; the permeability, with units \eqn{m^2}
 #' @param Storativ numeric; the storativity, with units \eqn{[X]}
 #' @param SpecificStorage numeric; the specific storage, with units \eqn{[X]}
 #' @param Transmiss numeric; the transmissivity, with units \eqn{[X]}

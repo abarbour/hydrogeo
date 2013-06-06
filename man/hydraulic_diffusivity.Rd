@@ -18,11 +18,14 @@
   diffusivity_time(Diffusiv, Length.m = 1)
 }
 \arguments{
-  \item{Diffusiv}{numeric; the diffusivity, with units
-  \eqn{[X]}}
-
   \item{Conductiv}{numeric; the hydraulic conductivity,
   with units \eqn{[X]}}
+
+  \item{Diffusiv}{numeric; the diffusivity, with units
+  \eqn{m^2/s}}
+
+  \item{Permeab}{numeric; the permeability, with units
+  \eqn{m^2}}
 
   \item{Storativ}{numeric; the storativity, with units
   \eqn{[X]}}

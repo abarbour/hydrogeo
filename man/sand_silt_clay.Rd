@@ -17,6 +17,8 @@
 
   \item{add.frame}{logical; should a box be drawn around
   it?}
+
+  \item{...}{additional parameters (unused)}
 }
 \value{
   \code{NULL}

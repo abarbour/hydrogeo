@@ -115,6 +115,7 @@ to_msquared <- function(Perm_Darcy){
 }
 
 #' @rdname hydrogeo-units
+#' @param milli logical; should the result be divided by 1000?
 #' @export
 to_darcies <- function(Perm_sqm, milli=FALSE){
   sc <- hydrogeo:::.constants$atm$bar * 10**12 #1.01325e+12

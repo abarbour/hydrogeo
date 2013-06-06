@@ -1,8 +1,8 @@
 Package: hydrogeo
 Type: Package
 Title: Tools for hydrogeology and poroelasticity.
-Version: 0.1-1
-Date: 2013-04-11
+Version: 0.1-2
+Date: 2013-06-06
 Author: Andrew J Barbour
 Maintainer: Andrew J Barbour <andy.barbour@gmail.com>
 Description: This package represents a collection of

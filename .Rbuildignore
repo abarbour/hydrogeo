@@ -2,6 +2,8 @@
 ^\.Rproj\.user$
 .git*
 refs
+demo
 data/*.txt
-data/*.Rout
+data/toRda.Rout
+data/toRda.R*
 NOBUILD

@@ -1,5 +1,4 @@
 \name{brocher}
-\alias{From.Vp}
 \alias{as.PoissonsRatio}
 \alias{as.Porosity}
 \alias{as.RockDensity}
@@ -15,22 +14,23 @@
 \alias{dens_godfrey.default}
 \alias{dens_nafe_drake}
 \alias{dens_nafe_drake.default}
+\alias{From.Vp}
 \alias{nu_brocher}
-\alias{nu_brocher.default}
 \alias{nu_brocher_ludwig}
 \alias{nu_brocher_ludwig.default}
+\alias{nu_brocher.default}
 \alias{nu_continuum}
 \alias{nu_continuum.default}
 \alias{vp_brocher}
-\alias{vp_brocher.default}
 \alias{vp_brocher_ludwig}
 \alias{vp_brocher_ludwig.default}
+\alias{vp_brocher.default}
 \alias{vpvs_continuum}
 \alias{vpvs_continuum.default}
 \alias{vs_brocher}
-\alias{vs_brocher.default}
 \alias{vs_brocher_mafic}
 \alias{vs_brocher_mafic.default}
+\alias{vs_brocher.default}
 \alias{vs_castagna}
 \alias{vs_castagna.default}
 \title{Empirical scalings to convert between material properties and seismic velocities.}
@@ -117,6 +117,10 @@
     verbose = TRUE)
 }
 \arguments{
+  \item{X}{numeric; An object to convert}
+
+  \item{nu}{numeric; Poisson's ratio}
+
   \item{Dens.bulk}{numeric;}
 
   \item{Dens.solid}{numeric;}
@@ -152,6 +156,8 @@
   results be averaged?}
 
   \item{null_val}{the}
+
+  \item{...}{additional parameters}
 }
 \value{
   A \code{data.frame} for the \code{as.} functions; numeric

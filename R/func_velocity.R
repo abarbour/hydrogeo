@@ -14,6 +14,7 @@
 #' @param vel numeric; velocity or slowness
 #' @param is.mus logical; is time in microseconds?
 #' @param is.slowness logical; is \code{vel} slowness instead of velocity?
+#' @param ... additional parameters (unused)
 #' @return numeric
 #' @export
 #' @author Andrew J. Barbour <andy.barbour@@gmail.com> 

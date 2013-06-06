@@ -45,6 +45,8 @@
 #'
 #' @name brocher
 #' @rdname brocher
+#' @param X numeric; An object to convert
+#' @param nu numeric; Poisson's ratio
 #' @param Dens.bulk numeric;
 #' @param Dens.solid numeric;
 #' @param Dens.fluid numeric;
@@ -57,12 +59,11 @@
 #' @param Vs numeric; S-wave velocity in km/s 
 #' @param Vp.units character; the units of \code{Vp}
 #' @param pos numeric; vector of indices or distance for Vp
-#' @param emp.fit character; the empirical fit to use 
-#' [overridden if \code{(do.all | all.average)}]
+#' @param emp.fit character; the empirical fit to use [overridden if \code{(do.all | all.average)}]
 #' @param do.all logical; should all available epirical scalings be calculated?
-#' @param all.average logical; should, once all available epirical scalings are calculated, 
-#' the collection of results be averaged?
+#' @param all.average logical; should, once all available epirical scalings are calculated, the collection of results be averaged?
 #' @param null_val the 
+#' @param ... additional parameters
 #' @return A \code{data.frame} for the \code{as.} functions; numeric otherwise.
 #' @author Andrew J. Barbour <andy.barbour@@gmail.com> 
 #' @seealso \code{\link{kms}}, \code{\link{hydrogeo}}
@@ -75,6 +76,7 @@ NULL
 #' From.Vp(rnorm(5)+4)
 From.Vp <- function(Vp, ...){
   Dens <- subset(as.RockDensity(Vp, ...), meth=="Averaged")
+  meth <- NULL
   Vs <- subset(as.Vs(Vp, ...), meth=="Averaged")
   # add Poissons ratio
   Full <- merge(Vs, Dens, by=c("pos","Vp","meth"), all=TRUE)

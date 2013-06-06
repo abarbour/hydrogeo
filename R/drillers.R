@@ -17,6 +17,7 @@
 #' @param silt.lims numeric; vector of length two controlling the horizontal (silt) 
 #' axis limits.
 #' @param add.frame logical; should a box be drawn around it?
+#' @param ... additional parameters (unused)
 #' @return \code{NULL}
 #' @export
 #' @author Andrew J. Barbour <andy.barbour@@gmail.com> 
@@ -91,11 +92,17 @@ sand_silt_clay <- function(shepard.diagram=TRUE, silt.lims=c(-0.01,1.01), add.fr
 #' @rdname sand_silt_clay
 #' @export
 shepard_plot <- function(){
-  stopifnot(dev.cur()>1) # no plotting device initialized
+  if (dev.cur()<=1){
+    plot(1,1,col=NA,xlim=c(0,1),ylim=c(0,1),
+         frame=FALSE,
+         yaxs="i", ylab="", xaxs="i", xlab="", xaxt="n", yaxt="n")
+  }
+  #stopifnot(dev.cur()>1) # no plotting device initialized
   ytsc <- 0.95
   tcex <- 0.8
   # % size: sand silt clay
-  data(shepard)
+  shepard <- NULL
+  do.call("data", list("shepard"))
   # strategic lines
   lines(xyz2ternary(subset(shepard, class=="from-sand"), 2))
   text(0.26, 0.3,"CLAYEY\nSAND", adj=c(1,2)/2, cex=tcex)

@@ -128,7 +128,7 @@ calc_nu_u <- function(B., Beta, nu=NULL, ...){
   if (is.null(nu)) nu <- hydrogeo:::.constants$nu
   chk0to1(nu)
   # R A 89, eq 9
-  alph <- calc_alph(Beta, ...)
+  alph <- calc_alpha(Beta, ...)
   BNA <- B. * (1 - 2 * nu) * alph
   Num. <- 3 * nu + BNA
   Den. <- 3 - BNA
