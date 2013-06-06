@@ -1,10 +1,11 @@
 #
 # diffusivity ranges from various sources:
 #
-# 	Do06     range for Chelungpu Fault, Taiwan; from Doan et al (2006)
+# 	Do06    range for Chelungpu Fault, Taiwan; from Doan et al (2006)
 # 	Ro96	compilation of Roeloffs 1996 (Fig 14)
 # 	Wa00	range of values in compilation of Wang 2000 (App. C.1)
 # 	Wi02	values for the Median Tectonic Line, Japan; from Wibberley (2002)
+# 	Br80	calculated for shale; from Brace (1980, fig 4-[11])
 #
 # values are in m**2/s
 #
@@ -35,3 +36,5 @@ deposit,	gravel,		unconsolidated,		1,	7e4,	Ro96
 rock,		sandstone,	jacketed,		5.3e-3,	1.5,	Wa00
 rock,		granite,	jacketed,		7.0e-6,	2.2e-5,	Wa00
 rock,		marble,		jacketed,		1.3e-5,	1.3e-5,	Wa00
+# Brace (reported in cm^2/s)
+rock,		shale,		NA,			1e-13,	-Inf,	Br80
