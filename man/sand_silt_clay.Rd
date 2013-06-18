@@ -6,7 +6,7 @@
   sand_silt_clay(shepard.diagram = TRUE,
     silt.lims = c(-0.01, 1.01), add.frame = FALSE, ...)
 
-  shepard_plot()
+  shepard_plot(init = FALSE)
 }
 \arguments{
   \item{shepard.diagram}{logical; should Shepards' (1954)
@@ -17,6 +17,8 @@
 
   \item{add.frame}{logical; should a box be drawn around
   it?}
+
+  \item{init}{logical; forces device instantiation.}
 
   \item{...}{additional parameters (unused)}
 }

@@ -1,4 +1,4 @@
-class		p.sand	p.silt	p.clay	#pos
+material	p.sand	p.silt	p.clay	#pos
 # triangle polygons
 sand		100	0	0	
 sand		75	25	0

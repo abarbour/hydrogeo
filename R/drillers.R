@@ -17,6 +17,7 @@
 #' @param silt.lims numeric; vector of length two controlling the horizontal (silt) 
 #' axis limits.
 #' @param add.frame logical; should a box be drawn around it?
+#' @param init logical; forces device instantiation.
 #' @param ... additional parameters (unused)
 #' @return \code{NULL}
 #' @export
@@ -91,37 +92,38 @@ sand_silt_clay <- function(shepard.diagram=TRUE, silt.lims=c(-0.01,1.01), add.fr
 
 #' @rdname sand_silt_clay
 #' @export
-shepard_plot <- function(){
-  if (dev.cur()<=1){
-    plot(1,1,col=NA,xlim=c(0,1),ylim=c(0,1),
-         frame=FALSE,
+shepard_plot <- function(init=FALSE){
+  dc <- dev.cur()
+  if (dc<=1 | init){
+    plot(1,1,col=NA,xlim=c(0,1),ylim=c(0,1), frame=FALSE,
          yaxs="i", ylab="", xaxs="i", xlab="", xaxt="n", yaxt="n")
   }
   #stopifnot(dev.cur()>1) # no plotting device initialized
   ytsc <- 0.95
   tcex <- 0.8
   # % size: sand silt clay
-  shepard <- NULL
-  do.call("data", list("shepard"))
+  env <- new.env() 
+  data("shepard", envir=env) 
+  shepard <- env$shepard
   # strategic lines
-  lines(xyz2ternary(subset(shepard, class=="from-sand"), 2))
+  lines(xyz2ternary(subset(shepard, material=="from-sand"), 2))
   text(0.26, 0.3,"CLAYEY\nSAND", adj=c(1,2)/2, cex=tcex)
   text(0.36, 0.12,"SILTY\nSAND", adj=c(1,2)/2, cex=tcex)
-  lines(xyz2ternary(subset(shepard, class=="from-silt"), 2))
+  lines(xyz2ternary(subset(shepard, material=="from-silt"), 2))
   text(1-0.26, 0.3,"CLAYEY\nSILT", adj=c(1,2)/2, cex=tcex)
   text(1-0.36, 0.12,"SANDY\nSILT", adj=c(1,2)/2, cex=tcex)
-  lines(xyz2ternary(subset(shepard, class=="from-clay"), 2))
+  lines(xyz2ternary(subset(shepard, material=="from-clay"), 2))
   text(0.4, 0.55,"SANDY\nCLAY", adj=c(1,2)/2, cex=tcex)
   text(0.6, 0.55,"SILTY\nCLAY", adj=c(1,2)/2, cex=tcex)
   # pure-mixture polygons
-  polygon(xyz2ternary(subset(shepard, class=="sand"), 2), col="white")
+  polygon(xyz2ternary(subset(shepard, material=="sand"), 2), col="white")
   text(0.12, 0.09,"SAND", adj=c(1,2)/2, cex=tcex)
-  polygon(xyz2ternary(subset(shepard, class=="silt"), 2), col="white")
+  polygon(xyz2ternary(subset(shepard, material=="silt"), 2), col="white")
   text(1-0.12, 0.09,"SILT", adj=c(1,2)/2, cex=tcex)
-  polygon(xyz2ternary(subset(shepard, class=="clay"), 2), col="white")
+  polygon(xyz2ternary(subset(shepard, material=="clay"), 2), col="white")
   text(0.5, 0.74,"CLAY", adj=c(1,2)/2, cex=tcex)
   # all-mixture
-  polygon(xyz2ternary(subset(shepard, class=="sand-silt-clay"), 2), col="white")
+  polygon(xyz2ternary(subset(shepard, material=="sand-silt-clay"), 2), col="white")
   text(0.5, 0.33,"SAND-\nSILT-CLAY", adj=c(1,2)/2, cex=tcex)
   #
   return(invisible(NULL))
