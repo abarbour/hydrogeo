@@ -105,6 +105,7 @@ shepard_plot <- function(init=FALSE){
   env <- new.env() 
   data("shepard", envir=env) 
   shepard <- env$shepard
+  material <- NULL
   # strategic lines
   lines(xyz2ternary(subset(shepard, material=="from-sand"), 2))
   text(0.26, 0.3,"CLAYEY\nSAND", adj=c(1,2)/2, cex=tcex)
