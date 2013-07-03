@@ -66,10 +66,14 @@
 #'  
 NULL
 
+#
+# Datasets
+#
+
 #' Constants used in many calculations.
 #' @section Typical Values:
 #' \describe{
-#' \item{Hydraulic conductivity, \eqn{C}}{\eqn{1^{-0} -- 1^{-0}}}
+#' \item{Hydraulic conductivity, \eqn{C}}{\eqn{10^{-0} - 10^{-0}}}
 #' }
 #' @name hydrogeo-constants
 #' @seealso \code{\link{hydrogeo-units}}, \code{\link{hydrogeo}}
@@ -78,16 +82,16 @@ NULL
                    ),
                    water=list(
                      dens=1000, #  kg/m^3
-                     dyn_visc=1.002e-3, # Pa*s at 20 degC
+                     dyn_visc=1.002e-3 # Pa*s at 20 degC
                    ),
                    Poisson=list(
                      nu=0.25,      #for a Poisson solid
                      nu_u=1/3,
-                     VpVs=sqrt(3), #for a Poisson solid
+                     VpVs=sqrt(3) #for a Poisson solid
                    ),
                    compressibility=list(
                      Beta_u=2e-11,   # a very rigid matrix,
-                     Beta_f=4.4e-10, # a rigid matrix
+                     Beta_f=4.4e-10 # a rigid matrix
                    ),
                    atm=list(
                      bar=1.013250, # std atm in bars
@@ -101,15 +105,20 @@ NULL
                      sqm2sqcm=1e4 # m^2 --> cm^2
                    )
 )
-# show/return constants
-constants <- function(){
+
+#' @details The helper function \code{\link{constants}}
+#' shows (the structure of, optionally)
+#' and returns \code{.constants}.
+#' @rdname hydrogeo-constants
+#' @param do.str logical; should the structure be printed?
+#' @export
+# @example
+# constants()
+constants <- function(do.str=TRUE){
   const <- hydrogeo:::.constants
   str(const, comp.str = "++++++++\n\t", no.list=TRUE, digits.d = 9)
   return(invisible(const))
 }
-#
-# Datasets
-#
 
 #' Ranges of diffusivity for a few types of solid-rock and unconsolidated deposits.
 #'
@@ -142,7 +151,7 @@ constants <- function(){
 #' @keywords  datasets
 #' @name  diffusiv
 #' @usage  data(diffusiv)
-#' @format  A data frame with 19 rows and 6 variables
+# @format  A data frame with 19 rows and 6 variables
 NULL
 
 #' Shepard's (1954) grain-size classification.
@@ -160,5 +169,5 @@ NULL
 #' @keywords  datasets
 #' @name  shepard
 #' @usage  data(shepard)
-#' @format  A data frame with 18 rows and 4 variables
+# @format  A data frame with 18 rows and 4 variables
 NULL

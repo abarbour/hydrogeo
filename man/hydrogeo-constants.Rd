@@ -1,27 +1,33 @@
 \docType{data}
 \name{hydrogeo-constants}
+\alias{constants}
 \alias{hydrogeo-constants}
 \title{Constants used in many calculations.}
-\format{List of 10
- $ gravity   : num 9.81
- $ fluid_dens: num 1000
- $ dyn_visc  : num 0.001
- $ nu        : num 0.25
- $ nu_u      : num 0.333
- $ VpVs      : num 1.73
- $ Beta_u    : num 2e-11
- $ Beta_f    : num 4.4e-10
- $ atm       :List of 6
- $ sqm2sqcm  : num 10000}
+\format{List of 6
+ $ gravity        :List of 1
+ $ water          :List of 2
+ $ Poisson        :List of 3
+ $ compressibility:List of 2
+ $ atm            :List of 6
+ $ conversions    :List of 1}
 \usage{
   .constants
+
+  constants(do.str = TRUE)
+}
+\arguments{
+  \item{do.str}{logical; should the structure be printed?}
 }
 \description{
   Constants used in many calculations.
 }
+\details{
+  The helper function \code{\link{constants}} shows (the
+  structure of, optionally) and returns \code{.constants}.
+}
 \section{Typical Values}{
   \describe{ \item{Hydraulic conductivity,
-  \eqn{C}}{\eqn{1^{-0} -- 1^{-0}}} }
+  \eqn{C}}{\eqn{10^{-0} - 10^{-0}}} }
 }
 \seealso{
   \code{\link{hydrogeo-units}}, \code{\link{hydrogeo}}
