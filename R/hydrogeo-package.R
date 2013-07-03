@@ -73,14 +73,22 @@ NULL
 #' }
 #' @name hydrogeo-constants
 #' @seealso \code{\link{hydrogeo-units}}, \code{\link{hydrogeo}}
-.constants <- list(gravity=9.80665, # 6371 km
-                   fluid_dens=1000, # water kg/m^3
-                   dyn_visc=1.002e-3, # water at 20C Pa*s
-                   nu=0.25, #for a Poisson solid
-                   nu_u=1/3,
-                   VpVs=sqrt(3), #for a Poisson solid
-                   Beta_u=2e-11, # a very rigid matrix,
-                   Beta_f=4.4e-10, # a rigid matrix
+.constants <- list(gravity=list(
+                     std=9.80665 # 6371 km
+                   ),
+                   water=list(
+                     dens=1000, #  kg/m^3
+                     dyn_visc=1.002e-3, # Pa*s at 20 degC
+                   ),
+                   Poisson=list(
+                     nu=0.25,      #for a Poisson solid
+                     nu_u=1/3,
+                     VpVs=sqrt(3), #for a Poisson solid
+                   ),
+                   compressibility=list(
+                     Beta_u=2e-11,   # a very rigid matrix,
+                     Beta_f=4.4e-10, # a rigid matrix
+                   ),
                    atm=list(
                      bar=1.013250, # std atm in bars
                      m_per=10.3, # meters of water per atmosphere
@@ -89,14 +97,16 @@ NULL
                      M.=0.0289644, # molar mass of dry air  kg/mol
                      R.=8.31447 # universal gas constant  J/(mol*K)
                    ),
-                   sqm2sqcm=1e4 # m^2 --> cm^2
+                   conversions=list(
+                     sqm2sqcm=1e4 # m^2 --> cm^2
                    )
+)
+# show/return constants
 constants <- function(){
   const <- hydrogeo:::.constants
-  str(const)
+  str(const, comp.str = "++++++++\n\t", no.list=TRUE, digits.d = 9)
   return(invisible(const))
 }
-
 #
 # Datasets
 #

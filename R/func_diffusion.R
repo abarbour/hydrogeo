@@ -50,9 +50,9 @@ hydraulic_diffusivity_2 <- function(Conductiv, SpecificStorage){
 hydraulic_diffusivity_poro <- function(Permeab, B., Beta, nu_u=NULL, nu=NULL){
   # Rojstaczer and Agnew 1989, eq 23
   # [ Rice and Cleary 1976 eq X]
-  if (is.null(nu_u)) nu_u <- hydrogeo:::.constants$nu_u
+  if (is.null(nu_u)) nu_u <- hydrogeo:::.constants$Poisson$nu_u
   stopifnot(nu_u>=0 & nu_u<=1)
-  if (is.null(nu)) nu <- hydrogeo:::.constants$nu
+  if (is.null(nu)) nu <- hydrogeo:::.constants$Poisson$nu
   stopifnot(nu>=0 & nu<=1)
   stopifnot(B.>=0 & B.<=1)
   Num. <- Permeab * B.**2 * (1 - nu) * (1 - 2*nu) * (1 + nu_u)**2

@@ -353,7 +353,7 @@ vpvs_continuum <- function(nu) { UseMethod("vpvs_continuum") }
 #' @S3method vpvs_continuum default
 vpvs_continuum.default <- function(nu){
   # Brocher 2005 eq 10, inverted for Vp/Vs ratio
-  if (missing(nu)) nu <- hydrogeo:::.constants$nu
+  if (missing(nu)) nu <- hydrogeo:::.constants$Poisson$nu
   Num <- 2*(nu - 1)
   Den <- 2*nu - 1
   VpVs <- sqrt(Num/Den)
@@ -370,7 +370,7 @@ nu_continuum <- function(Vp, Vs) { UseMethod("nu_continuum") }
 nu_continuum.default <- function(Vp, Vs){
   # Brocher 2005 eq 10
   if (missing(Vp) | missing(Vs)){
-	Rat <- hydrogeo:::.constants$VpVs
+	Rat <- hydrogeo:::.constants$Poisson$VpVs
   } else {
 	Rat <- Vp / Vs
   }

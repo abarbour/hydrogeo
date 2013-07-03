@@ -132,7 +132,7 @@ to_millidarcies <- function(Perm_sqm){
 #' @rdname hydrogeo-units
 #' @export
 to_cmsquared <- function(Perm_sqm){
-  sc <- hydrogeo:::.constants$sqm2sqcm
+  sc <- hydrogeo:::.constants$conversions$sqm2sqcm
   return(sc * Perm_sqm)
 }
 
