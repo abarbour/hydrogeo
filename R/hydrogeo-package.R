@@ -73,7 +73,6 @@ NULL
 #' }
 #' @name hydrogeo-constants
 #' @seealso \code{\link{hydrogeo-units}}, \code{\link{hydrogeo}}
-NULL
 .constants <- list(gravity=9.80665, # 6371 km
                    fluid_dens=1000, # water kg/m^3
                    dyn_visc=1.002e-3, # water at 20C Pa*s
@@ -92,7 +91,15 @@ NULL
                    ),
                    sqm2sqcm=1e4 # m^2 --> cm^2
                    )
+constants <- function(){
+  const <- hydrogeo:::.constants
+  str(const)
+  return(invisible(const))
+}
 
+#
+# Datasets
+#
 
 #' Ranges of diffusivity for a few types of solid-rock and unconsolidated deposits.
 #'
