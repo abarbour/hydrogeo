@@ -70,10 +70,23 @@ NULL
 # Datasets
 #
 
-#' Constants used in many calculations.
-#' @section Typical Values:
+#' Constants used as defaults
+#' 
+#' The hydrogeologic response of an aquifer system depends on its mechanical
+#' and hydraulic properties; if these are not known or 
+#' specified, these constants are used.
+#' 
+#' @details The helper function \code{\link{constants}}
+#' shows (the structure of, optionally)
+#' and returns \code{.constants}.
+#'
+#' The following constants are assumed
 #' \describe{
-#' \item{Hydraulic conductivity, \eqn{C}}{\eqn{10^{-0} - 10^{-0}}}
+#' \item{gravity}{}
+#' \item{pore-fluid}{ (water)}
+#' \item{Poisson's ratios}{ (Poisson solid)}
+#' \item{compressibility}{ }
+#' \item{atmosphere}{ STP}
 #' }
 #' @name hydrogeo-constants
 #' @seealso \code{\link{hydrogeo-units}}, \code{\link{hydrogeo}}
@@ -106,9 +119,6 @@ NULL
                    )
 )
 
-#' @details The helper function \code{\link{constants}}
-#' shows (the structure of, optionally)
-#' and returns \code{.constants}.
 #' @rdname hydrogeo-constants
 #' @param do.str logical; should the structure be printed?
 #' @export
@@ -116,7 +126,7 @@ NULL
 # constants()
 constants <- function(do.str=TRUE){
   const <- hydrogeo:::.constants
-  str(const, comp.str = "++++++++\n\t", no.list=TRUE, digits.d = 9)
+  if (do.str) str(const, comp.str = "++++++++\n\t", no.list=TRUE, digits.d = 9)
   return(invisible(const))
 }
 

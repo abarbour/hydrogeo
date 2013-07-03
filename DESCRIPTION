@@ -2,14 +2,14 @@ Package: hydrogeo
 Type: Package
 Title: Tools for hydrogeology and poroelasticity.
 Version: 0.1-3
-Date: 2013-06-18
+Date: 2013-07-03
 Author: Andrew J Barbour
 Maintainer: Andrew J Barbour <andy.barbour@gmail.com>
-Description: This package represents a collection of
+Description: This package contains a collection of
     tools which may be useful for certain studies of
     hydrogeology and poroelasticity.
 License: GPL (>= 2)
-URL: http://abarbour.github.com/hydrogeo/
+URL: http://abarbour.github.io/hydrogeo/
 Depends:
     R (>= 2.10.1),
     reshape2

@@ -2,7 +2,7 @@
 \name{hydrogeo-constants}
 \alias{constants}
 \alias{hydrogeo-constants}
-\title{Constants used in many calculations.}
+\title{Constants used as defaults}
 \format{List of 6
  $ gravity        :List of 1
  $ water          :List of 2
@@ -19,15 +19,18 @@
   \item{do.str}{logical; should the structure be printed?}
 }
 \description{
-  Constants used in many calculations.
+  The hydrogeologic response of an aquifer system depends
+  on its mechanical and hydraulic properties; if these are
+  not known or specified, these constants are used.
 }
 \details{
   The helper function \code{\link{constants}} shows (the
   structure of, optionally) and returns \code{.constants}.
-}
-\section{Typical Values}{
-  \describe{ \item{Hydraulic conductivity,
-  \eqn{C}}{\eqn{10^{-0} - 10^{-0}}} }
+
+  The following constants are assumed \describe{
+  \item{gravity}{} \item{pore-fluid}{ (water)}
+  \item{Poisson's ratios}{ (Poisson solid)}
+  \item{compressibility}{ } \item{atmosphere}{ STP} }
 }
 \seealso{
   \code{\link{hydrogeo-units}}, \code{\link{hydrogeo}}
