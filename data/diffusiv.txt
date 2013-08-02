@@ -9,7 +9,7 @@
 #
 # values are in m**2/s
 #
-mat.type,	mat.class,	mat.state,		d.high,	d.low,	ref
+mat.type,	mat.class,	mat.state,		d.low,	d.high,	ref
 # Wibberley
 # fine is stable over lithostatic pressures; whereas foliated material has
 # a strong inverse relationship with pressure (depth)
