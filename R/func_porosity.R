@@ -12,8 +12,8 @@
 #' @seealso \code{\link{skempton}}, \code{\link{hydrogeo}}
 porosity <- function(Beta, B., Beta_u=NULL, Beta_f=NULL){
   const <- hydrogeo:::.constants
-  if (is.null(Beta_u)) Beta_u <- const$Beta_u
-  if (is.null(Beta_u)) Beta_f <- const$Beta_f
+  if (is.null(Beta_u)) Beta_u <- const$compressibility$Beta_u
+  if (is.null(Beta_u)) Beta_f <- const$compressibility$Beta_f
   chk0to1(B.)
   Num. <- (Beta - Beta_u) * (1 - B.)
   Den. <- (Beta_f - Beta_u) * B.

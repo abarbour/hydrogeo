@@ -20,8 +20,8 @@
 #' @seealso \code{\link{compressibility}}, \code{\link{hydrogeo}}
 skempton <- function(Beta, Phi, Beta_u=NULL, Beta_f=NULL){
   const <- hydrogeo:::.constants
-  if (is.null(Beta_u)) Beta_u <- const$Beta_u
-  if (is.null(Beta_u)) Beta_f <- const$Beta_f
+  if (is.null(Beta_u)) Beta_u <- const$compressibility$Beta_u
+  if (is.null(Beta_u)) Beta_f <- const$compressibility$Beta_f
   chk0to1(Phi)
   Num. <- Beta - Beta_u
   Den. <- Num. + Phi * (Beta_f - Beta_u)

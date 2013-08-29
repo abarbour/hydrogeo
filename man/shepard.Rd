@@ -2,7 +2,6 @@
 \name{shepard}
 \alias{shepard}
 \title{Shepard's (1954) grain-size classification.}
-\format{A data frame with 18 rows and 4 variables}
 \description{
   Values are percent grain-size due to sand, silt, and clay
   in sedimentary material.

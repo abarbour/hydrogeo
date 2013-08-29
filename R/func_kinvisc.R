@@ -29,15 +29,15 @@ kinvisc <- function(dyn_visc=NULL,
                     grav.divide=FALSE,
                     verbose=FALSE){
   const <- hydrogeo:::.constants
-  if (is.null(dyn_visc)) dyn_visc <- const$dyn_visc
-  if (is.null(fluid_dens)) fluid_dens <- const$fluid_dens
+  if (is.null(dyn_visc)) dyn_visc <- const$water$dyn_visc
+  if (is.null(fluid_dens)) fluid_dens <- const$water$dens
 	# kin visc defined as dynamic visc over density
 	mu. <- dyn_visc
 	rho. <- fluid_dens
 	nu. <- mu. / rho. # units of [m**2/s]
 	if (grav.divide){
 	  # divided by grav is [m**2 s**2/ s m] --> [m s]
-    grav <- const$gravity
+    grav <- const$gravity$std
 	  nu. <- nu. / grav
 	  if (verbose) message("kinem-visc. [m**2 / s] divided by grav.; units are now [m * s]")
 	}

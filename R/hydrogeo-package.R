@@ -66,22 +66,46 @@
 #'  
 NULL
 
-#' Constants used in many calculations.
-#' @section Typical Values:
+#
+# Datasets
+#
+
+#' Constants used as defaults
+#' 
+#' The hydrogeologic response of an aquifer system depends on its mechanical
+#' and hydraulic properties; if these are not known or 
+#' specified, these constants are used.
+#' 
+#' @details The helper function \code{\link{constants}}
+#' shows (the structure of, optionally)
+#' and returns \code{.constants}.
+#'
+#' The following constants are assumed
 #' \describe{
-#' \item{Hydraulic conductivity, \eqn{C}}{\eqn{1^{-0} -- 1^{-0}}}
+#' \item{gravity}{}
+#' \item{pore-fluid}{ (water)}
+#' \item{Poisson's ratios}{ (Poisson solid)}
+#' \item{compressibility}{ }
+#' \item{atmosphere}{ STP}
 #' }
 #' @name hydrogeo-constants
 #' @seealso \code{\link{hydrogeo-units}}, \code{\link{hydrogeo}}
-NULL
-.constants <- list(gravity=9.80665, # 6371 km
-                   fluid_dens=1000, # water kg/m^3
-                   dyn_visc=1.002e-3, # water at 20C Pa*s
-                   nu=0.25, #for a Poisson solid
-                   nu_u=1/3,
-                   VpVs=sqrt(3), #for a Poisson solid
-                   Beta_u=2e-11, # a very rigid matrix,
-                   Beta_f=4.4e-10, # a rigid matrix
+.constants <- list(gravity=list(
+                     std=9.80665 # 6371 km
+                   ),
+                   water=list(
+                     dens=1000, #  kg/m^3
+                     dyn_visc=1.002e-3 # Pa*s at 20 degC
+                   ),
+                   Poisson=list(
+                     nu=0.25,      #for a Poisson solid
+                     nu_u=1/3,
+                     VpVs=sqrt(3) #for a Poisson solid
+                   ),
+                   compressibility=list(
+                     Beta_u=2e-11,   # a very rigid matrix,
+                     Beta_f=4.4e-10 # a rigid matrix
+                   ),
                    atm=list(
                      bar=1.013250, # std atm in bars
                      m_per=10.3, # meters of water per atmosphere
@@ -90,9 +114,21 @@ NULL
                      M.=0.0289644, # molar mass of dry air  kg/mol
                      R.=8.31447 # universal gas constant  J/(mol*K)
                    ),
-                   sqm2sqcm=1e4 # m^2 --> cm^2
+                   conversions=list(
+                     sqm2sqcm=1e4 # m^2 --> cm^2
                    )
+)
 
+#' @rdname hydrogeo-constants
+#' @param do.str logical; should the structure be printed?
+#' @export
+# @example
+# constants()
+constants <- function(do.str=TRUE){
+  const <- hydrogeo:::.constants
+  if (do.str) str(const, comp.str = "++++++++\n\t", no.list=TRUE, digits.d = 9)
+  return(invisible(const))
+}
 
 #' Ranges of diffusivity for a few types of solid-rock and unconsolidated deposits.
 #'
@@ -125,7 +161,7 @@ NULL
 #' @keywords  datasets
 #' @name  diffusiv
 #' @usage  data(diffusiv)
-#' @format  A data frame with 19 rows and 6 variables
+# @format  A data frame with 19 rows and 6 variables
 NULL
 
 #' Shepard's (1954) grain-size classification.
@@ -143,5 +179,5 @@ NULL
 #' @keywords  datasets
 #' @name  shepard
 #' @usage  data(shepard)
-#' @format  A data frame with 18 rows and 4 variables
+# @format  A data frame with 18 rows and 4 variables
 NULL

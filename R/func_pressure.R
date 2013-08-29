@@ -76,7 +76,7 @@ elev2hpa <- function(elev=0, elev.units=c("m","ft")){
   #R	universal gas constant	8.31447 J/(mol*K)
   Po. <- atmos_p() #1013.25
   const <- hydrogeo:::.constants
-  grav <- const$gravity
+  grav <- const$gravity$std
   atm <- const$atm
   L. <- atm$L.
   To. <- atm$To.

@@ -74,7 +74,7 @@ NULL
 #' @rdname compressibility
 #' @export
 undrained_compressibility.from.beta <- function(Beta, B., Beta_u=NULL){
-  if (is.null(Beta_u)) Beta_u <- hydrogeo:::.constants$Beta_u
+  if (is.null(Beta_u)) Beta_u <- hydrogeo:::.constants$compressibility$Beta_u
   alph <- calc_alpha(Beta, Beta_u)
   Beta_hat <- Beta * (1 - B. * alph)
   return(Beta_hat)
@@ -99,11 +99,11 @@ areal_strain_sens.from.undrained_compressibility <- function(Beta_hat, B., ...){
 .calc_prat <- function(B., nu_u=NULL, fluid_dens=NULL){
   chk0to1(B.)
   const <- hydrogeo:::.constants
-  grav <- const$gravity
-  if (is.null(nu_u)) nu_u <- const$nu_u
+  grav <- const$gravity$std
+  if (is.null(nu_u)) nu_u <- const$Poisson$nu_u
   chk0to1(nu_u)
   mnu <- 1 - nu_u
-  if (is.null(fluid_dens)) fluid_dens <- const$fluid_dens
+  if (is.null(fluid_dens)) fluid_dens <- const$water$dens
   # R and A (89) Eq10*Beta_hat
   prat <- (mnu - nu_u) * B. / fluid_dens / grav / mnu
   return(prat)
@@ -114,7 +114,7 @@ areal_strain_sens.from.undrained_compressibility <- function(Beta_hat, B., ...){
 calc_alpha <- function(Beta, Beta_u=NULL){
   #
   # R A 89, eq 2, where Beta = 1/K and Beta_u = Ks in the previous description
-  if (is.null(Beta_u)) Beta_u <- hydrogeo:::.constants$Beta_u
+  if (is.null(Beta_u)) Beta_u <- hydrogeo:::.constants$compressibility$Beta_u
   stopifnot(Beta_u <= Beta)
   alph <- 1 - Beta_u / Beta
   chk0to1(alph) # redundant
@@ -125,7 +125,7 @@ calc_alpha <- function(Beta, Beta_u=NULL){
 #' @export
 calc_nu_u <- function(B., Beta, nu=NULL, ...){
   chk0to1(B.)
-  if (is.null(nu)) nu <- hydrogeo:::.constants$nu
+  if (is.null(nu)) nu <- hydrogeo:::.constants$Poisson$nu
   chk0to1(nu)
   # R A 89, eq 9
   alph <- calc_alpha(Beta, ...)
