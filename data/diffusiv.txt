@@ -20,7 +20,7 @@ gouge,		fault core,	coarse foliated,	6e-6,	1e-3,	Wi02
 # Doan
 gouge,		fault core,	brecciated,		6e-5,	8e-5,	Do06
 # Roeloffs
-rock,		carbonates,	intact/karst,		1e4,	1e-1,	Ro96
+rock,		carbonates,	intact/karst,		1e-1,	1e4,	Ro96
 rock,		basalt,		permeable,		1,	10,	Ro96
 rock,		igneous,	fractured,		2e-1,	2e2,	Ro96
 rock,		sandstone,	NA,			2e-3,	5,	Ro96
