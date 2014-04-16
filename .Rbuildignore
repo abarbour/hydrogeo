@@ -1,6 +1,7 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
 .git*
+^.*\.Rout$
 refs
 demo
 data/*.txt

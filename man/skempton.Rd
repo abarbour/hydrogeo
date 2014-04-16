@@ -2,7 +2,7 @@
 \alias{skempton}
 \title{Calculate Skempton's coefficient \eqn{B}.}
 \usage{
-  skempton(Beta, Phi, Beta_u = NULL, Beta_f = NULL)
+skempton(Beta, Phi, Beta_u = NULL, Beta_f = NULL)
 }
 \arguments{
   \item{Beta}{numeric; compressibility \eqn{\beta}}
@@ -15,11 +15,11 @@
   \item{Beta_f}{numeric; \eqn{\beta[f]} fluid}
 }
 \description{
-  Skempton related changes in applied stress to changes in
-  fluid pressure; this is the famous constant \eqn{B}.
+Skempton related changes in applied stress to changes in
+fluid pressure; this is the famous constant \eqn{B}.
 }
 \details{
-  Calculates Equation (4) from Rojstaczer and Agnew (1989)
+Calculates Equation (4) from Rojstaczer and Agnew (1989)
 }
 \section{Assumptions}{
   As noted by Rice and Cleary [1976], this definition for
@@ -27,9 +27,9 @@
   all the pore space is interconnected.
 }
 \author{
-  Andrew J. Barbour <andy.barbour@gmail.com>
+Andrew J. Barbour <andy.barbour@gmail.com>
 }
 \seealso{
-  \code{\link{compressibility}}, \code{\link{hydrogeo}}
+\code{\link{compressibility}}, \code{\link{hydrogeo.p}}
 }
 

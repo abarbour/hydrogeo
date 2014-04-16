@@ -18,7 +18,7 @@
 #' @return numeric
 #' @export
 #' @author Andrew J. Barbour <andy.barbour@@gmail.com> 
-#' @seealso \code{\link{brocher}}, \code{\link{hydrogeo}}
+#' @seealso \code{\link{brocher}}, \code{\link{hydrogeo.p}}
 kms <- function(vel, is.mus=FALSE, is.slowness=FALSE, ...) UseMethod("kms")
 
 #' @rdname kms

@@ -3,10 +3,9 @@
 \alias{transmissivity}
 \title{Aquifer transmissivity.}
 \usage{
-  transmissivity(Storativ, Diffusiv)
+transmissivity(Storativ, Diffusiv)
 
-  effective_aquifer_thickness(Storativ, Diffusiv,
-    Conductiv)
+effective_aquifer_thickness(Storativ, Diffusiv, Conductiv)
 }
 \arguments{
   \item{Diffusiv}{numeric; the diffusivity, with units
@@ -19,22 +18,23 @@
   \eqn{[X]}}
 }
 \value{
-  numeric
+numeric
 }
 \description{
-  A collection of functions used to estimate the
-  transmissivity of an idealized aquifer system, or the
-  effective length scale (thickness) of an aquifer.
+A collection of functions used to estimate the
+transmissivity of an idealized aquifer system, or the
+effective length scale (thickness) of an aquifer.
 }
 \details{
-  \code{\link{transmissivity}} calculates the thickness,
-  \eqn{[m]}
+\code{\link{transmissivity}} calculates the thickness,
+\eqn{[m]}
 }
 \author{
-  Andrew J. Barbour <andy.barbour@gmail.com>
+Andrew J. Barbour <andy.barbour@gmail.com>
 }
 \seealso{
-  \code{\link{hydraulic_diffusivity}},
-  \code{\link{hydrogeo-constants}}, \code{\link{hydrogeo}}
+\code{\link{hydraulic_diffusivity}},
+\code{\link{hydrogeo.p-constants}},
+\code{\link{hydrogeo.p}}
 }
 

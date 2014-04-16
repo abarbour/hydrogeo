@@ -9,9 +9,9 @@
 #' @param Beta_f numeric; \eqn{\beta[f]} fluid
 #' @export
 #' @author Andrew J. Barbour <andy.barbour@@gmail.com> 
-#' @seealso \code{\link{skempton}}, \code{\link{hydrogeo}}
+#' @seealso \code{\link{skempton}}, \code{\link{hydrogeo.p}}
 porosity <- function(Beta, B., Beta_u=NULL, Beta_f=NULL){
-  const <- hydrogeo:::.constants
+  const <- get_constants()
   if (is.null(Beta_u)) Beta_u <- const$compressibility$Beta_u
   if (is.null(Beta_u)) Beta_f <- const$compressibility$Beta_f
   chk0to1(B.)

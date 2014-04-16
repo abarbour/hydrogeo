@@ -1,4 +1,4 @@
-hydrogeo
-========
+hydrogeo.p
+==========
 
-Tools for Hydrogeology Calculations
+Tools for Hydrogeology and Poroelasticity Calculations

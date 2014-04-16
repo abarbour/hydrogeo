@@ -11,7 +11,7 @@
 #' @return numeric; The hydraulic conductivity \eqn{C}, with units \eqn{[X]}
 #' @export
 #' @author Andrew J. Barbour <andy.barbour@@gmail.com> 
-#' @seealso \code{\link{kinvisc}}, \code{\link{hydrogeo}}
+#' @seealso \code{\link{kinvisc}}, \code{\link{hydrogeo.p}}
 hydraulic_conductivity <- function(Permeab, ...){
   # Davis & DeWiest 1966, eq 6.10
   KVG <- kinvisc(grav.divide=TRUE, ...)

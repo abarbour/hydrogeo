@@ -8,20 +8,17 @@
 \alias{undrained_compressibility.from.beta}
 \title{Calculate compressibility and strain sensitivity.}
 \usage{
-  undrained_compressibility.from.beta(Beta, B.,
-    Beta_u = NULL)
+undrained_compressibility.from.beta(Beta, B., Beta_u = NULL)
 
-  undrained_compressibility.from.areal_strain_sens(As., B.,
-    ...)
+undrained_compressibility.from.areal_strain_sens(As., B., ...)
 
-  areal_strain_sens.from.undrained_compressibility(Beta_hat,
-    B., ...)
+areal_strain_sens.from.undrained_compressibility(Beta_hat, B., ...)
 
-  .calc_prat(B., nu_u = NULL, fluid_dens = NULL)
+.calc_prat(B., nu_u = NULL, fluid_dens = NULL)
 
-  calc_alpha(Beta, Beta_u = NULL)
+calc_alpha(Beta, Beta_u = NULL)
 
-  calc_nu_u(B., Beta, nu = NULL, ...)
+calc_nu_u(B., Beta, nu = NULL, ...)
 }
 \arguments{
   \item{As.}{numeric; areal strain sensitivity \eqn{A[s]}}
@@ -51,15 +48,14 @@
   \code{calc_alpha}} }}
 }
 \description{
-  Compressibility is, essentially, the inverse of the bulk
-  modulus of a medium, and the strain sensitivity is the
-  amount of strain produced for unit increments in
-  pressure.
+Compressibility is, essentially, the inverse of the bulk
+modulus of a medium, and the strain sensitivity is the
+amount of strain produced for unit increments in pressure.
 }
 \details{
-  \code{X} calculates Equation (6) from Rojstaczer and
-  Agnew (1989): \eqn{\hat{\beta}} and Equation (10) using
-  strain sensitivity
+\code{X} calculates Equation (6) from Rojstaczer and Agnew
+(1989): \eqn{\hat{\beta}} and Equation (10) using strain
+sensitivity
 }
 \section{Assumptions}{
   The intake of the well is assumed to penetrate a porous
@@ -108,10 +104,10 @@
   \code{calc_alpha} can be used to calculate \eqn{\alpha} }
 }
 \author{
-  Andrew J. Barbour <andy.barbour@gmail.com>
+Andrew J. Barbour <andy.barbour@gmail.com>
 }
 \seealso{
-  \code{\link{skempton}}, \code{\link{kinvisc}},
-  \code{\link{hydrogeo}}
+\code{\link{skempton}}, \code{\link{kinvisc}},
+\code{\link{hydrogeo.p}}
 }
 

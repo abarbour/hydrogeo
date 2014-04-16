@@ -11,14 +11,14 @@
 
 .onUnload <- function(libpath)
 {
-  #library.dynam.unload("hydrogeo", libpath)
+  #library.dynam.unload("hydrogeo.p", libpath)
   NULL
 }
 ##
 # executed after .onLoad is executed, once the namespace is visible to user
 .onAttach <- function(...) {
   ##
-  pkg <- "hydrogeo"
+  pkg <- "hydrogeo.p"
   packageStartupMessage(
     sprintf("Loaded %s (%s) -- Hydrogeology and poroelasticity tools.", 
             pkg, utils::packageVersion(pkg)))

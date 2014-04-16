@@ -13,8 +13,8 @@
 #' }
 #'
 #' @docType package
-#' @name hydrogeo-package
-#' @aliases hydrogeo
+#' @name hydrogeo.p-package
+#' @aliases hydrogeo.p
 #' @author Andrew J. Barbour <andy.barbour@@gmail.com> 
 #' 
 #' @import utils reshape2
@@ -54,8 +54,8 @@
 #' @seealso 
 #' \code{\link{compressibility}},
 #' \code{\link{dimensional_units}},
-#' \code{\link{hydrogeo-constants}},
-#' \code{\link{hydrogeo-units}},
+#' \code{\link{hydrogeo.p-constants}},
+#' \code{\link{hydrogeo.p-units}},
 #' \code{\link{hydraulic_diffusivity}}, 
 #' \code{\link{hydraulic_conductivity}},
 #' \code{\link{permeability}},
@@ -78,7 +78,8 @@ NULL
 #' 
 #' @details The helper function \code{\link{constants}}
 #' shows (the structure of, optionally)
-#' and returns \code{.constants}.
+#' and returns \code{.hg_constants}. 
+#' \code{\link{get_constants}} simply accesses \code{\link{constants}}
 #'
 #' The following constants are assumed
 #' \describe{
@@ -88,9 +89,10 @@ NULL
 #' \item{compressibility}{ }
 #' \item{atmosphere}{ STP}
 #' }
-#' @name hydrogeo-constants
-#' @seealso \code{\link{hydrogeo-units}}, \code{\link{hydrogeo}}
-.constants <- list(gravity=list(
+#' @name hydrogeo.p-constants
+#' @export
+#' @seealso \code{\link{hydrogeo.p-units}}, \code{\link{hydrogeo.p}}
+.hg_constants <- list(gravity=list(
                      std=9.80665 # 6371 km
                    ),
                    water=list(
@@ -119,15 +121,20 @@ NULL
                    )
 )
 
-#' @rdname hydrogeo-constants
+#' @rdname hydrogeo.p-constants
 #' @param do.str logical; should the structure be printed?
 #' @export
 # @example
 # constants()
 constants <- function(do.str=TRUE){
-  const <- hydrogeo:::.constants
+  const <- hydrogeo.p::.hg_constants
   if (do.str) str(const, comp.str = "++++++++\n\t", no.list=TRUE, digits.d = 9)
   return(invisible(const))
+}
+#' @rdname hydrogeo.p-constants
+#' @export
+get_constants <- function(){
+  hydrogeo.p::constants(do.str=FALSE)
 }
 
 #' Ranges of diffusivity for a few types of solid-rock and unconsolidated deposits.

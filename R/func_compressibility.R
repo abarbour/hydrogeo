@@ -68,13 +68,16 @@
 #' }
 #' 
 #' @author Andrew J. Barbour <andy.barbour@@gmail.com> 
-#' @seealso \code{\link{skempton}}, \code{\link{kinvisc}}, \code{\link{hydrogeo}}
+#' @seealso \code{\link{skempton}}, \code{\link{kinvisc}}, \code{\link{hydrogeo.p}}
 NULL
 
 #' @rdname compressibility
 #' @export
 undrained_compressibility.from.beta <- function(Beta, B., Beta_u=NULL){
-  if (is.null(Beta_u)) Beta_u <- hydrogeo:::.constants$compressibility$Beta_u
+  if (is.null(Beta_u)){
+    const <- get_constants()
+    Beta_u <- const$compressibility$Beta_u
+  }
   alph <- calc_alpha(Beta, Beta_u)
   Beta_hat <- Beta * (1 - B. * alph)
   return(Beta_hat)
@@ -98,7 +101,7 @@ areal_strain_sens.from.undrained_compressibility <- function(Beta_hat, B., ...){
 #' @export
 .calc_prat <- function(B., nu_u=NULL, fluid_dens=NULL){
   chk0to1(B.)
-  const <- hydrogeo:::.constants
+  const <- get_constants()
   grav <- const$gravity$std
   if (is.null(nu_u)) nu_u <- const$Poisson$nu_u
   chk0to1(nu_u)
@@ -114,7 +117,10 @@ areal_strain_sens.from.undrained_compressibility <- function(Beta_hat, B., ...){
 calc_alpha <- function(Beta, Beta_u=NULL){
   #
   # R A 89, eq 2, where Beta = 1/K and Beta_u = Ks in the previous description
-  if (is.null(Beta_u)) Beta_u <- hydrogeo:::.constants$compressibility$Beta_u
+  if (is.null(Beta_u)){
+    const <- get_constants()
+    Beta_u <- const$compressibility$Beta_u
+  }
   stopifnot(Beta_u <= Beta)
   alph <- 1 - Beta_u / Beta
   chk0to1(alph) # redundant
@@ -125,7 +131,10 @@ calc_alpha <- function(Beta, Beta_u=NULL){
 #' @export
 calc_nu_u <- function(B., Beta, nu=NULL, ...){
   chk0to1(B.)
-  if (is.null(nu)) nu <- hydrogeo:::.constants$Poisson$nu
+  if (is.null(nu)){ 
+    const <- get_constants()
+    nu <- const$Poisson$nu
+  }
   chk0to1(nu)
   # R A 89, eq 9
   alph <- calc_alpha(Beta, ...)

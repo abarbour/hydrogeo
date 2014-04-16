@@ -2,23 +2,23 @@
 \alias{chk0to1}
 \title{Checks whether bounded between 0 and 1.}
 \usage{
-  chk0to1(X)
+chk0to1(X)
 }
 \arguments{
   \item{X}{numeric}
 }
 \value{
-  numeric
+numeric
 }
 \description{
-  Many quantities exist only in unit space, that is, within
-  the range \eqn{[0,1]}.
+Many quantities exist only in unit space, that is, within
+the range \eqn{[0,1]}.
 }
 \details{
-  This function halts operation if range of \code{X} is
-  outside \eqn{[0,1]}.
+This function halts operation if range of \code{X} is
+outside \eqn{[0,1]}.
 }
 \author{
-  Andrew J. Barbour <andy.barbour@gmail.com>
+Andrew J. Barbour <andy.barbour@gmail.com>
 }
 

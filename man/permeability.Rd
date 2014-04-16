@@ -4,12 +4,11 @@
 \alias{well_permeab_err}
 \title{Permeability.}
 \usage{
-  permeability(Transmiss, Length.scale)
+permeability(Transmiss, Length.scale)
 
-  well_permeab(Transmiss, Len_screen, stdErrors = NULL)
+well_permeab(Transmiss, Len_screen, stdErrors = NULL)
 
-  well_permeab_err(Transmiss, Transmiss.stderr, Len_screen,
-    Len_screen.stderr)
+well_permeab_err(Transmiss, Transmiss.stderr, Len_screen, Len_screen.stderr)
 }
 \arguments{
   \item{Transmiss}{numeric; the transmissivity, with units
@@ -31,17 +30,17 @@
   associated with \code{Len_screen}}
 }
 \value{
-  numeric
+numeric
 }
 \description{
-  A collection of functions used to estimate the
-  permeability of a porous medium, from a well-sensing
-  system, and associated uncertainties.
+A collection of functions used to estimate the permeability
+of a porous medium, from a well-sensing system, and
+associated uncertainties.
 }
 \author{
-  Andrew J. Barbour <andy.barbour@gmail.com>
+Andrew J. Barbour <andy.barbour@gmail.com>
 }
 \seealso{
-  \code{\link{transmissivity}}, \code{\link{hydrogeo}}
+\code{\link{transmissivity}}, \code{\link{hydrogeo.p}}
 }
 

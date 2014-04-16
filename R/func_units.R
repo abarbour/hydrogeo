@@ -20,7 +20,7 @@
 #' @return A character string with the quantity, and dimensional-units; invisibly.
 #' @export
 #' @author Andrew J. Barbour <andy.barbour@@gmail.com> 
-#' @seealso \code{\link{hydrogeo-units}}, \code{\link{hydrogeo}}
+#' @seealso \code{\link{hydrogeo.p-units}}, \code{\link{hydrogeo.p}}
 #'  
 #' @examples
 #' ### code to be run
@@ -91,8 +91,8 @@ dimensional_units <- function(quantity=c("show.all",
 #' \item{pressure}{ convert from pascal to bars, etc}
 #' }
 #' 
-#' @name hydrogeo-units
-#' @rdname hydrogeo-units
+#' @name hydrogeo.p-units
+#' @rdname hydrogeo.p-units
 #' @param atm numeric; pressure, in standard atmospheres
 #' @param bar numeric; pressure in bars
 #' @param ft numeric; length in feet
@@ -104,74 +104,77 @@ dimensional_units <- function(quantity=c("show.all",
 #' @param Perm_Darcy numeric; permeability, in darcies
 #' 
 #' @author Andrew J. Barbour <andy.barbour@@gmail.com> 
-#' @seealso \code{\link{dimensional_units}}, \code{\link{hydrogeo}}
+#' @seealso \code{\link{dimensional_units}}, \code{\link{hydrogeo.p}}
 NULL
 
-#' @rdname hydrogeo-units
+#' @rdname hydrogeo.p-units
 #' @export
 to_msquared <- function(Perm_Darcy){
   sc <- 1 / to_darcies(1) # 1 / (9.869233e13)
   return(sc * Perm_Darcy)
 }
 
-#' @rdname hydrogeo-units
+#' @rdname hydrogeo.p-units
 #' @param milli logical; should the result be divided by 1000?
 #' @export
 to_darcies <- function(Perm_sqm, milli=FALSE){
-  sc <- hydrogeo:::.constants$atm$bar * 10**12 #1.01325e+12
+  const <- get_constants()
+  sc <- const$atm$bar * 10**12 #1.01325e+12
   if (milli) sc <- sc / 1e3
   return(sc * Perm_sqm)
 }
 
-#' @rdname hydrogeo-units
+#' @rdname hydrogeo.p-units
 #' @export
 to_millidarcies <- function(Perm_sqm){
   return(to_darcies(Perm_sqm, milli=TRUE))
 }
 
-#' @rdname hydrogeo-units
+#' @rdname hydrogeo.p-units
 #' @export
 to_cmsquared <- function(Perm_sqm){
-  sc <- hydrogeo:::.constants$conversions$sqm2sqcm
+  const <- get_constants()
+  sc <- const$conversions$sqm2sqcm
   return(sc * Perm_sqm)
 }
 
 
-#' @rdname hydrogeo-units
+#' @rdname hydrogeo.p-units
 #' @export
 ft2m <- function(ft){ft*1200/3937} # http://www.ngs.noaa.gov/PUBS_LIB/FedRegister/FRdoc59-5442.pdf
 
-#' @rdname hydrogeo-units
+#' @rdname hydrogeo.p-units
 #' @export
 m2ft <- function(m){m/ft2m(1)}
 
-#' @rdname hydrogeo-units
+#' @rdname hydrogeo.p-units
 #' @export
 hpa2pa <- function(hpa){hpa*100}
 
-#' @rdname hydrogeo-units
+#' @rdname hydrogeo.p-units
 #' @export
 pa2hpa <- function(pa){pa/hpa2pa(1)}
 
-#' @rdname hydrogeo-units
+#' @rdname hydrogeo.p-units
 #' @export
 kpa2pa <- function(kpa){kpa*1000}
 
-#' @rdname hydrogeo-units
+#' @rdname hydrogeo.p-units
 #' @export
 pa2kpa <- function(pa){pa/kpa2pa(1)}
 
-#' @rdname hydrogeo-units
+#' @rdname hydrogeo.p-units
 #' @export
 bar2pa <- function(bar){bar/pa2bar(1)}
 
-#' @rdname hydrogeo-units
+#' @rdname hydrogeo.p-units
 #' @export
 pa2bar <- function(pa){pa2hpa(pa)/1000}
 
-#' @rdname hydrogeo-units
+#' @rdname hydrogeo.p-units
 #' @export
 atm2bar <- function(atm){
-  sc <- hydrogeo:::.constants$atm$bar
+  const <- get_constants()
+  sc <- const$atm$bar
   return(sc * atm)
 } 

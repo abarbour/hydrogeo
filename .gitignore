@@ -1,6 +1,7 @@
 .Rproj.user
 .Rhistory
 .RData
+*.Rout
 *.Rproj
 .gitignore
 hydrogeo.Rproj

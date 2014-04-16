@@ -88,7 +88,7 @@
 #' @references Brocher, T. M. (2005). 
 #' Empirical relations between elastic wavespeeds and density in the Earth's crust. 
 #' \emph{Bulletin of the Seismological Society of America}, \strong{95} (6), 2081-2092.
-#' @seealso \code{\link{kms}}, \code{\link{hydrogeo}}
+#' @seealso \code{\link{kms}}, \code{\link{hydrogeo.p}}
 NULL
 
 
@@ -375,7 +375,10 @@ vpvs_continuum <- function(nu) { UseMethod("vpvs_continuum") }
 #' @S3method vpvs_continuum default
 vpvs_continuum.default <- function(nu){
   # Brocher 2005 eq 10, inverted for Vp/Vs ratio
-  if (missing(nu)) nu <- hydrogeo:::.constants$Poisson$nu
+  if (missing(nu)){
+    const <- get_constants()
+    nu <- const$Poisson$nu
+  }
   Num <- 2*(nu - 1)
   Den <- 2*nu - 1
   VpVs <- sqrt(Num/Den)
@@ -391,10 +394,11 @@ nu_continuum <- function(Vp, Vs) { UseMethod("nu_continuum") }
 #' @S3method nu_continuum default
 nu_continuum.default <- function(Vp, Vs){
   # Brocher 2005 eq 10
-  if (missing(Vp) | missing(Vs)){
-	Rat <- hydrogeo:::.constants$Poisson$VpVs
+  Rat <- if (missing(Vp) | missing(Vs)){
+    const <- get_constants()
+    const$Poisson$VpVs
   } else {
-	Rat <- Vp / Vs
+    Vp / Vs
   }
   Rat2 <- Rat*Rat
   Num <- Rat2 - 2

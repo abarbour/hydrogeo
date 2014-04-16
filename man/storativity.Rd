@@ -3,9 +3,9 @@
 \alias{storativity}
 \title{Aquifer storativity.}
 \usage{
-  storativity(Transmiss, Diffusiv)
+storativity(Transmiss, Diffusiv)
 
-  specific_storage(Transmiss, Diffusiv, Conductiv)
+specific_storage(Transmiss, Diffusiv, Conductiv)
 }
 \arguments{
   \item{Diffusiv}{numeric; the diffusivity, with units
@@ -18,19 +18,18 @@
   \eqn{[X]}}
 }
 \value{
-  numeric
+numeric
 }
 \description{
-  A collection of functions used to estimate the
-  storativity and specific storage capacity of an idealized
-  aquifer.
+A collection of functions used to estimate the storativity
+and specific storage capacity of an idealized aquifer.
 }
 \author{
-  Andrew J. Barbour <andy.barbour@gmail.com>
+Andrew J. Barbour <andy.barbour@gmail.com>
 }
 \seealso{
-  \code{\link{hydrogeo}},
-  \code{\link{hydraulic_conductivity}},
-  \code{\link{hydraulic_diffusivity}}
+\code{\link{hydrogeo.p}},
+\code{\link{hydraulic_conductivity}},
+\code{\link{hydraulic_diffusivity}}
 }
 

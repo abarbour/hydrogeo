@@ -1,6 +1,9 @@
-hydrogeo 0.1-5 (2014-01-09) ---------------------------------------- NOT RELEASED
+hydrogeo(.p) 0.1-5 (2014-04-15) ------------------------------------ NOT RELEASED
 
 * Fixed reversed value in diffusiv for karst/intact carbonates
+
+* Package is now called **hydrogeo.p** to prevent conflict with the recently released pkg
+ on CRAN
 
 hydrogeo 0.1-0 (2012-11-06) ---------------------------------------- NOT RELEASED
 

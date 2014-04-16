@@ -16,8 +16,8 @@
 #' \code{\link{elev2hpa}} calculates the expected RMS tropospheric pressure head, 
 #' by correcting sea level at STP for lapse effects.
 #'
-#' @name hydrogeo-atmosphere
-#' @rdname hydrogeo-atmosphere
+#' @name hydrogeo.p-atmosphere
+#' @rdname hydrogeo.p-atmosphere
 #' @param pressure.units character; the units of atmospheric pressure
 #' @param hpa numeric; pressure in hecto-Pascals
 #' @param elev numeric; the elevation
@@ -25,27 +25,29 @@
 #' @param elev.units character; the units of elevation associated with \code{elev}
 #' @return numeric
 #' @author Andrew J. Barbour <andy.barbour@@gmail.com> 
-#' @seealso \code{\link{hydrogeo-units}}, \code{\link{hydrogeo}}
+#' @seealso \code{\link{hydrogeo.p-units}}, \code{\link{hydrogeo.p}}
 NULL
 
-#' @rdname hydrogeo-atmosphere
+#' @rdname hydrogeo.p-atmosphere
 #' @export
 atmos_p <- function(pressure.units=c("hpa","bar")){
-  atm.bar <- hydrogeo:::.constants$atm$bar
 	punits <- match.arg(pressure.units)
+  const <- get_constants()
+	atm.bar <- const$atm$bar
 	atmp <- switch(punits, hpa=atm.bar*pa2hpa(bar2pa(1)), bar=atm.bar)
 	return(atmp)
 }
 
-#' @rdname hydrogeo-atmosphere
+#' @rdname hydrogeo.p-atmosphere
 #' @export
 atmos_head <- function(elev.m=0){
   # 10.3 m/atm (m/1013.25hPa)
-  atm.m <- hydrogeo:::.constants$atm$m_per
+  const <- get_constants()
+  atm.m <- const$atm$m_per
   return(atm.m * elev2hpa(elev.m, elev.units="m")/elev2hpa(0, elev.units="m"))
 }
 
-#' @rdname hydrogeo-atmosphere
+#' @rdname hydrogeo.p-atmosphere
 #' @export
 m_per_hpa <- function(elev.m=0){
 	ppa <- elev2hpa(elev.m) # atmosphere at elev.m
@@ -53,14 +55,14 @@ m_per_hpa <- function(elev.m=0){
 	return(pm/ppa)
 }
 
-#' @rdname hydrogeo-atmosphere
+#' @rdname hydrogeo.p-atmosphere
 #' @export
 hpa2m <- function(hpa=0, elev.m=0){
 	sc <- m_per_hpa(elev.m)
 	return(sc*hpa)
 }
 
-#' @rdname hydrogeo-atmosphere
+#' @rdname hydrogeo.p-atmosphere
 #' @references \url{http://en.wikipedia.org/wiki/Atmospheric_pressure}
 #' @export
 elev2hpa <- function(elev=0, elev.units=c("m","ft")){
@@ -75,7 +77,7 @@ elev2hpa <- function(elev=0, elev.units=c("m","ft")){
   #M	molar mass of dry air	0.0289644 kg/mol
   #R	universal gas constant	8.31447 J/(mol*K)
   Po. <- atmos_p() #1013.25
-  const <- hydrogeo:::.constants
+  const <- get_constants()
   grav <- const$gravity$std
   atm <- const$atm
   L. <- atm$L.

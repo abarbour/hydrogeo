@@ -16,7 +16,7 @@
 #' }
 #' @export
 #' @author Andrew J. Barbour <andy.barbour@@gmail.com> 
-#' @seealso \code{\link{hydrogeo}}, \code{\link{hydraulic_conductivity}}
+#' @seealso \code{\link{hydrogeo.p}}, \code{\link{hydraulic_conductivity}}
 #'  
 #' @examples
 #' kinvisc()	# use defaults (water at STP)
@@ -28,7 +28,7 @@ kinvisc <- function(dyn_visc=NULL,
                     fluid_dens=NULL, 
                     grav.divide=FALSE,
                     verbose=FALSE){
-  const <- hydrogeo:::.constants
+  const <- get_constants()
   if (is.null(dyn_visc)) dyn_visc <- const$water$dyn_visc
   if (is.null(fluid_dens)) fluid_dens <- const$water$dens
 	# kin visc defined as dynamic visc over density

@@ -13,7 +13,7 @@
 #' @return numeric
 #' @export
 #' @author Andrew J. Barbour <andy.barbour@@gmail.com> 
-#' @seealso \code{\link{transmissivity}}, \code{\link{hydrogeo}}
+#' @seealso \code{\link{transmissivity}}, \code{\link{hydrogeo.p}}
 permeability <- function(Transmiss, Length.scale){
   KVG <- kinvisc(grav.divide=TRUE)
   Perm. <- Transmiss * KVG / Length.scale

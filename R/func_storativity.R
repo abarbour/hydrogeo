@@ -9,7 +9,7 @@
 #' @return numeric
 #' @export
 #' @author Andrew J. Barbour <andy.barbour@@gmail.com> 
-#' @seealso \code{\link{hydrogeo}}, 
+#' @seealso \code{\link{hydrogeo.p}}, 
 #' \code{\link{hydraulic_conductivity}},
 #' \code{\link{hydraulic_diffusivity}}
 storativity <- function(Transmiss, Diffusiv){

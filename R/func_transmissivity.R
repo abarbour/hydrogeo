@@ -10,8 +10,8 @@
 #' @return numeric
 #' @export
 #' @author Andrew J. Barbour <andy.barbour@@gmail.com> 
-#' @seealso \code{\link{hydraulic_diffusivity}}, \code{\link{hydrogeo-constants}},
-#' \code{\link{hydrogeo}}
+#' @seealso \code{\link{hydraulic_diffusivity}}, \code{\link{hydrogeo.p-constants}},
+#' \code{\link{hydrogeo.p}}
 transmissivity <- function(Storativ, Diffusiv){
   # Roeloffs 1996, eq 13
   return(Storativ * Diffusiv)

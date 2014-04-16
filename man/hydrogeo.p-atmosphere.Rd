@@ -1,0 +1,68 @@
+\name{hydrogeo.p-atmosphere}
+\alias{atmos_head}
+\alias{atmos_p}
+\alias{elev2hpa}
+\alias{hpa2m}
+\alias{hydrogeo.p-atmosphere}
+\alias{m_per_hpa}
+\title{Elevation pressure and head.}
+\usage{
+atmos_p(pressure.units = c("hpa", "bar"))
+
+atmos_head(elev.m = 0)
+
+m_per_hpa(elev.m = 0)
+
+hpa2m(hpa = 0, elev.m = 0)
+
+elev2hpa(elev = 0, elev.units = c("m", "ft"))
+}
+\arguments{
+  \item{pressure.units}{character; the units of atmospheric
+  pressure}
+
+  \item{hpa}{numeric; pressure in hecto-Pascals}
+
+  \item{elev}{numeric; the elevation}
+
+  \item{elev.m}{numeric; the elevation, in meters}
+
+  \item{elev.units}{character; the units of elevation
+  associated with \code{elev}}
+}
+\value{
+numeric
+}
+\description{
+A collection of functions to deal with atmospheric pressure
+and head calculations.
+}
+\details{
+\code{\link{atmos_p}} returns atmospheric pressure in the
+units of meters or feet.
+
+\code{\link{atmos_head}} calculates the amount of head of
+water produced by atmospheric pressure for a given
+elevation.
+
+\code{\link{m_per_hpa}} calculates the expected scaling
+between water level (head) and pressure for a given
+elevation.
+
+\code{\link{hpa2m}} calculates the water level (head) for a
+given pressure and elevation.
+
+\code{\link{elev2hpa}} calculates the expected RMS
+tropospheric pressure head, by correcting sea level at STP
+for lapse effects.
+}
+\author{
+Andrew J. Barbour <andy.barbour@gmail.com>
+}
+\references{
+\url{http://en.wikipedia.org/wiki/Atmospheric_pressure}
+}
+\seealso{
+\code{\link{hydrogeo.p-units}}, \code{\link{hydrogeo.p}}
+}
+
