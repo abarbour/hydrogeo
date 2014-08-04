@@ -161,8 +161,7 @@ as.RockDensity <- function(Vp, pos=seq_along(Vp),
 dens_nafe_drake <- function(Vp, null_val=NA) { UseMethod("dens_nafe_drake") }
 #' @rdname brocher
 #' @aliases dens_nafe_drake.default
-#' @method dens_nafe_drake default
-#' @S3method dens_nafe_drake default
+#' @export
 dens_nafe_drake.default <- function(Vp, null_val=NA){
   Vp2 <- Vp*Vp
   Vp3 <- Vp2*Vp
@@ -179,8 +178,7 @@ dens_nafe_drake.default <- function(Vp, null_val=NA){
 dens_gardner <- function(Vp, null_val=NA) { UseMethod("dens_gardner") }
 #' @rdname brocher
 #' @aliases dens_gardner.default
-#' @method dens_gardner default
-#' @S3method dens_gardner default
+#' @export
 dens_gardner.default <- function(Vp, null_val=NA){
   # Brocher 2005 eq 2
   Dens <- null_val
@@ -194,8 +192,7 @@ dens_gardner.default <- function(Vp, null_val=NA){
 dens_christensen_mooney <- function(Vp, null_val=NA) { UseMethod("dens_christensen_mooney") }
 #' @rdname brocher
 #' @aliases dens_christensen_mooney.default
-#' @method dens_christensen_mooney default
-#' @S3method dens_christensen_mooney default
+#' @export
 dens_christensen_mooney.default <- function(Vp, null_val=NA){
   # Brocher 2005 eq 3
   Dens <- null_val
@@ -208,8 +205,7 @@ dens_christensen_mooney.default <- function(Vp, null_val=NA){
 dens_godfrey <- function(Vp, null_val=NA) { UseMethod("dens_godfrey") }
 #' @rdname brocher
 #' @aliases dens_godfrey.default
-#' @method dens_godfrey default
-#' @S3method dens_godfrey default
+#' @export
 dens_godfrey.default <- function(Vp, null_val=NA){
   # Brocher 2005 eq 4
   Dens <- null_val
@@ -271,8 +267,7 @@ as.Vs <- function(Vp, pos=seq_along(Vp),
 vs_brocher <- function(Vp, null_val=NA) { UseMethod("vs_brocher") }
 #' @rdname brocher
 #' @aliases vs_brocher.default
-#' @method vs_brocher default
-#' @S3method vs_brocher default
+#' @export
 vs_brocher.default <- function(Vp, null_val=NA){
   Vp2 <- Vp*Vp
   Vp3 <- Vp2*Vp
@@ -288,8 +283,7 @@ vs_brocher.default <- function(Vp, null_val=NA){
 vs_castagna <- function(Vp, null_val=NA) { UseMethod("vs_castagna") }
 #' @rdname brocher
 #' @aliases vs_castagna default
-#' @method vs_castagna default
-#' @S3method vs_castagna default
+#' @export
 vs_castagna.default <- function(Vp, null_val=NA){
   # Brocher 2005 eq 7 (simp)
   Vs <- null_val
@@ -302,8 +296,7 @@ vs_castagna.default <- function(Vp, null_val=NA){
 vs_brocher_mafic <- function(Vp, null_val=NA) { UseMethod("vs_brocher_mafic") }
 #' @rdname brocher
 #' @aliases vs_brocher_mafic.default
-#' @method vs_brocher_mafic default
-#' @S3method vs_brocher_mafic default
+#' @export
 vs_brocher_mafic.default <- function(Vp, null_val=NA){
   # Brocher 2005 eq 8 (simp)
   Vs <- null_val
@@ -331,8 +324,7 @@ as.Vp <- function(X, pos=seq_along(X),
 vp_brocher <- function(Vs, null_val=NA) { UseMethod("vp_brocher") }
 #' @rdname brocher
 #' @aliases vp_brocher.default
-#' @method vp_brocher default
-#' @S3method vp_brocher default
+#' @export
 vp_brocher.default <- function(Vs, null_val=NA){
   Vs2 <- Vs*Vs
   Vs3 <- Vs2*Vs
@@ -348,8 +340,7 @@ vp_brocher.default <- function(Vs, null_val=NA){
 vp_brocher_ludwig <- function(Dens.bulk, null_val=NA) { UseMethod("vp_brocher_ludwig") }
 #' @rdname brocher
 #' @aliases vp_brocher_ludwig.default
-#' @method vp_brocher_ludwig default
-#' @S3method vp_brocher_ludwig default
+#' @export
 vp_brocher_ludwig.default <- function(Dens.bulk, null_val=NA){
   rho2 <- Dens.bulk*Dens.bulk
   rho3 <- rho2*Dens.bulk
@@ -371,8 +362,7 @@ vp_brocher_ludwig.default <- function(Dens.bulk, null_val=NA){
 vpvs_continuum <- function(nu) { UseMethod("vpvs_continuum") }
 #' @rdname brocher
 #' @aliases vpvs_continuum.default
-#' @method vpvs_continuum default
-#' @S3method vpvs_continuum default
+#' @export
 vpvs_continuum.default <- function(nu){
   # Brocher 2005 eq 10, inverted for Vp/Vs ratio
   if (missing(nu)){
@@ -390,8 +380,7 @@ vpvs_continuum.default <- function(nu){
 nu_continuum <- function(Vp, Vs) { UseMethod("nu_continuum") }
 #' @rdname brocher
 #' @aliases nu_continuum.default
-#' @method nu_continuum default
-#' @S3method nu_continuum default
+#' @export
 nu_continuum.default <- function(Vp, Vs){
   # Brocher 2005 eq 10
   Rat <- if (missing(Vp) | missing(Vs)){
@@ -424,8 +413,7 @@ as.PoissonsRatio <- function(Vp, pos=seq_along(Vp),
 nu_brocher <- function(Vp, null_val=NA) { UseMethod("nu_brocher") }
 #' @rdname brocher
 #' @aliases nu_brocher.default
-#' @method nu_brocher default
-#' @S3method nu_brocher default
+#' @export
 nu_brocher.default <- function(Vp, null_val=NA){
   nu <- null_val
   Vp2 <- Vp*Vp
@@ -439,8 +427,7 @@ nu_brocher.default <- function(Vp, null_val=NA){
 nu_brocher_ludwig <- function(Vp, null_val=NA) { UseMethod("nu_brocher_ludwig") }
 #' @rdname brocher
 #' @aliases nu_brocher_ludwig.default
-#' @method nu_brocher_ludwig default
-#' @S3method nu_brocher_ludwig default
+#' @export
 nu_brocher_ludwig.default <- function(Vp, null_val=NA){
   nu <- null_val
   Vp2 <- Vp*Vp

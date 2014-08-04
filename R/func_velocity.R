@@ -22,8 +22,7 @@
 kms <- function(vel, is.mus=FALSE, is.slowness=FALSE, ...) UseMethod("kms")
 
 #' @rdname kms
-#' @method kms default
-#' @S3method kms default
+#' @export
 kms.default <- function(vel, is.mus=FALSE, is.slowness=FALSE, ...){
   # ensure velocity if slowness (p=1/vel)
   if (is.slowness) vel <- 1 / vel

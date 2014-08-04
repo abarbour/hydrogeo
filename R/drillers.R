@@ -3,14 +3,14 @@
 #' The hydraulic properties of sedimentary material are roughly
 #' dependent on  the proportions of grain size due to sand, silt,
 #' and clay; these are common categorical distinctions found
-#' in drillers' logs.
+#' in drillers logs.
 #'
 #' A more detailed classification system for soils is used by the
 #' USDA; however, Shepard's diagram is adquate for a sand-silt-clay
 #' model, and \code{shepard_plot} adds them to the current device.
 #' This function is intended for a ternary diagram normalized to
 #' percent particle size so that hydraulic parameters may be
-#' estimated from drillers' logs.
+#' estimated from drillers logs.
 #'
 #' @param shepard.diagram logical; should Shepards' (1954) classification 
 #' system be overlain?
@@ -19,7 +19,6 @@
 #' @param add.frame logical; should a box be drawn around it?
 #' @param init logical; forces device instantiation.
 #' @param ... additional parameters (unused)
-#' @return \code{NULL}
 #' @export
 #' @author Andrew J. Barbour <andy.barbour@@gmail.com> 
 #' @seealso \code{\link{xyz2ternary}}, \code{\link{hydrogeo.p}}

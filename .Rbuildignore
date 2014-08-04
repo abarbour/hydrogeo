@@ -5,6 +5,5 @@
 refs
 demo
 data/*.txt
-data/toRda.Rout
-data/toRda.R*
+data/toRda
 NOBUILD
