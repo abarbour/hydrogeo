@@ -7,3 +7,4 @@ demo
 data/*.txt
 data/toRda
 NOBUILD
+^packrat/
