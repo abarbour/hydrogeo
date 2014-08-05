@@ -1,18 +1,28 @@
 #' Hydraulic diffusivity.
 #' 
 #' A collection of various functions used to estimate hydraulic diffusivity, or
-#' characteristic length scales.
+#' characteristic scales associated with fluid diffusion in porous media.
 #' 
-#' Because diffusivity is scale dependent, there exists a number of definitions,
-#' including
-#' 
+#' Because diffusivity is scale and flow-law 
+#' dependent, there are many definitions. These
+#' include, but are not limited to:
 #' \describe{
-#'   \item{\code{\link{hydraulic_diffusivity}}}{following Eq (1)}
-#'   \item{\code{\link{hydraulic_diffusivity_2}}}{following Eq (2)}
-#'   \item{\code{\link{hydraulic_diffusivity_poro}}}{following Eq (3)}
-#'   \item{\code{\link{diffusivity_length}}}{following Eq (4)}
-#'   \item{\code{\link{diffusivity_time}}}{following Eq (5)}
+#'   \item{\code{\link{hydraulic_diffusivity}}}{\deqn{T / S}}
+#'   which uses transmissivity and storativity (careful, this can be problematic); an 
+#'   alternate definition:
+#'   \item{\code{\link{hydraulic_diffusivity_2}}}{\deqn{C / S_s}}
+#'   which uses hydraulic conductivity and specific storage; another alternate
+#'   defintion:
+#'   \item{\code{\link{hydraulic_diffusivity_3}}}{\deqn{x^2 / 4 \pi t}}
+#'   which based on a harmonic perturbation of pore fluids in a sphere
+#'   (Biot's second compressional wave); (note that this definition provides
+#'   an upper bound on diffusivity;) and yet another definition:
+#'   \item{\code{\link{hydraulic_diffusivity_poro}}}{}
+#'   which is based on linear poroelasticity.
 #' }
+#' The functions \code{\link{diffusivity_length}}
+#'   and \code{\link{diffusivity_time}}
+#'   are rearrangements of \code{\link{hydraulic_diffusivity_3}}.
 #'
 #' @param Conductiv numeric; the hydraulic conductivity, with units \eqn{[X]}
 #' @param Diffusiv numeric; the diffusivity, with units \eqn{m^2/s}
@@ -47,6 +57,16 @@ hydraulic_diffusivity_2 <- function(Conductiv, SpecificStorage){
 
 #' @rdname hydraulic_diffusivity
 #' @export
+#' @examples
+#' # Length and time (SI)
+#' hydraulic_diffusivity_3(pi*2)/pi  # = 1
+hydraulic_diffusivity_3 <- function(Length.m=1, Time.s=1){
+  # Shapiro Huenges and Borm (1997) Eq 6
+  return(Length.m * Length.m / 4 / pi / Time.s)
+}
+
+#' @rdname hydraulic_diffusivity
+#' @export
 hydraulic_diffusivity_poro <- function(Permeab, B., Beta, nu_u=NULL, nu=NULL){
   # Rojstaczer and Agnew 1989, eq 23
   # [ Rice and Cleary 1976 eq X]
@@ -71,9 +91,8 @@ hydraulic_diffusivity_poro <- function(Permeab, B., Beta, nu_u=NULL, nu=NULL){
 #' characteristic diffusion length for.
 #' @export
 diffusivity_length <- function(Diffusiv, Time.s=1){
-  # Lachenbuch 1980 eq 43
-  #Frictional Heating, Fluid Pressure, and the Resistance to Fault Motion 
-  return(sqrt(4 * Diffusiv * Time.s))
+  # Shapiro Huenges and Borm (1997) Eq 7
+  return(sqrt(4 * pi * Diffusiv * Time.s))
 }
 
 #' @rdname hydraulic_diffusivity
@@ -81,8 +100,7 @@ diffusivity_length <- function(Diffusiv, Time.s=1){
 #' characteristic diffusion time for.
 #' @export
 diffusivity_time <- function(Diffusiv, Length.m=1){
-  # inverted, Lachenbuch 1980 eq 43
-  #Frictional Heating, Fluid Pressure, and the Resistance to Fault Motion 
-  #L = sqrt(4 D T) so T=L^2/4/D
-  return(Length.m * Length.m / 4 / Diffusiv)
+  # Shapiro Huenges and Borm (1997) Eq 5
+  #L = sqrt(4 pi D T) so T=L^2/4/pi/D
+  return(Length.m * Length.m / 4 / pi / Diffusiv)
 }

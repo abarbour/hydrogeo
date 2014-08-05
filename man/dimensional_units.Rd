@@ -36,7 +36,7 @@ with SI units \eqn{[m]}, \eqn{[s]}, and \eqn{[kg]} respectively.
 \examples{
 ### code to be run
 print(dimensional_units(verbose=FALSE)) # show all
-dimensional_units("diffusivity") # 'diffusivity'
+dimensional_units("diffusivity") # [ L^2 / T ]
 dimensional_units("diff") # matches also, because of match.arg
 print(dimensional_units("diff", FALSE)) # print, but no message
 }

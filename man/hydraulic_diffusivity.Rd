@@ -4,12 +4,15 @@
 \alias{diffusivity_time}
 \alias{hydraulic_diffusivity}
 \alias{hydraulic_diffusivity_2}
+\alias{hydraulic_diffusivity_3}
 \alias{hydraulic_diffusivity_poro}
 \title{Hydraulic diffusivity.}
 \usage{
 hydraulic_diffusivity(Transmiss, Storativ)
 
 hydraulic_diffusivity_2(Conductiv, SpecificStorage)
+
+hydraulic_diffusivity_3(Length.m = 1, Time.s = 1)
 
 hydraulic_diffusivity_poro(Permeab, B., Beta, nu_u = NULL, nu = NULL)
 
@@ -49,19 +52,33 @@ numeric
 }
 \description{
 A collection of various functions used to estimate hydraulic diffusivity, or
-characteristic length scales.
+characteristic scales associated with fluid diffusion in porous media.
 }
 \details{
-Because diffusivity is scale dependent, there exists a number of definitions,
-including
-
+Because diffusivity is scale and flow-law
+dependent, there are many definitions. These
+include, but are not limited to:
 \describe{
-  \item{\code{\link{hydraulic_diffusivity}}}{following Eq (1)}
-  \item{\code{\link{hydraulic_diffusivity_2}}}{following Eq (2)}
-  \item{\code{\link{hydraulic_diffusivity_poro}}}{following Eq (3)}
-  \item{\code{\link{diffusivity_length}}}{following Eq (4)}
-  \item{\code{\link{diffusivity_time}}}{following Eq (5)}
+  \item{\code{\link{hydraulic_diffusivity}}}{\deqn{T / S}}
+  which uses transmissivity and storativity (careful, this can be problematic); an
+  alternate definition:
+  \item{\code{\link{hydraulic_diffusivity_2}}}{\deqn{C / S_s}}
+  which uses hydraulic conductivity and specific storage; another alternate
+  defintion:
+  \item{\code{\link{hydraulic_diffusivity_3}}}{\deqn{x^2 / 4 \pi t}}
+  which based on a harmonic perturbation of pore fluids in a sphere
+  (Biot's second compressional wave); (note that this definition provides
+  an upper bound on diffusivity;) and yet another definition:
+  \item{\code{\link{hydraulic_diffusivity_poro}}}{}
+  which is based on linear poroelasticity.
 }
+The functions \code{\link{diffusivity_length}}
+  and \code{\link{diffusivity_time}}
+  are rearrangements of \code{\link{hydraulic_diffusivity_3}}.
+}
+\examples{
+# Length and time (SI)
+hydraulic_diffusivity_3(pi*2)/pi  # = 1
 }
 \author{
 Andrew J. Barbour <andy.barbour@gmail.com>

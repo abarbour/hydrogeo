@@ -47,6 +47,12 @@
 #' Water Levels in Wells to Earth Tides and Atmospheric Loading,
 #' \emph{J. Geophys. Res.}, \strong{94} (B9), 12403-12411.
 #' 
+#' @references Shapiro, S. A., Huenges, E. and Borm, G. (1997), 
+#' Estimating the crust permeability from fluid-injection-induced 
+#' seismic emission at the KTB site,
+#' \emph{Geophysical Journal International}, \strong{131} (2),
+#' doi: 10.1111/j.1365-246X.1997.tb01215.x
+#' 
 #' @references Shepard, F. P. (1954),
 #' Nomenclature based on sand-silt-clay ratios,
 #' \emph{Journal of Sedimentary Research}, \strong{24} (3), 151-158.
