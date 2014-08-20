@@ -1,4 +1,6 @@
-hydrogeo(.p) 0.1-5 (2014-04-15) ------------------------------------ NOT RELEASED
+hydrogeo(.p) 0.1-6 (2014-04-15) ------------------------------------ NOT RELEASED
+
+* Added functions to obtain elastic rock parameters and undrained response
 
 * Fixed reversed value in diffusiv for karst/intact carbonates
 
