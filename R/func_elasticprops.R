@@ -1,3 +1,5 @@
+#http://www.ees.nmt.edu/outside/courses/GEOP523/Docs/modtable.pdf
+
 #' Elastic properties from seismic velocities
 #' @name Elastic.Properties
 #' @export
@@ -29,6 +31,34 @@ bulk_modulus <- function(Vp, Vs, dens, mu=NULL){
     mu <- shear_modulus(Vs, dens)
   }
   dens * Vp * Vp  -  4 * mu / 3
+}
+
+#' @rdname Elastic.Properties
+#' @export
+Lame_constant <- function(Vp, Vs, dens){
+  Vp2 <- Vp * Vp
+  TVs2 <- 2 * Vs * Vs
+  dens * (Vp2 - TVs2)
+}
+
+#' @rdname Elastic.Properties
+#' @export
+Poissons_ratio <- function(Vp, Vs){
+  L <- Lame_constant(Vp, Vs, dens=1)
+  L / (L + Vp2)
+}
+
+#' @rdname Elastic.Properties
+#' @export
+Youngs_modulus <- function(Vp, Vs, dens){
+  #Vp2 <- Vp * Vp
+  #Vs2 <- Vs * Vs
+  mu <- shear_modulus(Vp, Vs, dens)
+  L <- Lame_constant(Vp, Vs, dens)
+  #E1 <- mu * (3*Vp2 - 4*Vs2) / (Vp2 - Vs2)
+  E <- mu * (3*L + 2*mu) / (L + mu)
+  #stopifnot(E1==E)
+  return(E)
 }
 
 #' Calculate undrained pressure response to volume strain
