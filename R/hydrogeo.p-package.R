@@ -82,19 +82,22 @@ NULL
 #' and hydraulic properties; if these are not known or 
 #' specified, these constants are used.
 #' 
-#' @details The helper function \code{\link{constants}}
+#' @details The helper function \code{\link{constants._hg_}}
 #' shows (the structure of, optionally)
 #' and returns \code{.hg_constants}. 
-#' \code{\link{get_constants}} simply accesses \code{\link{constants}}
+#' \code{\link{get_constants}} simply accesses \code{\link{constants._hg_}}
 #'
-#' The following constants are assumed
-#' \describe{
-#' \item{gravity}{}
-#' \item{pore-fluid}{ (water)}
-#' \item{Poisson's ratios}{ (Poisson solid)}
-#' \item{compressibility}{ }
-#' \item{atmosphere}{ STP}
-#' }
+#' The following constants are set here:
+#' gravity, properties of water, Poisson's ratios for a typical
+#' drained and undrained material, the compressibities
+#' of fluid and undrained fluid-saturated rock,
+#' atmospheric properties at ATP, and some conversion
+#' factors.
+#' 
+#' @note This functionality may be replaced in the future with
+#' the \code{\link[settings]{options_manager}} function on CRAN
+#' (in the  new \pkg{settings} package).
+#' 
 #' @name hydrogeo.p-constants
 #' @export
 #' @seealso \code{\link{hydrogeo.p-units}}, \code{\link{hydrogeo.p}}
@@ -130,9 +133,10 @@ NULL
 #' @rdname hydrogeo.p-constants
 #' @param do.str logical; should the structure be printed?
 #' @export
+#' @aliases constants
 # @example
-# constants()
-constants <- function(do.str=TRUE){
+# constants._hg_()
+constants._hg_ <- function(do.str=TRUE){
   const <- hydrogeo.p::.hg_constants
   if (do.str) str(const, comp.str = "++++++++\n\t", no.list=TRUE, digits.d = 9)
   return(invisible(const))
@@ -140,7 +144,7 @@ constants <- function(do.str=TRUE){
 #' @rdname hydrogeo.p-constants
 #' @export
 get_constants <- function(){
-  hydrogeo.p::constants(do.str=FALSE)
+  hydrogeo.p::constants._hg_(do.str=FALSE)
 }
 
 #' Ranges of diffusivity for a few types of solid-rock and unconsolidated deposits.
