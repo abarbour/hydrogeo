@@ -13,3 +13,4 @@ URL: http://abarbour.github.io/hydrogeo/
 Depends:
     R (>= 2.10.1),
     reshape2
+RoxygenNote: 5.0.1
