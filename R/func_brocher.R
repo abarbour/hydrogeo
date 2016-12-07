@@ -73,8 +73,7 @@
 #' @param return.percent logical; should
 #' @param return.voidfrac logical; should
 #' @param verbose logical; should messages be printed?
-#' @param Vp numeric; P-wave velocity in km/s
-#' @param Vs numeric; S-wave velocity in km/s 
+#' @inheritParams Elastic.Properties
 #' @param Vp.units character; the units of \code{Vp}
 #' @param pos numeric; vector of indices or distances for \code{Vp}
 #' @param emp.fit character; the empirical fit to use [overridden if \code{(do.all | all.average)}]
@@ -159,8 +158,8 @@ as.RockDensity <- function(Vp, pos=seq_along(Vp),
 #' @rdname brocher
 #' @export
 dens_nafe_drake <- function(Vp, null_val=NA) { UseMethod("dens_nafe_drake") }
+
 #' @rdname brocher
-#' @aliases dens_nafe_drake.default
 #' @export
 dens_nafe_drake.default <- function(Vp, null_val=NA){
   Vp2 <- Vp*Vp
@@ -176,8 +175,8 @@ dens_nafe_drake.default <- function(Vp, null_val=NA){
 #' @rdname brocher
 #' @export
 dens_gardner <- function(Vp, null_val=NA) { UseMethod("dens_gardner") }
+
 #' @rdname brocher
-#' @aliases dens_gardner.default
 #' @export
 dens_gardner.default <- function(Vp, null_val=NA){
   # Brocher 2005 eq 2
@@ -190,8 +189,8 @@ dens_gardner.default <- function(Vp, null_val=NA){
 #' @rdname brocher
 #' @export
 dens_christensen_mooney <- function(Vp, null_val=NA) { UseMethod("dens_christensen_mooney") }
+
 #' @rdname brocher
-#' @aliases dens_christensen_mooney.default
 #' @export
 dens_christensen_mooney.default <- function(Vp, null_val=NA){
   # Brocher 2005 eq 3
@@ -203,8 +202,8 @@ dens_christensen_mooney.default <- function(Vp, null_val=NA){
 #' @rdname brocher
 #' @export
 dens_godfrey <- function(Vp, null_val=NA) { UseMethod("dens_godfrey") }
+
 #' @rdname brocher
-#' @aliases dens_godfrey.default
 #' @export
 dens_godfrey.default <- function(Vp, null_val=NA){
   # Brocher 2005 eq 4
@@ -265,8 +264,8 @@ as.Vs <- function(Vp, pos=seq_along(Vp),
 #' @rdname brocher
 #' @export
 vs_brocher <- function(Vp, null_val=NA) { UseMethod("vs_brocher") }
+
 #' @rdname brocher
-#' @aliases vs_brocher.default
 #' @export
 vs_brocher.default <- function(Vp, null_val=NA){
   Vp2 <- Vp*Vp
@@ -281,8 +280,8 @@ vs_brocher.default <- function(Vp, null_val=NA){
 #' @rdname brocher
 #' @export
 vs_castagna <- function(Vp, null_val=NA) { UseMethod("vs_castagna") }
+
 #' @rdname brocher
-#' @aliases vs_castagna default
 #' @export
 vs_castagna.default <- function(Vp, null_val=NA){
   # Brocher 2005 eq 7 (simp)
@@ -294,8 +293,8 @@ vs_castagna.default <- function(Vp, null_val=NA){
 #' @rdname brocher
 #' @export
 vs_brocher_mafic <- function(Vp, null_val=NA) { UseMethod("vs_brocher_mafic") }
+
 #' @rdname brocher
-#' @aliases vs_brocher_mafic.default
 #' @export
 vs_brocher_mafic.default <- function(Vp, null_val=NA){
   # Brocher 2005 eq 8 (simp)
@@ -322,8 +321,8 @@ as.Vp <- function(X, pos=seq_along(X),
 #' @rdname brocher
 #' @export
 vp_brocher <- function(Vs, null_val=NA) { UseMethod("vp_brocher") }
+
 #' @rdname brocher
-#' @aliases vp_brocher.default
 #' @export
 vp_brocher.default <- function(Vs, null_val=NA){
   Vs2 <- Vs*Vs
@@ -338,8 +337,8 @@ vp_brocher.default <- function(Vs, null_val=NA){
 #' @rdname brocher
 #' @export
 vp_brocher_ludwig <- function(Dens.bulk, null_val=NA) { UseMethod("vp_brocher_ludwig") }
+
 #' @rdname brocher
-#' @aliases vp_brocher_ludwig.default
 #' @export
 vp_brocher_ludwig.default <- function(Dens.bulk, null_val=NA){
   rho2 <- Dens.bulk*Dens.bulk
@@ -360,8 +359,8 @@ vp_brocher_ludwig.default <- function(Dens.bulk, null_val=NA){
 #' @rdname brocher
 #' @export
 vpvs_continuum <- function(nu) { UseMethod("vpvs_continuum") }
+
 #' @rdname brocher
-#' @aliases vpvs_continuum.default
 #' @export
 vpvs_continuum.default <- function(nu){
   # Brocher 2005 eq 10, inverted for Vp/Vs ratio
@@ -378,8 +377,8 @@ vpvs_continuum.default <- function(nu){
 #' @rdname brocher
 #' @export
 nu_continuum <- function(Vp, Vs) { UseMethod("nu_continuum") }
+
 #' @rdname brocher
-#' @aliases nu_continuum.default
 #' @export
 nu_continuum.default <- function(Vp, Vs){
   # Brocher 2005 eq 10
@@ -411,8 +410,8 @@ as.PoissonsRatio <- function(Vp, pos=seq_along(Vp),
 #' @rdname brocher
 #' @export
 nu_brocher <- function(Vp, null_val=NA) { UseMethod("nu_brocher") }
+
 #' @rdname brocher
-#' @aliases nu_brocher.default
 #' @export
 nu_brocher.default <- function(Vp, null_val=NA){
   nu <- null_val
@@ -422,11 +421,11 @@ nu_brocher.default <- function(Vp, null_val=NA){
   if ((Vp>=1.5) & (Vp<=8.5)) nu <- 0.8835 - 0.315*Vp + 0.0491*Vp2 - 0.0024*Vp3
   return(nu)
 }
+
 #' @rdname brocher
 #' @export
 nu_brocher_ludwig <- function(Vp, null_val=NA) { UseMethod("nu_brocher_ludwig") }
 #' @rdname brocher
-#' @aliases nu_brocher_ludwig.default
 #' @export
 nu_brocher_ludwig.default <- function(Vp, null_val=NA){
   nu <- null_val

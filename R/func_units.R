@@ -95,6 +95,7 @@ dimensional_units <- function(quantity=c("show.all",
 #' @rdname hydrogeo.p-units
 #' @param atm numeric; pressure, in standard atmospheres
 #' @param bar numeric; pressure in bars
+#' @param bbl numeric; US oil barrels (1 bbl ~ 42 gallons US liquid)
 #' @param ft numeric; length in feet
 #' @param hpa numeric; pressure in hecto-Pascals
 #' @param kpa numeric; pressure in kilo-Pascals
@@ -119,7 +120,7 @@ to_msquared <- function(Perm_Darcy){
 #' @export
 to_darcies <- function(Perm_sqm, milli=FALSE){
   const <- get_constants()
-  sc <- const$atm$bar * 10**12 #1.01325e+12
+  sc <- const$atm$bar * 10^12 #1.01325e+12
   if (milli) sc <- sc / 1e3
   return(sc * Perm_sqm)
 }
@@ -138,6 +139,13 @@ to_cmsquared <- function(Perm_sqm){
   return(sc * Perm_sqm)
 }
 
+
+#' @rdname hydrogeo.p-units
+#' @export
+bbl2cm <- function(bbl){
+  # oil barrel to cubic meter
+  bbl / 6.2898107704
+}
 
 #' @rdname hydrogeo.p-units
 #' @export

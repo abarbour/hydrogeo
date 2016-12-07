@@ -20,6 +20,6 @@
   ##
   pkg <- "hydrogeo.p"
   packageStartupMessage(
-    sprintf("Loaded %s (%s) -- Hydrogeology and poroelasticity tools.", 
+    sprintf("Loaded %s (%s) -- Hydrogeology and poroelasticity tools", 
             pkg, utils::packageVersion(pkg)))
 }

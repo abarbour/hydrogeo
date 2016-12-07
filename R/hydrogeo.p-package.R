@@ -17,7 +17,10 @@
 #' @aliases hydrogeo.p
 #' @author Andrew J. Barbour <andy.barbour@@gmail.com> 
 #' 
-#' @import utils reshape2
+#' @importFrom utils data str
+#' @importFrom grDevices dev.cur grey
+#' @importFrom graphics lines par plot polygon rect segments text
+#' @importFrom reshape2 dcast
 #' 
 #' @references Brocher, T. M. (2005). 
 #' Empirical relations between elastic wavespeeds and density in the Earth's crust. 

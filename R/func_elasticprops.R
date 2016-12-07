@@ -12,14 +12,14 @@ Elastic.Properties <- function(Vp, Vs, dens){
   mu <- shear_modulus(Vs, dens)
   # undrained bulk mod
   kap <- bulk_modulus(Vp=Vp, dens=dens, mu=mu)
-  comp <- 1/kap/1e9
+  comp <- 1 / kap / 1e9
   data.frame(Mu.GPa=mu, Kappa.GPa=kap, Compress.per_Pa=comp)
 }
 
 #' @rdname Elastic.Properties
 #' @export
 shear_modulus <- function(Vs, dens){
-  dens * Vs * Vs
+  dens * Vs^2
 }
 
 #' @rdname Elastic.Properties
@@ -30,22 +30,20 @@ bulk_modulus <- function(Vp, Vs, dens, mu=NULL){
   } else {
     mu <- shear_modulus(Vs, dens)
   }
-  dens * Vp * Vp  -  4 * mu / 3
+  dens * Vp^2  -  4 * mu / 3
 }
 
 #' @rdname Elastic.Properties
 #' @export
 Lame_constant <- function(Vp, Vs, dens){
-  Vp2 <- Vp * Vp
-  TVs2 <- 2 * Vs * Vs
-  dens * (Vp2 - TVs2)
+  dens * (Vp^2 - 2*Vs^2)
 }
 
 #' @rdname Elastic.Properties
 #' @export
 Poissons_ratio <- function(Vp, Vs){
   L <- Lame_constant(Vp, Vs, dens=1)
-  L / (L + Vp2)
+  L / (L + 2*Vp)
 }
 
 #' @rdname Elastic.Properties
@@ -53,7 +51,7 @@ Poissons_ratio <- function(Vp, Vs){
 Youngs_modulus <- function(Vp, Vs, dens){
   #Vp2 <- Vp * Vp
   #Vs2 <- Vs * Vs
-  mu <- shear_modulus(Vp, Vs, dens)
+  mu <- shear_modulus(Vs, dens)
   L <- Lame_constant(Vp, Vs, dens)
   #E1 <- mu * (3*Vp2 - 4*Vs2) / (Vp2 - Vs2)
   E <- mu * (3*L + 2*mu) / (L + mu)
